@@ -1,20 +1,28 @@
 package com.weichat.model;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * User entity. @author MyEclipse Persistence Tools
+ * 用户实体类
+ * 
+ * 
+ * 项目名称：WeiChat 类名称：BaseDaoImpl.java 类描述：TODO 创建人：王晶 创建时间：2016-6-20 上午11:30:04
+ * 修改人：王晶 修改时间：2016-6-20 上午11:30:04 修改备注：
+ * 
+ * FreeHuman Soft Team
+ * 
+ * @version 1.0 Beta
  */
 @Entity
 @Table(name = "user", catalog = "new")
 public class User implements java.io.Serializable {
-
-	// Fields
+	private static final long serialVersionUID = 2580500455586730224L;
 
 	private Double id;
 	private String username;
@@ -27,13 +35,9 @@ public class User implements java.io.Serializable {
 	private Double zhucetype;
 	private String name;
 
-	// Constructors
-
-	/** default constructor */
 	public User() {
 	}
 
-	/** full constructor */
 	public User(String username, String password, String email, String place,
 			String des, String hobbit, Double usertype, Double zhucetype,
 			String name) {
@@ -48,7 +52,6 @@ public class User implements java.io.Serializable {
 		this.name = name;
 	}
 
-	// Property accessors
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
@@ -140,5 +143,4 @@ public class User implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 }

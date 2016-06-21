@@ -40,6 +40,20 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.weichat.model.User</value>
+				<value>com.weichat.model.Anquanshengchan</value>
+				<value>com.weichat.model.Dangtuanjianshe</value>
+				<value>com.weichat.model.Guotu</value>
+				<value>com.weichat.model.Infomation</value>
+				<value>com.weichat.model.Jiansejindu</value>
+				<value>com.weichat.model.Productpeoper</value>
+				<value>com.weichat.model.Project</value>
+				<value>com.weichat.model.Prolist</value>
+				<value>com.weichat.model.Qiyefazhan</value>
+				<value>com.weichat.model.Qiyefuwu</value>
+				<value>com.weichat.model.Xiangqing</value>
+				<value>com.weichat.model.Yaosu</value>
+				<value>com.weichat.model.Youhuizhengce</value>
+				<value>com.weichat.model.Zhengwuqingkuang</value>
 			</list>
 		</property>
 	</bean>
