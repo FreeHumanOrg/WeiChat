@@ -2,6 +2,8 @@ package com.weichat.dao.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.weichat.dao.CompanyDao;
 import com.weichat.model.Infomation;
 
@@ -22,6 +24,7 @@ import com.weichat.model.Infomation;
  * 
  * @version 1.0 Beta
  */
+@Repository("companyDaoImpl")
 public class CompanyDaoImpl extends BaseDaoImpl implements CompanyDao {
 
 	@Override

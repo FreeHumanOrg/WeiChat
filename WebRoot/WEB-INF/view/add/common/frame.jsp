@@ -20,7 +20,7 @@
 		<!--左边菜单栏-->
 		<div class="leftPanel">
 			<a name="qyjbqk" class="sel" href="../addindex/ebs.jhtml" target="myFrameName"><i class="one"></i>企业基本情况</a>
-			<a name="yhzcqk" href="yhzcqk.html" target="myFrameName"><i class="two"></i>优惠政策情况</a>
+			<a name="yhzcqk" href="../addpolicy/policy.jhtml" target="myFrameName"><i class="two"></i>优惠政策情况</a>
 			<a name="jsqk" href="jsqk.html" target="myFrameName"><i class="three"></i>建设情况</a>
 			<a name="aqsc" href="aqsc.html" target="myFrameName"><i class="four"></i>安全生产</a>
 			<a name="qyfz" href="qyfz.html" target="myFrameName"><i class="five"></i>企业发展</a>
