@@ -1,19 +1,22 @@
 package com.weichat.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 /**
+ * 
  * 安全生产实体类
  * 
- * 
- * 项目名称：WeiChat 类名称：BaseDaoImpl.java 类描述：TODO 创建人：王晶 创建时间：2016-6-20 上午11:30:04
- * 修改人：王晶 修改时间：2016-6-20 上午11:30:04 修改备注：
+ * 项目名称：WeiChat 类名称：Anquanshengchan.java 类描述：TODO 创建人：王晶 创建时间：2016年6月22日
+ * 下午3:49:37 修改人：王晶 修改时间：2016年6月22日 下午3:49:37 修改备注：
  * 
  * FreeHuman Soft Team
  * 
@@ -22,9 +25,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "anquanshengchan", catalog = "new")
 public class Anquanshengchan implements java.io.Serializable {
+	private static final long serialVersionUID = 1787637852628757821L;
 
-	private static final long serialVersionUID = 1979172867962761365L;
 	private Double id;
+	private Infomation infomation;
 	private String peoYuanQingk;
 	private String fuzeName;
 	private String phone;
@@ -55,15 +59,21 @@ public class Anquanshengchan implements java.io.Serializable {
 	public Anquanshengchan() {
 	}
 
-	public Anquanshengchan(String peoYuanQingk, String fuzeName, String phone,
-			String jianquanqingk, String yesOrNoJianko, String yesOrNoJoinQq,
-			String anquansheshi, String zhiyebing, String anquanshengchan,
-			String jiaoyuqingk, String shiguyinhuan, String shengchanchucun,
-			String yesornofenchen, String yesName, String yesoryouxiankj,
-			String yesyouname, String yesorzhongda, String yesorxiaofang,
-			String zhiybjiankang, String anquanguanli, String diangongzuoye,
-			String hanjiezuoye, String gaochuzuoye, String zhilengzuoye,
-			String weixianhuaxue, String qitazuoye) {
+	public Anquanshengchan(Infomation infomation) {
+		this.infomation = infomation;
+	}
+
+	public Anquanshengchan(Infomation infomation, String peoYuanQingk,
+			String fuzeName, String phone, String jianquanqingk,
+			String yesOrNoJianko, String yesOrNoJoinQq, String anquansheshi,
+			String zhiyebing, String anquanshengchan, String jiaoyuqingk,
+			String shiguyinhuan, String shengchanchucun, String yesornofenchen,
+			String yesName, String yesoryouxiankj, String yesyouname,
+			String yesorzhongda, String yesorxiaofang, String zhiybjiankang,
+			String anquanguanli, String diangongzuoye, String hanjiezuoye,
+			String gaochuzuoye, String zhilengzuoye, String weixianhuaxue,
+			String qitazuoye) {
+		this.infomation = infomation;
 		this.peoYuanQingk = peoYuanQingk;
 		this.fuzeName = fuzeName;
 		this.phone = phone;
@@ -92,8 +102,9 @@ public class Anquanshengchan implements java.io.Serializable {
 		this.qitazuoye = qitazuoye;
 	}
 
+	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;
@@ -101,6 +112,16 @@ public class Anquanshengchan implements java.io.Serializable {
 
 	public void setId(Double id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "infomationid", nullable = false)
+	public Infomation getInfomation() {
+		return this.infomation;
+	}
+
+	public void setInfomation(Infomation infomation) {
+		this.infomation = infomation;
 	}
 
 	@Column(name = "PeoYuanQingk", length = 600)

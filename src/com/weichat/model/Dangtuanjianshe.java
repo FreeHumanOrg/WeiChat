@@ -1,19 +1,22 @@
 package com.weichat.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 党团建设实体类
  * 
  * 
- * 项目名称：WeiChat 类名称：BaseDaoImpl.java 类描述：TODO 创建人：王晶 创建时间：2016-6-20 上午11:30:04
- * 修改人：王晶 修改时间：2016-6-20 上午11:30:04 修改备注：
+ * 项目名称：WeiChat 类名称：Dangtuanjianshe.java 类描述：TODO 创建人：王晶 创建时间：2016年6月22日
+ * 下午3:51:05 修改人：王晶 修改时间：2016年6月22日 下午3:51:05 修改备注：
  * 
  * FreeHuman Soft Team
  * 
@@ -22,9 +25,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "dangtuanjianshe", catalog = "new")
 public class Dangtuanjianshe implements java.io.Serializable {
+	private static final long serialVersionUID = 5378040726126750926L;
 
-	private static final long serialVersionUID = -3857094740576410897L;
 	private Double id;
+	private Infomation infomation;
 	private String jianSeQingK;
 	private String shuji;
 	private String phone;
@@ -37,9 +41,14 @@ public class Dangtuanjianshe implements java.io.Serializable {
 	public Dangtuanjianshe() {
 	}
 
-	public Dangtuanjianshe(String jianSeQingK, String shuji, String phone,
-			String dangwugzz, String dangYpeoper, String tjianSeQingK,
-			String tuanYpeoper, String huoDongkaiZhan) {
+	public Dangtuanjianshe(Infomation infomation) {
+		this.infomation = infomation;
+	}
+
+	public Dangtuanjianshe(Infomation infomation, String jianSeQingK,
+			String shuji, String phone, String dangwugzz, String dangYpeoper,
+			String tjianSeQingK, String tuanYpeoper, String huoDongkaiZhan) {
+		this.infomation = infomation;
 		this.jianSeQingK = jianSeQingK;
 		this.shuji = shuji;
 		this.phone = phone;
@@ -50,8 +59,9 @@ public class Dangtuanjianshe implements java.io.Serializable {
 		this.huoDongkaiZhan = huoDongkaiZhan;
 	}
 
+	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;
@@ -59,6 +69,16 @@ public class Dangtuanjianshe implements java.io.Serializable {
 
 	public void setId(Double id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "infomationid", nullable = false)
+	public Infomation getInfomation() {
+		return this.infomation;
+	}
+
+	public void setInfomation(Infomation infomation) {
+		this.infomation = infomation;
 	}
 
 	@Column(name = "jianSeQingK", length = 600)

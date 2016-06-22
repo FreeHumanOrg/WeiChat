@@ -15,6 +15,6 @@ import com.weichat.model.User;
  * 
  * @version 1.0 Beta
  */
-public interface UserDao {
+public interface UserDao extends BaseDao {
 	List<User> findAll();
 }

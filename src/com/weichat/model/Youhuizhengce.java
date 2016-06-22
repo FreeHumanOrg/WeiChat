@@ -1,19 +1,22 @@
 package com.weichat.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 /**
- * 用户政策实体类
+ * 优惠政策实体类
  * 
  * 
- * 项目名称：WeiChat 类名称：BaseDaoImpl.java 类描述：TODO 创建人：王晶 创建时间：2016-6-20 上午11:30:04
- * 修改人：王晶 修改时间：2016-6-20 上午11:30:04 修改备注：
+ * 项目名称：WeiChat 类名称：Youhuizhengce.java 类描述：TODO 创建人：王晶 创建时间：2016年6月22日 下午3:56:17
+ * 修改人：王晶 修改时间：2016年6月22日 下午3:56:17 修改备注：
  * 
  * FreeHuman Soft Team
  * 
@@ -22,9 +25,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "youhuizhengce", catalog = "new")
 public class Youhuizhengce implements java.io.Serializable {
+	private static final long serialVersionUID = 9191338495573014804L;
 
-	private static final long serialVersionUID = -4251209104272335593L;
 	private Double id;
+	private Infomation infomation;
 	private String content;
 	private String money;
 	private String cashsituation;
@@ -33,16 +37,22 @@ public class Youhuizhengce implements java.io.Serializable {
 	public Youhuizhengce() {
 	}
 
-	public Youhuizhengce(String content, String money, String cashsituation,
-			String typename) {
+	public Youhuizhengce(Infomation infomation) {
+		this.infomation = infomation;
+	}
+
+	public Youhuizhengce(Infomation infomation, String content, String money,
+			String cashsituation, String typename) {
+		this.infomation = infomation;
 		this.content = content;
 		this.money = money;
 		this.cashsituation = cashsituation;
 		this.typename = typename;
 	}
 
+	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;
@@ -50,6 +60,16 @@ public class Youhuizhengce implements java.io.Serializable {
 
 	public void setId(Double id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "infomationid", nullable = false)
+	public Infomation getInfomation() {
+		return this.infomation;
+	}
+
+	public void setInfomation(Infomation infomation) {
+		this.infomation = infomation;
 	}
 
 	@Column(name = "content", length = 6000)

@@ -15,6 +15,6 @@ import com.weichat.model.User;
  * 
  * @version 1.0 Beta
  */
-public interface UserService {
+public interface UserService extends BaseService {
 	List<User> findAllService();
 }

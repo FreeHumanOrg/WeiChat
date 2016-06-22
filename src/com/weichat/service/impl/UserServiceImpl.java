@@ -22,7 +22,7 @@ import com.weichat.service.UserService;
  * @version 1.0 Beta
  */
 @Service("userServiceImpl")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	@Resource(name = "userDaoImpl")
 	private UserDao userDao;
 

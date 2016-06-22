@@ -10,18 +10,16 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.weichat.service.CompanyService;
 import com.weichat.service.PolicyService;
-import com.weichat.service.UserService;
 import com.weichat.util.DateTimeUtils;
 
 /**
  * 
- * 用户业务接口的实现类
+ * 政策Controller
  * 
  * 
  * 项目名称：WeiChat 类名称：PolicyController.java 类描述：TODO 创建人：李帅康 创建时间：上午12:34:21
- * 修改人：李帅康 修改时间：上午12:34:21 修改备注：
+ * 修改人：王晶 修改时间：下午16:03:01 修改备注：
  * 
  * FreeHuman Soft Team
  * 
@@ -45,7 +43,8 @@ public class PolicyController {
 	@RequestMapping(value = "/frame", method = RequestMethod.GET)
 	public String addIndex(ModelMap modelMap) {
 		LOGGER.info("跳转到frame页面成功！"
-				+ DateTimeUtils.getNowDateToStringUsingDateTimeTemplateOne());
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		return "/add/common/frame";
 	}
 
@@ -58,15 +57,18 @@ public class PolicyController {
 	@RequestMapping(value = "/policy", method = RequestMethod.GET)
 	public String policy(ModelMap modelMap) {
 		LOGGER.info("跳转到enterprise_basic_situation下的policy页面成功！"
-				+ DateTimeUtils.getNowDateToStringUsingDateTimeTemplateOne());
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		return "/add/enterprise_basic_situation/policy";
 	}
+
 	@RequestMapping(value = "/policyshow", method = RequestMethod.GET)
-	public String policyShow(HttpServletRequest request,ModelMap modelMap){
+	public String policyShow(HttpServletRequest request, ModelMap modelMap) {
 		LOGGER.info("跳转到enterprise_update_situation下的policy页面成功！"
-				+ DateTimeUtils.getNowDateToStringUsingDateTimeTemplateOne());
-		Double id=Double.parseDouble(request.getParameter("id"));
-		modelMap.addAttribute("policies",policyService.findYouhuiById(id));
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+		Double id = Double.parseDouble(request.getParameter("id"));
+		modelMap.addAttribute("policies", policyService.findYouhuiById(id));
 		return "/update/enterprise_update_situation/policy";
 	}
 }

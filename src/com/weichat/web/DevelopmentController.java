@@ -21,12 +21,13 @@ public class DevelopmentController {
 
 	@Resource(name = "developmentServiceImpl")
 	private DevelopmentService developmentService;
-	
+
 	@RequestMapping(value = "/developmentshow", method = RequestMethod.GET)
-	public String developmentShow(HttpServletRequest request,ModelMap modelMap){
+	public String developmentShow(HttpServletRequest request, ModelMap modelMap) {
 		LOGGER.info("跳转到enterprise_update_situation下的development页面成功！"
-				+ DateTimeUtils.getNowDateToStringUsingDateTimeTemplateOne());
-		Double id=Double.parseDouble(request.getParameter("id"));
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+		Double id = Double.parseDouble(request.getParameter("id"));
 		return "/update/enterprise_update_situation/development";
 	}
 }

@@ -1,3 +1,4 @@
+
 package com.weichat.service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import com.weichat.model.Youhuizhengce;
  * 
  * @version 1.0 Beta
  */
-public interface CompanyService {
+public interface CompanyService extends BaseService {
 	List<Infomation> findAllService();
 	
 	Infomation findInfomationById(Double id);

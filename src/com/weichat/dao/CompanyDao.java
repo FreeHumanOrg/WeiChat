@@ -1,3 +1,4 @@
+
 package com.weichat.dao;
 
 import java.util.List;
@@ -23,7 +24,7 @@ import com.weichat.model.Youhuizhengce;
  * 
  * @version 1.0 Beta
  */
-public interface CompanyDao {
+public interface CompanyDao extends BaseDao {
 	List<Infomation> findAll();
 	
 	Infomation findInfomationById(Double id);

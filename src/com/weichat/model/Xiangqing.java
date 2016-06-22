@@ -1,23 +1,26 @@
 package com.weichat.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 详情实体类
  * 
  * 
- * 项目名称：WeiChat 类名称：BaseDaoImpl.java 类描述：TODO 创建人：王晶 创建时间：2016-6-20 上午11:30:04
- * 修改人：王晶 修改时间：2016-6-20 上午11:30:04 修改备注：
+ * 项目名称：WeiChat 类名称：Xiangqing.java 类描述：TODO 创建人：王晶 创建时间：2016年6月22日 下午3:55:41
+ * 修改人：王晶 修改时间：2016年6月22日 下午3:55:41 修改备注：
  * 
  * FreeHuman Soft Team
  * 
@@ -26,9 +29,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "xiangqing", catalog = "new")
 public class Xiangqing implements java.io.Serializable {
+	private static final long serialVersionUID = 3452889664990305809L;
 
-	private static final long serialVersionUID = 2336422929797382131L;
 	private Double id;
+	private Infomation infomation;
 	private Date date;
 	private String name;
 	private String des;
@@ -37,15 +41,18 @@ public class Xiangqing implements java.io.Serializable {
 	public Xiangqing() {
 	}
 
-	public Xiangqing(Date date, String name, String des, String fujian) {
+	public Xiangqing(Infomation infomation, Date date, String name, String des,
+			String fujian) {
+		this.infomation = infomation;
 		this.date = date;
 		this.name = name;
 		this.des = des;
 		this.fujian = fujian;
 	}
 
+	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;
@@ -53,6 +60,16 @@ public class Xiangqing implements java.io.Serializable {
 
 	public void setId(Double id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "infomationid")
+	public Infomation getInfomation() {
+		return this.infomation;
+	}
+
+	public void setInfomation(Infomation infomation) {
+		this.infomation = infomation;
 	}
 
 	@Temporal(TemporalType.DATE)

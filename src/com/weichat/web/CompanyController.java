@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weichat.service.CompanyService;
-import com.weichat.service.UserService;
 import com.weichat.util.DateTimeUtils;
 
 /**
@@ -31,10 +30,10 @@ import com.weichat.util.DateTimeUtils;
 public class CompanyController {
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(CompanyController.class);
-	
+
 	@Resource(name = "companyServiceImpl")
 	private CompanyService companyService;
-	
+
 	/**
 	 * 企业列表
 	 * 
@@ -43,11 +42,12 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/companylist", method = RequestMethod.GET)
 	public String companylist(ModelMap modelMap) {
-		System.out.println("----------------------进入查询企业列表方法----------------------");
+		System.out
+				.println("----------------------进入查询企业列表方法----------------------");
 		modelMap.addAttribute("companyList", companyService.findAllService());
 		return "/home/companylist";
 	}
-	
+
 	/**
 	 * 企业详情
 	 * 
@@ -55,13 +55,14 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping(value = "/companyshow", method = RequestMethod.GET)
-	public String companyshow(HttpServletRequest request,ModelMap modelMap) {
-		System.out.println("----------------------进入查询企业详情方法----------------------");
-		Double id=Double.parseDouble(request.getParameter("id"));
+	public String companyshow(HttpServletRequest request, ModelMap modelMap) {
+		System.out
+				.println("----------------------进入查询企业详情方法----------------------");
+		Double id = Double.parseDouble(request.getParameter("id"));
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/common/frame";
 	}
-	
+
 	/**
 	 * 企业详情
 	 * 
@@ -69,10 +70,12 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping(value = "/ebs", method = RequestMethod.GET)
-	public String enterpriseBasicSituationShow(HttpServletRequest request,ModelMap modelMap) {
+	public String enterpriseBasicSituationShow(HttpServletRequest request,
+			ModelMap modelMap) {
 		LOGGER.info("跳转到enterprise_update_situation下的index页面成功！"
-				+ DateTimeUtils.getNowDateToStringUsingDateTimeTemplateOne());
-		Double id=Double.parseDouble(request.getParameter("id"));
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+		Double id = Double.parseDouble(request.getParameter("id"));
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/enterprise_update_situation/index";
 	}

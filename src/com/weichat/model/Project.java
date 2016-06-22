@@ -1,23 +1,26 @@
 package com.weichat.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 项目实体类
  * 
  * 
- * 项目名称：WeiChat 类名称：BaseDaoImpl.java 类描述：TODO 创建人：王晶 创建时间：2016-6-20 上午11:30:04
- * 修改人：王晶 修改时间：2016-6-20 上午11:30:04 修改备注：
+ * 项目名称：WeiChat 类名称：Project.java 类描述：TODO 创建人：王晶 创建时间：2016年6月22日 下午3:53:25
+ * 修改人：王晶 修改时间：2016年6月22日 下午3:53:25 修改备注：
  * 
  * FreeHuman Soft Team
  * 
@@ -26,9 +29,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "project", catalog = "new")
 public class Project implements java.io.Serializable {
+	private static final long serialVersionUID = -491169292670618388L;
 
-	private static final long serialVersionUID = 1249452909450674944L;
 	private Integer id;
+	private Infomation infomation;
 	private String type;
 	private String status;
 	private String price;
@@ -41,8 +45,10 @@ public class Project implements java.io.Serializable {
 	public Project() {
 	}
 
-	public Project(String type, String status, String price, String time,
-			Date endtime, Integer people, String address, String proName) {
+	public Project(Infomation infomation, String type, String status,
+			String price, String time, Date endtime, Integer people,
+			String address, String proName) {
+		this.infomation = infomation;
 		this.type = type;
 		this.status = status;
 		this.price = price;
@@ -53,8 +59,9 @@ public class Project implements java.io.Serializable {
 		this.proName = proName;
 	}
 
+	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -62,6 +69,16 @@ public class Project implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "infomationid")
+	public Infomation getInfomation() {
+		return this.infomation;
+	}
+
+	public void setInfomation(Infomation infomation) {
+		this.infomation = infomation;
 	}
 
 	@Column(name = "type", length = 20)

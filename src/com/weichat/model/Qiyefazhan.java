@@ -1,19 +1,22 @@
 package com.weichat.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 企业发展实体类
  * 
  * 
- * 项目名称：WeiChat 类名称：BaseDaoImpl.java 类描述：TODO 创建人：王晶 创建时间：2016-6-20 上午11:30:04
- * 修改人：王晶 修改时间：2016-6-20 上午11:30:04 修改备注：
+ * 项目名称：WeiChat 类名称：Qiyefazhan.java 类描述：TODO 创建人：王晶 创建时间：2016年6月22日 下午3:54:13
+ * 修改人：王晶 修改时间：2016年6月22日 下午3:54:13 修改备注：
  * 
  * FreeHuman Soft Team
  * 
@@ -22,9 +25,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "qiyefazhan", catalog = "new")
 public class Qiyefazhan implements java.io.Serializable {
+	private static final long serialVersionUID = 3756156090935771980L;
 
-	private static final long serialVersionUID = 3020668219783258269L;
 	private Double id;
+	private Infomation infomation;
 	private String investment;
 	private String chanzhi;
 	private String shuishou;
@@ -38,9 +42,10 @@ public class Qiyefazhan implements java.io.Serializable {
 	public Qiyefazhan() {
 	}
 
-	public Qiyefazhan(String investment, String chanzhi, String shuishou,
-			String shangTime, String xiaTime, String touTime,
+	public Qiyefazhan(Infomation infomation, String investment, String chanzhi,
+			String shuishou, String shangTime, String xiaTime, String touTime,
 			String jiushuQiye, String renYuan, String zhuyaoPro) {
+		this.infomation = infomation;
 		this.investment = investment;
 		this.chanzhi = chanzhi;
 		this.shuishou = shuishou;
@@ -52,8 +57,9 @@ public class Qiyefazhan implements java.io.Serializable {
 		this.zhuyaoPro = zhuyaoPro;
 	}
 
+	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;
@@ -61,6 +67,16 @@ public class Qiyefazhan implements java.io.Serializable {
 
 	public void setId(Double id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "infomationid")
+	public Infomation getInfomation() {
+		return this.infomation;
+	}
+
+	public void setInfomation(Infomation infomation) {
+		this.infomation = infomation;
 	}
 
 	@Column(name = "investment", length = 600)

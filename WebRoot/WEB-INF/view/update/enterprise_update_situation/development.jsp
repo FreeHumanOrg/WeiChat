@@ -2,29 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<title>建设情况</title>
 		<link rel="stylesheet" type="text/css" href="../window/css/base.css" />
-		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			window.onload = function() {
-				for (var i = 1; i < $(".jsqk .jsqk-con").length; i++) {
-					$(".jsqk .jsqk-con").eq(i).hide();
-				}
-			};
-			function change(){
-				
-			}
-		</script>
 	</head>
+
 	<body>
 		<div class="jsqk subcontent clearfloat">
 			<div class="nav clearfloat">
 				<ul>
 					<li> <a href="##" class="cur">项目促建联系人</a></li>
-					<li> <a href="##" onclick="change()">政务办理情况</a></li>
+					<li> <a href="##">政务办理情况</a></li>
 					<li> <a href="##">国土办理情况</a></li>
 					<li> <a href="##">要素保障</a></li>
 					<li> <a href="##">项目建设进度</a></li>
@@ -297,5 +287,15 @@
 				</div>
 		    </div>
 		</div>
+		
+		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../window/js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				for (i = 1; i < $(".jsqk .jsqk-con").length; i++) {
+					$(".jsqk .jsqk-con").eq(i).hide();
+				}
+			};
+		</script>
 	</body>
 </html>

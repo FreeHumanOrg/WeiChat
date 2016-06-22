@@ -1,7 +1,12 @@
 package com.weichat.util;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 日期时间工具类
@@ -15,6 +20,7 @@ import java.util.Date;
  * @version 1.0 Beta
  */
 public final class DateTimeUtils {
+	private static Logger LOGGER = LoggerFactory.getLogger(DateTimeUtils.class);
 
 	/**
 	 * 日期时间模板枚举
@@ -32,7 +38,12 @@ public final class DateTimeUtils {
 		/**
 		 * 日期时间模板一
 		 */
-		DATE_TIME_TEMPLATE_ONE("yyyy-MM-dd HH:mm:ss");
+		DATE_TIME_TEMPLATE_ONE("yyyy-MM-dd HH:mm:ss"),
+
+		/**
+		 * 日期时间模板二
+		 */
+		DATE_TIME_TEMPLATE_TWO("yyyy-MM-dd");
 
 		private String value;
 
@@ -46,13 +57,120 @@ public final class DateTimeUtils {
 	}
 
 	/**
-	 * 根据日期时间模板一返回格式化后的当前时间字符串
+	 * 日期时间模板一：SysNowDate -> String
 	 * 
 	 * @return
 	 */
-	public static String getNowDateToStringUsingDateTimeTemplateOne() {
+	public static String getNowDateOfStringFormatUsingDateTimeTemplateOne() {
 		return new SimpleDateFormat(
 				DateTimeTemplate.DATE_TIME_TEMPLATE_ONE.getValue())
 				.format(new Date(System.currentTimeMillis()));
+	}
+
+	/**
+	 * 日期时间模板二：SysNowDate -> String
+	 * 
+	 * @return
+	 */
+	public static String getNowDateOfStringFormatUsingDateTimeTemplateTwo() {
+		return new SimpleDateFormat(
+				DateTimeTemplate.DATE_TIME_TEMPLATE_TWO.getValue())
+				.format(new Date(System.currentTimeMillis()));
+	}
+
+	/**
+	 * 日期时间模板一：java.util.Date -> java.lang.String
+	 * 
+	 * @return
+	 */
+	public static String getDateTimeOfStringFormatFromDateTimeUsingDateTimeTemplateOne(
+			Date date) {
+		return new SimpleDateFormat(
+				DateTimeTemplate.DATE_TIME_TEMPLATE_ONE.getValue())
+				.format(date);
+	}
+
+	/**
+	 * 日期时间模板二：java.util.Date -> java.lang.String
+	 * 
+	 * @return
+	 */
+	public static String getDateTimeOfStringFormatFromDateTimeUsingDateTimeTemplateTwo(
+			Date date) {
+		return new SimpleDateFormat(
+				DateTimeTemplate.DATE_TIME_TEMPLATE_TWO.getValue())
+				.format(date);
+	}
+
+	/**
+	 * 日期时间模板一：java.lang.String -> java.util.Date
+	 * 
+	 * @return
+	 */
+	public static Date getDateTimeObjectFromDateTimeStringUsingDateTimeTemplateOne(
+			String dateString) {
+		Date date = new Date();
+		try {
+			date = new SimpleDateFormat(
+					DateTimeTemplate.DATE_TIME_TEMPLATE_ONE.getValue())
+					.parse(dateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			LOGGER.error("Format of date string to date object was failed!");
+		}
+		return date;
+	}
+
+	/**
+	 * 日期时间模板二：java.lang.String -> java.util.Date
+	 * 
+	 * @return
+	 */
+	public static Date getDateTimeObjectFromDateTimeStringUsingDateTimeTemplateTwo(
+			String dateString) {
+		Date date = new Date();
+		try {
+			date = new SimpleDateFormat(
+					DateTimeTemplate.DATE_TIME_TEMPLATE_TWO.getValue())
+					.parse(dateString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			LOGGER.error("Format of date string to date object was failed!");
+		}
+		return date;
+	}
+
+	/**
+	 * 日期时间模板一：java.sql.Timestamp -> java.util.Date
+	 * 
+	 * @return
+	 */
+	public static Date getDateTimeObjectFromTimestampUsingDateTimeTemplateOne(
+			Timestamp timestampDate) {
+		return new Date(timestampDate.getTime());
+	}
+
+	/**
+	 * 日期时间模板一：java.sql.Timestamp -> java.lang.String
+	 * 
+	 * @return
+	 */
+	public static String getTimestampOfStringFormatFromTimestampObjectUsingDateTimeTemplateOne(
+			Timestamp timestampDate) {
+		return new SimpleDateFormat(
+				DateTimeTemplate.DATE_TIME_TEMPLATE_ONE.getValue())
+				.format(timestampDate);
+	}
+
+	/**
+	 * 日期时间模板二：java.sql.Timestamp -> java.lang.String
+	 * 
+	 * @return
+	 */
+	public static String getTimestampOfStringFormatFromTimestampObjectUsingDateTimeTemplateTwo(
+			Timestamp timestampDate) {
+		return new SimpleDateFormat(
+				DateTimeTemplate.DATE_TIME_TEMPLATE_ONE.getValue())
+				.format(timestampDate);
 	}
 }
