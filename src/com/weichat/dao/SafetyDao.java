@@ -16,4 +16,10 @@ import com.weichat.model.Anquanshengchan;
  */
 public interface SafetyDao extends BaseDao{
 	Anquanshengchan findAnquanshengchanById(Double id);
+	
+	Boolean updateAnquanshengchan(Anquanshengchan anquanshengchan);
+	
+	Boolean checkAnquanshengchan(Double id);
+	
+	Boolean addAnquanshengchan(Anquanshengchan anquanshengchan);
 }

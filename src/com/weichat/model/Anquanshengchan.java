@@ -102,9 +102,7 @@ public class Anquanshengchan implements java.io.Serializable {
 		this.qitazuoye = qitazuoye;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;

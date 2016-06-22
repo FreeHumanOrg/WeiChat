@@ -15,40 +15,40 @@
 		<div class="qyfz subcontent clearfloat">
 			<div class="intbox">
 				<span class="name">固定资产投资</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.investment }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">产值</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.chanzhi }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">税收</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.shuishou }"/>
 			</div>
 			<p class="title">规模企业培育</p>
 			<div class="intbox">
 				<span class="name">上规时间</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.shangTime }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">下规时间</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.xiaTime }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">投产时间</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.touTime }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">高新技术企业</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.jiushuQiye }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">从业人员总数</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.renYuan }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">主要产品</span>
-				<input type="text" class="write" />
+				<input type="text" class="write" value="${expend.zhuyaoPro }"/>
 			</div>
 			<div class="btn clearfloat">
 				<a href="##" class="submit">提交</a>

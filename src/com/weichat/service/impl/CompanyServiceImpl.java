@@ -38,4 +38,10 @@ public class CompanyServiceImpl extends BaseServiceImpl implements
 		return companyDao.findInfomationById(id);
 	}
 
+	@Override
+	public Boolean updateInfomation(Infomation infomation) {
+		// TODO Auto-generated method stub
+		return companyDao.updateInfomation(infomation);
+	}
+
 }

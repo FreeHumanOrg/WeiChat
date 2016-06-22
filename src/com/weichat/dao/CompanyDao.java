@@ -29,4 +29,5 @@ public interface CompanyDao extends BaseDao {
 	
 	Infomation findInfomationById(Double id);
 	
+	Boolean updateInfomation(Infomation infomation);
 }

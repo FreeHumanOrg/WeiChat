@@ -16,23 +16,26 @@
 </script>
 	</head>
 	<body>
+		<form id="safetyform" action="../safety/safetyupdate.jhtml" method="post">
+		<input name="id" type="text" hidden="hidden" value="${safety.id }">
+		<input name="infomation.id" hidden="hidden" value="${id }">
 		<div class="aqsc subcontent clearfloat">
 			<div class="intbox">
 				<span class="name name-long">安全生产管理机构及人员配备情况</span>
-				<input type="text" class="write" value="${safety.peoYuanQingk }"/>
+				<input name="peoYuanQingk" type="text" class="write" value="${safety.peoYuanQingk }"/>
 			</div>
 			<p class="title">安全生产负责人</p>
 			<div class="intbox">
 				<span class="name name-long">姓名</span>
-				<input type="text" class="write" value="${safety.fuzeName }"/>
+				<input name="fuzeName" type="text" class="write" value="${safety.fuzeName }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">联系方式</span>
-				<input type="text" class="write" value="${safety.phone }"/>
+				<input name="phone" type="text" class="write" value="${safety.phone }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">安全生产管理规章制度建立健全情况</span>
-				<input type="text" class="write" value="${safety.jianquanqingk }"/>
+				<input name="jianquanqingk" type="text" class="write" value="${safety.jianquanqingk }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否安装监控设备</span>
@@ -62,23 +65,23 @@
 			</div>
 			<div class="intbox">
 				<span class="name name-long">职业病防护设施“三同时”情况</span>
-				<input type="text" class="write" value="${safety.zhiyebing }"/>
+				<input name="zhiyebing" type="text" class="write" value="${safety.zhiyebing }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">安全生产标准化建设情况</span>
-				<input type="text" class="write" value="${safety.anquanshengchan }"/>
+				<input name="anquanshengchan" type="text" class="write" value="${safety.anquanshengchan }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">安全生产教育培训情况</span>
-				<input type="text" class="write" value="${safety.jiaoyuqingk }"/>
+				<input name="jiaoyuqingk" type="text" class="write" value="${safety.jiaoyuqingk }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">事故隐患排查治理情况</span>
-				<input type="text" class="write" value="${safety.shiguyinhuan }"/>
+				<input name="shiguyinhuan" type="text" class="write" value="${safety.shiguyinhuan }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">生产、储存、使用危化品情况</span>
-				<input type="text" class="write" value="${safety.shengchanchucun }"/>
+				<input name="shengchanchucun" type="text" class="write" value="${safety.shengchanchucun }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否涉及可燃性粉尘（如涉及可燃性粉尘请注明名称）</span>
@@ -102,7 +105,7 @@
 					<i class="chose cur">否</i>
 					<i class="chose">是</i>
 				</c:if>
-				<input type="text" class="write shoter" value="${safety.yesyouname }"/>
+				<input name="yesyouname" type="text" class="write shoter" value="${safety.yesyouname }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否存在重大危险源</span>
@@ -128,40 +131,41 @@
 			</div>
 			<div class="intbox">
 				<span class="name name-long">职业病危害及职业健康管理情况</span>
-				<input type="text" class="write" value="${safety.zhiybjiankang }"/>
+				<input name="zhiybjiankang" type="text" class="write" value="${safety.zhiybjiankang }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">安全管理人员、职业健康管理人员持证情况</span>
-				<input type="text" class="write" value="${safety.anquanguanli }"/>
+				<input name="anquanguanli" type="text" class="write" value="${safety.anquanguanli }"/>
 			</div>
 			<p class="title">特种（设备）作业人员</p>
 			<div class="intbox">
 				<span class="name name-long">电工作业</span>
-				<input type="text" class="write" value="${safety.diangongzuoye }" />
+				<input name="diangongzuoye" type="text" class="write" value="${safety.diangongzuoye }" />
 			</div>
 			<div class="intbox">
 				<span class="name name-long">焊接与热切割作业</span>
-				<input type="text" class="write" value="${safety.hanjiezuoye }"/>
+				<input name="hanjiezuoye" type="text" class="write" value="${safety.hanjiezuoye }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">高处作业</span>
-				<input type="text" class="write" value="${safety.gaochuzuoye }"/>
+				<input name="gaochuzuoye" type="text" class="write" value="${safety.gaochuzuoye }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">制冷与空调作业</span>
-				<input type="text" class="write" value="${safety.zhilengzuoye }"/>
+				<input name="zhilengzuoye" type="text" class="write" value="${safety.zhilengzuoye }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">危险化学品安全作业</span>
-				<input type="text" class="write" value="${safety.weixianhuaxue }"/>
+				<input name="weixianhuaxue" type="text" class="write" value="${safety.weixianhuaxue }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">安全监管总局认定的其他作业</span>
-				<input type="text" class="write" value="${safety.qitazuoye }"/>
+				<input name="qitazuoye" type="text" class="write" value="${safety.qitazuoye }"/>
 			</div>
 			<div class="btn">
-			    <a href="##" class="submit">提交</a>
+			    <a href="##" class="submit" onclick="document.getElementById('safetyform').submit();">提交</a>
 			</div>
 		</div>
+		</form>
 	</body>
 </html>

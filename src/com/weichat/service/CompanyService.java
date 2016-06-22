@@ -25,4 +25,5 @@ public interface CompanyService extends BaseService {
 	
 	Infomation findInfomationById(Double id);
 	
+	Boolean updateInfomation(Infomation infomation);
 }

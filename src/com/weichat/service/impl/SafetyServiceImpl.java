@@ -30,5 +30,20 @@ public class SafetyServiceImpl extends BaseServiceImpl implements SafetyService{
 		// TODO Auto-generated method stub
 		return safetyDao.findAnquanshengchanById(id);
 	}
+	@Override
+	public Boolean updateAnquanshengchan(Anquanshengchan anquanshengchan) {
+		// TODO Auto-generated method stub
+		return safetyDao.updateAnquanshengchan(anquanshengchan);
+	}
+	@Override
+	public Boolean checkAnquanshengchan(Double id) {
+		// TODO Auto-generated method stub
+		return safetyDao.checkAnquanshengchan(id);
+	}
+	@Override
+	public Boolean addAnquanshengchan(Anquanshengchan anquanshengchan) {
+		// TODO Auto-generated method stub
+		return safetyDao.addAnquanshengchan(anquanshengchan);
+	}
 
 }
