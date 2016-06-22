@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<c:forEach items="${companyList}" var="item">
 					<tr>
-    					<td><a href="">${item.productdes }</a></td>
+    					<td><a href="/WeiChat/company/companyshow.jhtml?id=${item.id }">${item.productdes }</a></td>
     					<td>成交</td>
     					<td>程光华，邓超，何兴轩</td>
     					<td><a href="##" onclick="$(this).parent().parent().remove();">删除</a></td>

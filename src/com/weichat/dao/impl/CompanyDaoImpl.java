@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.CompanyDao;
 import com.weichat.model.Infomation;
+import com.weichat.model.Youhuizhengce;
 
 /**
  * 企业接口的实现类
@@ -31,6 +32,12 @@ public class CompanyDaoImpl extends BaseDaoImpl implements CompanyDao {
 	public List<Infomation> findAll() {
 		// TODO Auto-generated method stub
 		return this.hibernateTemplate.find("from Infomation");
+	}
+
+	@Override
+	public Infomation findInfomationById(Double id) {
+		// TODO Auto-generated method stub
+		return (Infomation)this.hibernateTemplate.find("from Infomation where id=?",new Object[]{id}).get(0);
 	}
 
 }

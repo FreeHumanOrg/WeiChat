@@ -19,9 +19,9 @@
 	<div class="content clearfloat">
 		<!--左边菜单栏-->
 		<div class="leftPanel">
-			<a name="qyjbqk" class="sel" href="../addindex/ebs.jhtml" target="myFrameName"><i class="one"></i>企业基本情况</a>
-			<a name="yhzcqk" href="../policy/policy.jhtml" target="myFrameName"><i class="two"></i>优惠政策情况</a>
-			<a name="jsqk" href="jsqk.html" target="myFrameName"><i class="three"></i>建设情况</a>
+			<a name="qyjbqk" class="sel" href="../company/ebs.jhtml?id=${company.id }" target="myFrameName"><i class="one"></i>企业基本情况</a>
+			<a name="yhzcqk" href="../policy/policyshow.jhtml?id=${company.id }" target="myFrameName"><i class="two"></i>优惠政策情况</a>
+			<a name="jsqk" href="../development/developmentshow.jhtml?id=${company.id }" target="myFrameName"><i class="three"></i>建设情况</a>
 			<a name="aqsc" href="aqsc.html" target="myFrameName"><i class="four"></i>安全生产</a>
 			<a name="qyfz" href="qyfz.html" target="myFrameName"><i class="five"></i>企业发展</a>
 			<a name="qyfw" href="qyfw.html" target="myFrameName"><i class="six"></i>企业服务</a>
@@ -30,7 +30,7 @@
 		
 		<!--右边内容-->
 		<div class="main">
-			<iframe frameborder="0" scrolling="auto" src="../addindex/ebs.jhtml" name="myFrameName" id="myFrameName"></iframe>
+			<iframe frameborder="0" scrolling="auto" src="../company/ebs.jhtml?id=${company.id }" name="myFrameName" id="myFrameName"></iframe>
 		</div>
 	</div>
 
@@ -47,7 +47,7 @@
 	<script type="text/javascript">
 		$(window).bind("unload", function() {
 			var oSrc1 = $("iframe").attr("src");
-			for (var i = 0; i < $(".leftPanel a").length; i++) {
+			for (i = 0; i < $(".leftPanel a").length; i++) {
 				var oSrc2 = $(this).attr("src");
 				if (oSrc1 == oSrc2) {
 					$(this).addClass("sel").siblings().removeClass("sel");

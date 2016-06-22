@@ -3,12 +3,15 @@ package com.weichat.service.impl;
 import java.util.List;
 
 
+
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.weichat.dao.CompanyDao;
 import com.weichat.model.Infomation;
+import com.weichat.model.Youhuizhengce;
 import com.weichat.service.CompanyService;
 /**
  * 
@@ -30,6 +33,11 @@ public class CompanyServiceImpl implements CompanyService{
 	public List<Infomation> findAllService() {
 		// TODO Auto-generated method stub
 		return companyDao.findAll();
+	}
+	@Override
+	public Infomation findInfomationById(Double id) {
+		// TODO Auto-generated method stub
+		return companyDao.findInfomationById(id);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.weichat.model.Infomation;
 import com.weichat.model.User;
+import com.weichat.model.Youhuizhengce;
 
 /**
  * 
@@ -20,4 +21,7 @@ import com.weichat.model.User;
  */
 public interface CompanyService {
 	List<Infomation> findAllService();
+	
+	Infomation findInfomationById(Double id);
+	
 }
