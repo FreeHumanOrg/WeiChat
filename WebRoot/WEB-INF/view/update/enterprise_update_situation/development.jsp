@@ -2,11 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title>建设情况</title>
 		<link rel="stylesheet" type="text/css" href="../window/css/base.css" />
+		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../window/js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				for (var i = 1; i < $(".jsqk .jsqk-con").length; i++) {
+					$(".jsqk .jsqk-con").eq(i).hide();
+				}
+			};
+		</script>
 	</head>
 
 	<body>
@@ -20,6 +28,7 @@
 					<li> <a href="##">项目建设进度</a></li>
 				</ul>
 			</div>
+		<form action="" id="productpeople">
 			<div class="jsqk-con">
 				<div class="intbox">
 					<span class="name">姓名</span>
@@ -33,6 +42,9 @@
 					<a href="##" class="submit">提交</a>
 				</div>
 			</div>
+		</form>
+		
+		<form action="" id="zhengwu">
 			<div class="jsqk-con">
 				<p class="title">工商税务</p>
 				<div class="intbox">
@@ -146,6 +158,9 @@
 					<a href="##" class="submit">提交</a>
 				</div>
 			</div>
+		</form>
+		
+		<form action="" id="guotu">
 			<div class="jsqk-con">
 				<p class="title">下达指标</p>
 				<div class="intbox">
@@ -191,6 +206,9 @@
 					<a href="##" class="submit">提交</a>
 				</div>
 			</div>
+		</form>
+		
+		<form action="" id="yaosu">
 		    <div class="jsqk-con">
 				<div class="intbox">
 					<span class="name">道路</span>
@@ -220,6 +238,9 @@
 					<a href="##" class="submit">提交</a>
 				</div>
 		    </div>
+		 </form>
+		 
+		 <form action="" id="jianshejindu">
 		    <div class="jsqk-con">
 		    	<p class="title">计划开工时间</p>
 				<div class="intbox">
@@ -286,16 +307,8 @@
 					<a href="##" class="submit">提交</a>
 				</div>
 		    </div>
+		 </form>
+		 
 		</div>
-		
-		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../window/js/base.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			window.onload = function() {
-				for (i = 1; i < $(".jsqk .jsqk-con").length; i++) {
-					$(".jsqk .jsqk-con").eq(i).hide();
-				}
-			};
-		</script>
 	</body>
 </html>
