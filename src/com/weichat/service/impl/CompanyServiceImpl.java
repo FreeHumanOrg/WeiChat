@@ -2,17 +2,14 @@ package com.weichat.service.impl;
 
 import java.util.List;
 
-
-
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.weichat.dao.CompanyDao;
 import com.weichat.model.Infomation;
-import com.weichat.model.Youhuizhengce;
 import com.weichat.service.CompanyService;
+
 /**
  * 
  * 用户业务接口的实现类
@@ -26,17 +23,18 @@ import com.weichat.service.CompanyService;
  * @version 1.0 Beta
  */
 @Service("companyServiceImpl")
-public class CompanyServiceImpl implements CompanyService{
+public class CompanyServiceImpl extends BaseServiceImpl implements
+		CompanyService {
 	@Resource(name = "companyDaoImpl")
 	private CompanyDao companyDao;
+
 	@Override
 	public List<Infomation> findAllService() {
-		// TODO Auto-generated method stub
 		return companyDao.findAll();
 	}
+
 	@Override
 	public Infomation findInfomationById(Double id) {
-		// TODO Auto-generated method stub
 		return companyDao.findInfomationById(id);
 	}
 
