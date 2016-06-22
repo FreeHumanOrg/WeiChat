@@ -20,10 +20,12 @@ import com.weichat.model.Productpeoper;
  */
 @Repository("developmentDaoImpl")
 public class DevelopmentDaoImpl extends BaseDaoImpl implements DevelopmentDao {
-
+	/**
+	 * 根据企业id查询建设情况中的项目促进联系人
+	 */
 	@Override
 	public List<Productpeoper> findProductpeoperById(Double id) {
-		return this.hibernateTemplate.find("from Productpeoper");
+		return this.hibernateTemplate.find("from Productpeoper t where t.infomation.id=?",new Object[]{id});
 	}
 
 }

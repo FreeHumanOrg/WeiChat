@@ -20,10 +20,12 @@ import com.weichat.model.Youhuizhengce;
  */
 @Repository("policyDaoImpl")
 public class PolicyDaoImpl extends BaseDaoImpl implements PolicyDao {
-
+	/**
+	 * 根据企业id查询优惠政策
+	 */
 	@Override
 	public List<Youhuizhengce> findYouhuiById(Double id) {
-		return this.hibernateTemplate.find("from Youhuizhengce where id=?",
-				new Object[] { id });
+		// TODO Auto-generated method stub
+		return this.hibernateTemplate.find("from Youhuizhengce t where t.infomation.id=?",new Object[]{id});
 	}
 }
