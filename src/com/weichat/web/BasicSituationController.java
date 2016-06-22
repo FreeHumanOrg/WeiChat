@@ -1,9 +1,20 @@
 package com.weichat.web;
 
+import java.io.IOException;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.weichat.model.Infomation;
+import com.weichat.service.BasicSituationService;
 
 /**
  * 企业基本情况Controller
@@ -22,4 +33,30 @@ public class BasicSituationController {
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(AddIndexController.class);
 
+	@Resource(name = "basicSituationServiceImpl")
+	private BasicSituationService basicSituationService;
+
+	/**
+	 * 添加企业基本情况.
+	 * 
+	 * @param modelMap
+	 * @param infomation
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public void add(HttpServletResponse response, ModelMap modelMap,
+			@ModelAttribute Infomation infomation) throws IOException {
+		StringBuffer sbResult = new StringBuffer();
+		if (basicSituationService
+				.addBasicSituationOfEnterpriseService(infomation)) {
+			sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+		} else {
+			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); location.href='../basicSituation/add.jhtml'</script>");
+		}
+
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		response.getWriter().write(sbResult.toString());
+	}
 }

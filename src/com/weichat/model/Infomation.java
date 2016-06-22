@@ -7,12 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 信息实体类
@@ -30,24 +27,95 @@ import org.hibernate.annotations.GenericGenerator;
 public class Infomation implements java.io.Serializable {
 	private static final long serialVersionUID = 1459018372173537723L;
 
+	/**
+	 * 企业ID
+	 */
 	private Double id;
+
+	/**
+	 * 产品描述
+	 */
 	private String productdes;
+
+	/**
+	 * 企业名称
+	 */
 	private String name;
+
+	/**
+	 * 行业代码
+	 */
 	private String industrycode;
+
+	/**
+	 * 企业联系人
+	 */
 	private String contacts;
+
+	/**
+	 * 企业网站
+	 */
 	private String enterprisewebsite;
+
+	/**
+	 * 占地面积（亩）
+	 */
 	private String area;
+
+	/**
+	 * 预计年产值
+	 */
 	private String estimated;
+
+	/**
+	 * 协议开工时间
+	 */
 	private String begintime;
+
+	/**
+	 * 项目名称
+	 */
 	private String productname;
+
+	/**
+	 * 行业分类
+	 */
 	private String dustry;
+
+	/**
+	 * 企业法人
+	 */
 	private String legalperson;
+
+	/**
+	 * 企业联系方式
+	 */
 	private String telenumber;
+
+	/**
+	 * 签约时间
+	 */
 	private String signingtime;
+
+	/**
+	 * 协议投资（万元）
+	 */
 	private String agreement;
+
+	/**
+	 * 预计年说收
+	 */
 	private String annualtax;
+
+	/**
+	 * 协议竣工时间
+	 */
 	private String completiontime;
 	private String qyname;
+
+	/**
+	 * 备注
+	 */
 	private String beizhu;
 	private Set<Xiangqing> xiangqings = new HashSet<Xiangqing>(0);
 	private Set<Prolist> prolists = new HashSet<Prolist>(0);
@@ -120,9 +188,7 @@ public class Infomation implements java.io.Serializable {
 		this.jiansejindus = jiansejindus;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;

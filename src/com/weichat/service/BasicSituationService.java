@@ -1,5 +1,7 @@
 package com.weichat.service;
 
+import com.weichat.model.Infomation;
+
 /**
  * 企业基本情况业务接口
  * 
@@ -12,5 +14,11 @@ package com.weichat.service;
  * @version 1.0 Beta
  */
 public interface BasicSituationService extends BaseService {
-
+	/**
+	 * 添加企业基本情况.
+	 * 
+	 * @param information
+	 * @return
+	 */
+	Boolean addBasicSituationOfEnterpriseService(Infomation information);
 }

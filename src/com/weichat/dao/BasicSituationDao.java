@@ -1,5 +1,7 @@
 package com.weichat.dao;
 
+import com.weichat.model.Infomation;
+
 /**
  * 企业基本情况接口
  * 
@@ -12,5 +14,11 @@ package com.weichat.dao;
  * @version 1.0 Beta
  */
 public interface BasicSituationDao extends BaseDao {
-
+	/**
+	 * 添加企业基本情况.
+	 * 
+	 * @param information
+	 * @return
+	 */
+	Boolean addBasicSituationOfEnterprise(Infomation information);
 }
