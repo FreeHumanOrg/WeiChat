@@ -15,6 +15,6 @@ import com.weichat.model.Youhuizhengce;
  * 
  * @version 1.0 Beta
  */
-public interface PolicyService extends BaseService {
+public interface PolicyService extends BaseService<Youhuizhengce, Double> {
 	List<Youhuizhengce> findYouhuiById(Double id);
 }

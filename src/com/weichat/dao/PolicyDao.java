@@ -15,6 +15,6 @@ import com.weichat.model.Youhuizhengce;
  * 
  * @version 1.0 Beta
  */
-public interface PolicyDao extends BaseDao{
+public interface PolicyDao extends BaseDao<Youhuizhengce, Double> {
 	List<Youhuizhengce> findYouhuiById(Double id);
 }

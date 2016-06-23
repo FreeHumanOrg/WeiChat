@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.weichat.dao.SafetyDao;
 import com.weichat.dao.ServerDao;
 import com.weichat.model.Qiyefuwu;
 import com.weichat.service.ServerService;
@@ -22,12 +21,13 @@ import com.weichat.service.ServerService;
  * @version 1.0 Beta
  */
 @Service("serverServiceImpl")
-public class ServerServiceImpl extends BaseServiceImpl implements ServerService{
+public class ServerServiceImpl extends BaseServiceImpl<Qiyefuwu, Double>
+		implements ServerService {
 	@Resource(name = "serverDaoImpl")
 	private ServerDao serverDao;
+
 	@Override
 	public Qiyefuwu findQiyefuwuById(Double id) {
-		// TODO Auto-generated method stub
 		return serverDao.findQiyefuwuById(id);
 	}
 

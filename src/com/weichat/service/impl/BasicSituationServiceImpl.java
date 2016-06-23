@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.weichat.dao.BasicSituationDao;
 import com.weichat.model.Infomation;
 import com.weichat.service.BasicSituationService;
+import com.weichat.util.RandomUtils;
 
 /**
  * 企业基本情况业务接口的实现类
@@ -20,14 +21,15 @@ import com.weichat.service.BasicSituationService;
  * @version 1.0 Beta
  */
 @Service("basicSituationServiceImpl")
-public class BasicSituationServiceImpl extends BaseServiceImpl implements
-		BasicSituationService {
+public class BasicSituationServiceImpl extends
+		BaseServiceImpl<Infomation, Double> implements BasicSituationService {
 
 	@Resource(name = "basicSituationDaoImpl")
 	private BasicSituationDao basicSituationDao;
 
 	@Override
 	public Boolean addBasicSituationOfEnterpriseService(Infomation information) {
+		information.setId(RandomUtils.createIdentitySerialByUUID());
 		return basicSituationDao.addBasicSituationOfEnterprise(information);
 	}
 }

@@ -1,6 +1,13 @@
 package com.weichat.service.impl;
 
+import java.io.Serializable;
+import java.util.List;
+
+import com.weichat.dao.BaseDao;
+import com.weichat.dao.impl.BaseDaoImpl.SearchType;
 import com.weichat.service.BaseService;
+import com.weichat.util.Page;
+import com.weichat.util.Pageable;
 
 /**
  * DAO基类业务接口的实现类
@@ -13,6 +20,46 @@ import com.weichat.service.BaseService;
  * 
  * @version 1.0 Beta
  */
-public class BaseServiceImpl implements BaseService {
+public class BaseServiceImpl<T, ID extends Serializable> implements
+		BaseService<T, ID> {
+
+	/**
+	 * DAO基类的属性
+	 */
+	private BaseDao<T, ID> baseDao;
+
+	public void setBaseDao(BaseDao<T, ID> baseDao) {
+		this.baseDao = baseDao;
+	}
+
+	@Override
+	public List<T> findAllService() {
+		return baseDao.findAll();
+	}
+
+	@Override
+	public T findByIdService(ID id) {
+		return baseDao.findById(id);
+	}
+
+	@Override
+	public Page<T> findPageService(Pageable pageable, SearchType searchType) {
+		return baseDao.findPage(pageable, searchType);
+	}
+
+	@Override
+	public Boolean saveService(T entity) {
+		return baseDao.save(entity);
+	}
+
+	@Override
+	public Boolean removeService(T entity) {
+		return baseDao.save(entity);
+	}
+
+	@Override
+	public Boolean updateService(T entity) {
+		return baseDao.update(entity);
+	}
 
 }

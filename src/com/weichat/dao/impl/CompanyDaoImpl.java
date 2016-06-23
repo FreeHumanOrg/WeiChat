@@ -21,19 +21,24 @@ import com.weichat.model.Infomation;
  * @version 1.0 Beta
  */
 @Repository("companyDaoImpl")
-public class CompanyDaoImpl extends BaseDaoImpl implements CompanyDao {
+public class CompanyDaoImpl extends BaseDaoImpl<Infomation, Double> implements
+		CompanyDao {
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(CompanyDaoImpl.class);
+	
 	@Override
 	public List<Infomation> findAll() {
-		return this.hibernateTemplate.find("from Infomation");
+		// return this.hibernateTemplate.find("from Infomation");
+		return super.findAll();
 	}
 
 	@Override
 	public Infomation findInfomationById(Double id) {
-		return (Infomation) this.hibernateTemplate.find(
-				"from Infomation where id=?", new Object[] { id }).get(0);
+		// return (Infomation) this.hibernateTemplate.find(
+		// "from Infomation where id=?", new Object[] { id }).get(0);
+		return super.findById(id);
 	}
+	
 	/**
 	 * 修改企业基本信息
 	 */
@@ -41,7 +46,7 @@ public class CompanyDaoImpl extends BaseDaoImpl implements CompanyDao {
 	public Boolean updateInfomation(Infomation infomation) {
 		// TODO Auto-generated method stub
 		try {
-			this.hibernateTemplate.update(infomation);
+			super.update(infomation);
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error(e.getMessage());

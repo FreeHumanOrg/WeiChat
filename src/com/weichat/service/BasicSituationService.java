@@ -13,7 +13,7 @@ import com.weichat.model.Infomation;
  * 
  * @version 1.0 Beta
  */
-public interface BasicSituationService extends BaseService {
+public interface BasicSituationService extends BaseService<Infomation, Double> {
 	/**
 	 * 添加企业基本情况.
 	 * 

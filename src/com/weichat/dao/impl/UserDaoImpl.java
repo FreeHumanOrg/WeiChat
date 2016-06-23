@@ -19,11 +19,11 @@ import com.weichat.model.User;
  * @version 1.0 Beta
  */
 @Repository("userDaoImpl")
-public class UserDaoImpl extends BaseDaoImpl implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<User, Double> implements UserDao {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
-		return hibernateTemplate.find(" from User ");
+		// return hibernateTemplate.find(" from User ");
+		return super.findAll();
 	}
 }

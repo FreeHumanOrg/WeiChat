@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.weichat.dao.CaucusesDao;
 import com.weichat.model.Dangtuanjianshe;
 import com.weichat.service.CaucusesService;
+
 /**
  * 党团建设业务接口的实现类
  * 
@@ -18,9 +19,11 @@ import com.weichat.service.CaucusesService;
  * @version 1.0 Beta
  */
 @Service("caucusesServiceImpl")
-public class CaucusesServiceImpl extends BaseServiceImpl implements CaucusesService {
+public class CaucusesServiceImpl extends
+		BaseServiceImpl<Dangtuanjianshe, Double> implements CaucusesService {
 	@Resource(name = "caucusesDaoImpl")
 	private CaucusesDao caucusesDao;
+
 	@Override
 	public Dangtuanjianshe findDangtuanjiansheById(Double id) {
 		// TODO Auto-generated method stub

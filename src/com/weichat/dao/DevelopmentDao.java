@@ -15,7 +15,7 @@ import com.weichat.model.Productpeoper;
  * 
  * @version 1.0 Beta
  */
-public interface DevelopmentDao extends BaseDao {
+public interface DevelopmentDao extends BaseDao<Productpeoper, Double> {
 	/**
 	 * 查询所有项目促进联系人
 	 * 

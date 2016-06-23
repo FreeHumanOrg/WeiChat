@@ -23,8 +23,8 @@ import com.weichat.service.CompanyService;
  * @version 1.0 Beta
  */
 @Service("companyServiceImpl")
-public class CompanyServiceImpl extends BaseServiceImpl implements
-		CompanyService {
+public class CompanyServiceImpl extends BaseServiceImpl<Infomation, Double>
+		implements CompanyService {
 	@Resource(name = "companyDaoImpl")
 	private CompanyDao companyDao;
 
@@ -40,8 +40,6 @@ public class CompanyServiceImpl extends BaseServiceImpl implements
 
 	@Override
 	public Boolean updateInfomation(Infomation infomation) {
-		// TODO Auto-generated method stub
 		return companyDao.updateInfomation(infomation);
 	}
-
 }

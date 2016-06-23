@@ -22,13 +22,13 @@ import com.weichat.service.PolicyService;
  * @version 1.0 Beta
  */
 @Service("policyServiceImpl")
-public class PolicyServiceImpl extends BaseServiceImpl implements PolicyService {
+public class PolicyServiceImpl extends BaseServiceImpl<Youhuizhengce, Double>
+		implements PolicyService {
 	@Resource(name = "policyDaoImpl")
 	private PolicyDao policyDao;
 
 	@Override
 	public List<Youhuizhengce> findYouhuiById(Double id) {
-		// TODO Auto-generated method stub
 		return policyDao.findYouhuiById(id);
 	}
 

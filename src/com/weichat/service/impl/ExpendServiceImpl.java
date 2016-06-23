@@ -5,9 +5,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.weichat.dao.ExpendDao;
-import com.weichat.dao.SafetyDao;
 import com.weichat.model.Qiyefazhan;
 import com.weichat.service.ExpendService;
+
 /**
  * 企业发展业务接口的实现类
  * 
@@ -20,12 +20,13 @@ import com.weichat.service.ExpendService;
  * @version 1.0 Beta
  */
 @Service("expendServiceImpl")
-public class ExpendServiceImpl extends BaseServiceImpl implements ExpendService{
+public class ExpendServiceImpl extends BaseServiceImpl<Qiyefazhan, Double>
+		implements ExpendService {
 	@Resource(name = "expendDaoImpl")
 	private ExpendDao expendDao;
+
 	@Override
 	public Qiyefazhan findQiyefazhanById(Double id) {
-		// TODO Auto-generated method stub
 		return expendDao.findQiyefazhanById(id);
 	}
 

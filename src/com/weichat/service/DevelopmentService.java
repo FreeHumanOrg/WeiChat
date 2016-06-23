@@ -15,6 +15,6 @@ import com.weichat.model.Productpeoper;
  * 
  * @version 1.0 Beta
  */
-public interface DevelopmentService extends BaseService {
+public interface DevelopmentService extends BaseService<Productpeoper, Double> {
 	List<Productpeoper> findProductpeoperById(Double id);
 }

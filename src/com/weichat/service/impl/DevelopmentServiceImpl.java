@@ -22,14 +22,13 @@ import com.weichat.service.DevelopmentService;
  * @version 1.0 Beta
  */
 @Service("developmentServiceImpl")
-public class DevelopmentServiceImpl extends BaseServiceImpl implements
-		DevelopmentService {
+public class DevelopmentServiceImpl extends
+		BaseServiceImpl<Productpeoper, Double> implements DevelopmentService {
 	@Resource(name = "developmentDaoImpl")
 	private DevelopmentDao developmentDao;
 
 	@Override
 	public List<Productpeoper> findProductpeoperById(Double id) {
-		// TODO Auto-generated method stub
 		return developmentDao.findProductpeoperById(id);
 	}
 
