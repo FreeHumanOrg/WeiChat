@@ -20,5 +20,13 @@ public interface BasicSituationService extends BaseService<Infomation, Double> {
 	 * @param information
 	 * @return
 	 */
-	Boolean addBasicSituationOfEnterpriseService(Infomation information);
+	Double addBasicSituationOfEnterpriseService(Infomation information);
+
+	/**
+	 * 根据编号查找Infomation对象.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	Infomation findByIdService(Double id);
 }

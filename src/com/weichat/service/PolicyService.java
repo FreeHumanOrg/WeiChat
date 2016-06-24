@@ -17,4 +17,14 @@ import com.weichat.model.Youhuizhengce;
  */
 public interface PolicyService extends BaseService<Youhuizhengce, Double> {
 	List<Youhuizhengce> findYouhuiById(Double id);
+
+	/**
+	 * 添加一个优惠政策情况.
+	 * 
+	 * @param youhuizhengce
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	Boolean addNewPolicyService(Youhuizhengce youhuizhengce,
+			Double enterpriseSituationId);
 }
