@@ -14,4 +14,7 @@ import com.weichat.model.Dangtuanjianshe;
  */
 public interface PartyService extends BaseService<Dangtuanjianshe, Double> {
 	Dangtuanjianshe findDangtuanjiansheById(Double id);
+	Boolean updateDangtuanjianshe(Dangtuanjianshe dangtuanjianshe);
+	Boolean checkDangtuanjianshe(Double id);
+	Boolean addDangtuanjianshe(Dangtuanjianshe dangtuanjianshe);
 }

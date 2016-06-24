@@ -100,6 +100,7 @@ i{display: inline-block;font-style: normal;}
 .intbox i.chose.cur{background: url(../img/chose-cur.png) no-repeat left center;}
 .intbox input.shoter{width: 100px;}
 
+.choose{width:20px;cursor: pointer;float: left;}
 
 
 /*查看企业*/

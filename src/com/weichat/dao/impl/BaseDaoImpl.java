@@ -107,6 +107,18 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 			}
 		});
 	}
+	
+	@Override
+	public T findTById(final ID id) {
+		return hibernateTemplate.execute(new HibernateCallback<T>() {
+			@Override
+			public T doInHibernate(Session session) throws HibernateException,
+					SQLException {
+				return (T)session.createCriteria(entityClass)
+						.add(Restrictions.eq("infomation.id", id)).uniqueResult();
+			}
+		});
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -213,7 +225,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 			public List<T> doInHibernate(Session session)
 					throws HibernateException, SQLException {
 				return session.createCriteria(entityClass)
-						.add(Restrictions.eq("id", id)).list();
+						.add(Restrictions.eq("infomation.id", id)).list();
 			}
 		});
 	}

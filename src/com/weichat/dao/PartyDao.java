@@ -1,7 +1,6 @@
 package com.weichat.dao;
 
 import com.weichat.model.Dangtuanjianshe;
-import com.weichat.model.Qiyefuwu;
 
 /**
  * 党团建设接口
@@ -20,4 +19,22 @@ public interface PartyDao extends BaseDao<Dangtuanjianshe, Double> {
 	 * @return
 	 */
 	Dangtuanjianshe findDangtuanjiansheById(Double id);
+	/**
+	 * 更新党团建设信息
+	 * @param anquanshengchan
+	 * @return
+	 */
+	Boolean updateDangtuanjianshe(Dangtuanjianshe dangtuanjianshe);
+	/**
+	 * 根据企业id查询党团建设信息是否存在
+	 * @param id
+	 * @return
+	 */
+	Boolean checkDangtuanjianshe(Double id);
+	/**
+	 * 新增党团建设信息
+	 * @param dangtuanjianshe
+	 * @return
+	 */
+	Boolean addDangtuanjianshe(Dangtuanjianshe dangtuanjianshe);
 }

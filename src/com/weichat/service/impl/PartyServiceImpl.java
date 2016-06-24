@@ -24,8 +24,19 @@ public class PartyServiceImpl extends BaseServiceImpl<Dangtuanjianshe, Double> i
 	private PartyDao partyDao;
 	@Override
 	public Dangtuanjianshe findDangtuanjiansheById(Double id) {
-		// TODO Auto-generated method stub
 		return partyDao.findDangtuanjiansheById(id);
+	}
+	@Override
+	public Boolean updateDangtuanjianshe(Dangtuanjianshe dangtuanjianshe) {
+		return partyDao.updateDangtuanjianshe(dangtuanjianshe);
+	}
+	@Override
+	public Boolean checkDangtuanjianshe(Double id) {
+		return partyDao.checkDangtuanjianshe(id);
+	}
+	@Override
+	public Boolean addDangtuanjianshe(Dangtuanjianshe dangtuanjianshe) {
+		return partyDao.addDangtuanjianshe(dangtuanjianshe);
 	}
 
 }

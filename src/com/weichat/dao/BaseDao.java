@@ -31,6 +31,13 @@ public interface BaseDao<T, ID extends Serializable> {
 	 * @return
 	 */
 	T findById(ID id);
+	
+	/**
+	 * 根据企业编号查询子模块实体对象
+	 * @param id
+	 * @return
+	 */
+	T findTById(ID id);
 
 	/**
 	 * 根据编号查询实体对象集合.

@@ -2,10 +2,14 @@ package com.weichat.dao.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.weichat.dao.BaseDao;
 import com.weichat.dao.SafetyDao;
 import com.weichat.model.Anquanshengchan;
 import com.weichat.util.RandomUtils;
@@ -32,14 +36,13 @@ public class SafetyDaoImpl extends BaseDaoImpl<Anquanshengchan, Double>
 	@SuppressWarnings("unchecked")
 	@Override
 	public Anquanshengchan findAnquanshengchanById(Double id) {
-		List<Anquanshengchan> list = this.hibernateTemplate.find(
-				"from Anquanshengchan t where t.infomation.id=?",
-				new Object[] { id });
-		if (list != null && list.size() > 0) {
-			return list.get(0);
-		} else {
-			return null;
-		}
+//		 List<Anquanshengchan> list = hibernateTemplate.find("from Anquanshengchan t where t.infomation.id=?",new Object[] { id });
+//		 if (list != null && list.size() > 0) {
+//		 return list.get(0);
+//		 } else {
+//		 return null;
+//		 }
+		return findTById(id);
 	}
 
 	@Override

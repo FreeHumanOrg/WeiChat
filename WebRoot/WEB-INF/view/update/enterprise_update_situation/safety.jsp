@@ -40,23 +40,31 @@
 			<div class="intbox">
 				<span class="name name-long">是否安装监控设备</span>
 				<c:if test="${safety.yesOrNoJianko eq '是' }">
-					<i class="chose">否</i>
-					<i class="chose cur">是</i>
+					<input class="choose" type="radio" name="yesOrNoJianko" id="yesjianko" value="是" checked="checked"><label class="choose" for="yesjianko">是</label>
+					<input class="choose" type="radio" name="yesOrNoJianko" id="nojianko" value="否"><label class="choose" for="nojianko">否</label>
 				</c:if>
 				<c:if test="${safety.yesOrNoJianko eq '否' }">
-					<i class="chose cur">否</i>
-					<i class="chose">是</i>
+					<input class="choose" type="radio" name="yesOrNoJianko" id="yesjianko" value="是"><label class="choose" for="yesjianko">是</label>
+					<input class="choose" type="radio" name="yesOrNoJianko" id="nojianko" value="否" checked="checked"><label class="choose" for="nojianko">否</label>
+				</c:if>
+				<c:if test="${safety.yesOrNoJianko eq null }">
+					<input class="choose" type="radio" name="yesOrNoJianko" id="nojianko" value="否"><label class="choose" for="nojianko">否</label>
+					<input class="choose" type="radio" name="yesOrNoJianko" id="yesjianko" value="是"><label class="choose" for="yesjianko">是</label>
 				</c:if>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否加入园区安全生产管理QQ群（群号：373263636）</span>
 				<c:if test="${safety.yesOrNoJoinQq eq '是' }">
-					<i class="chose">否</i>
-					<i class="chose cur">是</i>
+					<input class="choose" type="radio" name="yesOrNoJoinQq" id="yesjoinqq" value="是" checked="checked"><label class="choose" for="yesjoinqq">是</label>
+					<input class="choose" type="radio" name="yesOrNoJoinQq" id="nojoinqq" value="否"><label class="choose" for="nojoinqq">否</label>
 				</c:if>
 				<c:if test="${safety.yesOrNoJoinQq eq '否' }">
-					<i class="chose cur">否</i>
-					<i class="chose">是</i>
+					<input class="choose" type="radio" name="yesOrNoJoinQq" id="yesjoinqq" value="是"><label class="choose" for="yesjoinqq">是</label>
+					<input class="choose" type="radio" name="yesOrNoJoinQq" id="nojoinqq" value="否" checked="checked"><label class="choose" for="nojoinqq">否</label>
+				</c:if>
+				<c:if test="${safety.yesOrNoJoinQq eq null }">
+					<input class="choose" type="radio" name="yesOrNoJoinQq" id="yesjoinqq" value="是"><label class="choose" for="yesjoinqq">是</label>
+					<input class="choose" type="radio" name="yesOrNoJoinQq" id="nojoinqq" value="否"><label class="choose" for="nojoinqq">否</label>
 				</c:if>
 			</div>
 			<div class="intbox">
@@ -86,47 +94,66 @@
 			<div class="intbox">
 				<span class="name name-long">是否涉及可燃性粉尘（如涉及可燃性粉尘请注明名称）</span>
 				<c:if test="${safety.yesornofenchen eq '是' }">
-					<i class="chose">否</i>
-					<i class="chose cur">是</i>
+					<input class="choose" type="radio" name="yesornofenchen" id="yesfenchen" value="是" checked="checked"><label class="choose" for="yesfenchen">是</label>
+					<input class="choose" type="radio" name="yesornofenchen" id="nofenchen" value="否"><label class="choose" for="nofenchen">否</label>
+					<input name="yesName" type="text" class="write shoter" value="${safety.yesName }"/>
 				</c:if>
 				<c:if test="${safety.yesornofenchen eq '否' }">
-					<i class="chose cur">否</i>
-					<i class="chose">是</i>
+					<input class="choose" type="radio" name="yesornofenchen" id="yesfenchen" value="是"><label class="choose" for="yesfenchen">是</label>
+					<input class="choose" type="radio" name="yesornofenchen" id="nofenchen" value="否" checked="checked"><label class="choose" for="nofenchen">否</label>
 				</c:if>
-				<input type="text" class="write shoter" value="${safety.yesName }"/>
+				<c:if test="${safety.yesornofenchen eq null }">
+					<input class="choose" type="radio" name="yesornofenchen" id="yesfenchen" value="是"><label class="choose" for="yesfenchen">是</label>
+					<input class="choose" type="radio" name="yesornofenchen" id="nofenchen" value="否"><label class="choose" for="nofenchen">否</label>
+					<input name="yesName" type="text" class="write shoter" value="${safety.yesName }"/>
+				</c:if>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否存在有限空间作业（如存在有限空间请注明名称)</span>
 				<c:if test="${safety.yesoryouxiankj eq '是'}">
-					<i class="chose">否</i>
-					<i class="chose cur">是</i>
+					<input class="choose" type="radio" name="yesoryouxiankj" id="yesyouxiankj" value="是" checked="checked"><label class="choose" for="yesyouxiankj">是</label>
+					<input class="choose" type="radio" name="yesoryouxiankj" id="noyouxiankj" value="否"><label class="choose" for="noyouxiankj">否</label>
+					<input name="yesyouname" type="text" class="write shoter" value="${safety.yesyouname }"/>
 				</c:if>
 				<c:if test="${safety.yesoryouxiankj eq '否'}">
-					<i class="chose cur">否</i>
-					<i class="chose">是</i>
+					<input class="choose" type="radio" name="yesoryouxiankj" id="yesyouxiankj" value="是"><label class="choose" for="yesyouxiankj">是</label>
+					<input class="choose" type="radio" name="yesoryouxiankj" id="noyouxiankj" value="否" checked="checked"><label class="choose" for="noyouxiankj">否</label>
 				</c:if>
-				<input name="yesyouname" type="text" class="write shoter" value="${safety.yesyouname }"/>
+				<c:if test="${safety.yesoryouxiankj eq null }">
+					<input class="choose" type="radio" name="yesoryouxiankj" id="yesyouxiankj" value="是"><label class="choose" for="yesyouxiankj">是</label>
+					<input class="choose" type="radio" name="yesoryouxiankj" id="noyouxiankj" value="否"><label class="choose" for="noyouxiankj">否</label>
+					<input name="yesyouname" type="text" class="write shoter" value="${safety.yesyouname }"/>
+				</c:if>
+				
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否存在重大危险源</span>
 				<c:if test="${safety.yesorzhongda eq '是'}">
-					<i class="chose">否</i>
-					<i class="chose cur">是</i>
+					<input class="choose" type="radio" name="yesorzhongda" id="yeszhongda" value="是" checked="checked"><label class="choose" for="yeszhongda">是</label>
+					<input class="choose" type="radio" name="yesorzhongda" id="nozhongda" value="否"><label class="choose" for="nozhongda">否</label>
 				</c:if>
 				<c:if test="${safety.yesorzhongda eq '否'}">
-					<i class="chose cur">否</i>
-					<i class="chose">是</i>
+					<input class="choose" type="radio" name="yesorzhongda" id="yeszhongda" value="是"><label class="choose" for="yeszhongda">是</label>
+					<input class="choose" type="radio" name="yesorzhongda" id="nozhongda" value="否" checked="checked"><label class="choose" for="nozhongda">否</label>
+				</c:if>
+				<c:if test="${safety.yesorzhongda eq null }">
+					<input class="choose" type="radio" name="yesorzhongda" id="yeszhongda" value="是"><label class="choose" for="yeszhongda">是</label>
+					<input class="choose" type="radio" name="yesorzhongda" id="nozhongda" value="否"><label class="choose" for="nozhongda">否</label>
 				</c:if>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否消防重点单位</span>
 				<c:if test="${safety.yesorxiaofang eq '是'}">
-					<i class="chose">否</i>
-					<i class="chose cur">是</i>
+					<input class="choose" type="radio" name="yesorxiaofang" id="yesxiaofang" value="是" checked="checked"><label class="choose" for="yesxiaofang">是</label>
+					<input class="choose" type="radio" name="yesorxiaofang" id="noxiaofang" value="否"><label class="choose" for="noxiaofang">否</label>
 				</c:if>
 				<c:if test="${safety.yesorxiaofang eq '否'}">
-					<i class="chose cur">否</i>
-					<i class="chose">是</i>
+					<input class="choose" type="radio" name="yesorxiaofang" id="yesxiaofang" value="是"><label class="choose" for="yesxiaofang">是</label>
+					<input class="choose" type="radio" name="yesorxiaofang" id="noxiaofang" value="否" checked="checked"><label class="choose" for="noxiaofang">否</label>
+				</c:if>
+				<c:if test="${safety.yesorxiaofang eq null }">
+					<input class="choose" type="radio" name="yesorxiaofang" id="yesxiaofang" value="是"><label class="choose" for="yesxiaofang">是</label>
+					<input class="choose" type="radio" name="yesorxiaofang" id="noxiaofang" value="否"><label class="choose" for="noxiaofang">否</label>
 				</c:if>
 			</div>
 			<div class="intbox">
