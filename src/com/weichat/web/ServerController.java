@@ -1,14 +1,18 @@
 package com.weichat.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weichat.service.SafetyService;
 import com.weichat.service.ServerService;
+import com.weichat.util.DateTimeUtils;
 /**
  * 企业服务Controller
  * 
@@ -27,4 +31,15 @@ public class ServerController {
 
 	@Resource(name = "serverServiceImpl")
 	private ServerService serverService;
+	
+	@RequestMapping(value = "/servershow", method = RequestMethod.GET)
+	public String serverShow(HttpServletRequest request, ModelMap modelMap) {
+		LOGGER.info("跳转到enterprise_update_situation下的server页面成功！"
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+		Double id = Double.parseDouble(request.getParameter("id"));
+		modelMap.addAttribute("safety", serverService.findQiyefuwuById(id));
+		modelMap.addAttribute("id", id);
+		return "/update/enterprise_update_situation/server";
+	}
 }

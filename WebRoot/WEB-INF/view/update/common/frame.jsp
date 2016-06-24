@@ -24,8 +24,8 @@
 			<a name="jsqk" href="../development/developmentshow.jhtml?id=${company.id }" target="myFrameName"><i class="three"></i>建设情况</a>
 			<a name="aqsc" href="../safety/safetyshow.jhtml?id=${company.id }" target="myFrameName"><i class="four"></i>安全生产</a>
 			<a name="qyfz" href="../expend/expendshow.jhtml?id=${company.id }" target="myFrameName"><i class="five"></i>企业发展</a>
-			<a name="qyfw" href="qyfw.html" target="myFrameName"><i class="six"></i>企业服务</a>
-			<a name="dtjs" href="dtjs.html" target="myFrameName"><i class="seven"></i>党团建设</a>
+			<a name="qyfw" href="../server/servershow.jhtml?id=${company.id }" target="myFrameName"><i class="six"></i>企业服务</a>
+			<a name="dtjs" href="../party/partyshow.jhtml?id=${company.id }" target="myFrameName"><i class="seven"></i>党团建设</a>
 		</div>
 		
 		<!--右边内容-->
