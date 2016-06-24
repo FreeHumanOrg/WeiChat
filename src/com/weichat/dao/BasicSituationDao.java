@@ -21,4 +21,12 @@ public interface BasicSituationDao extends BaseDao<Infomation, Double> {
 	 * @return
 	 */
 	Boolean addBasicSituationOfEnterprise(Infomation information);
+
+	/**
+	 * 根据编号查找Infomation对象.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	Infomation findById(Double id);
 }

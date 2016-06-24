@@ -1,7 +1,5 @@
 package com.weichat.dao.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,8 +22,6 @@ import com.weichat.model.Infomation;
 @Repository("basicSituationDaoImpl")
 public class BasicSituationDaoImpl extends BaseDaoImpl<Infomation, Double>
 		implements BasicSituationDao {
-	private static Logger LOGGER = LoggerFactory
-			.getLogger(BasicSituationDaoImpl.class);
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
@@ -36,5 +32,10 @@ public class BasicSituationDaoImpl extends BaseDaoImpl<Infomation, Double>
 		} catch (DataAccessException e) {
 		}
 		return false;
+	}
+
+	@Override
+	public Infomation findById(Double id) {
+		return super.findById(id);
 	}
 }

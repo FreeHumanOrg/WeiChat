@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weichat.service.UserService;
-import com.weichat.util.DateTimeUtils;
 
 /**
  * 添加主页Controller
@@ -40,9 +39,6 @@ public class AddIndexController {
 	 */
 	@RequestMapping(value = "/frame", method = RequestMethod.GET)
 	public String addIndex(ModelMap modelMap) {
-		LOGGER.info("跳转到frame页面成功！"
-				+ DateTimeUtils
-						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		return "/add/common/frame";
 	}
 
@@ -54,9 +50,17 @@ public class AddIndexController {
 	 */
 	@RequestMapping(value = "/ebs", method = RequestMethod.GET)
 	public String enterpriseBasicSituationIndex(ModelMap modelMap) {
-		LOGGER.info("跳转到enterprise_basic_situation下的index页面成功！"
-				+ DateTimeUtils
-						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		return "/add/enterprise_basic_situation/index";
+	}
+
+	/**
+	 * 优惠政策情况主页跳转.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/policy", method = RequestMethod.GET)
+	public String preferentialPolicyIndex(ModelMap modelMap) {
+		return "/add/enterprise_basic_situation/policy";
 	}
 }

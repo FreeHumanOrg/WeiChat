@@ -4,8 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -23,8 +22,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<style type="text/css">
 		.pagination{
 			float:right;
-			margin-top: -20px;
+			margin-top: -12px;
 			margin-right: 20px;
+		}
+		
+		.btn-primary{
+			width: 65px;
+		}
+		
+		#progress{
+			width: 150px;
+			display: inline;
+		}
+		
+		.choose_table{
+			float: left;
+		}
+		
+		.status_dropdown button{
+			margin-top: -1px;
+			margin-left: 10px;
 		}
 	</style>
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
@@ -35,29 +52,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<div class="search clearfloat">
 			<div class="mod_select clearfloat">
-				<ul>
-					<li>
-						<span class="select_label">跟进进度：</span>
-						<div class="select_box">
-							<span class="select_txt"></span><a class="selet_open"><b></b></a>
-							<div class="option">
-								<a>成交</a>
-								<a>正在跟进</a>
-								<a>失败</a>
-							</div>
-						</div>
-						<br clear="all" />
-					</li>
-				</ul>
-				<input type="hidden" id="select_value" />
+				<table style="border-color: white; margin-top: -10px; width: 230px;">
+					<tr>
+						<td style="border-color: white;">
+							跟进进度：
+						</td>
+						
+						<td style="border-color: white; width: 150px;">
+							<select class="form-control">
+							<option>成交</option> 
+							<option>正在跟进</option>
+							<option>失败</option>
+							</select>
+						</td>
+					</tr>
+				</table>
 			</div>
 			<div class="intbox">
-				<span class="name">跟进人：</span>
-				<input type="text" class="write" placeholder="输入客户、联系人" />
+				<table style="border-color: white; margin-top: -10px; width: 260px;">
+					<tr>
+						<td style="border-color: white;">
+							跟进人：
+						</td>
+						
+						<td style="border-color: white;">
+							<input type="text" placeholder="输入客户、联系人" class="form-control" />
+						</td>
+						
+						<td style="border-color: white;">
+							<button class="btn btn-primary" style="margin-top: -1px;">搜索</button>
+						</td>
+						
+						<td style="border-color: white;">
+							<button class="btn" onclick="location.href='/WeiChat/addindex/frame.jhtml'" style="margin-top: -1px;">新建</button>
+						</td>
+					</tr>
+				</table>
 			</div>
-			<a href="##" class="sousuo">搜索</a>
-			<a href="/WeiChat/addindex/frame.jhtml" class="new">新建</a>
-			<br>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<th>企业名称</th>
@@ -68,7 +99,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<c:forEach items="${page.content}" var="item">
 					<tr>
     					<td><a href="/WeiChat/company/companyshow.jhtml?id=${item.id }">${item.name }</a></td>
-    					<td>成交</td>
+    					<td class="status_dropdown">
+  							<select id="progress" class="form-control">
+    							<option value="success">成交</option>
+    							<option value="follow">正在跟进</option>
+    							<option value="failed">失败</option>
+  							</select>
+  							<button class="btn btn-primary" style="display: inline;">应用</button>
+    					</td>
     					<td>程光华，邓超，何兴轩</td>
     					<td><a href="##" onclick="$(this).parent().parent().remove();">删除</a></td>
     				</tr>

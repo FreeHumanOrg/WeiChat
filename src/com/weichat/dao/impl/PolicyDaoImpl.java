@@ -31,4 +31,15 @@ public class PolicyDaoImpl extends BaseDaoImpl<Youhuizhengce, Double> implements
 				"from Youhuizhengce t where t.infomation.id=?",
 				new Object[] { id });
 	}
+
+	@Override
+	public Boolean addNewPolicy(Youhuizhengce youhuizhengce) {
+		try {
+			save(youhuizhengce);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

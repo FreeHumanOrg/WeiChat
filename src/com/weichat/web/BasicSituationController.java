@@ -3,6 +3,7 @@ package com.weichat.web;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -45,14 +46,17 @@ public class BasicSituationController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public void add(HttpServletResponse response, ModelMap modelMap,
-			@ModelAttribute Infomation infomation) throws IOException {
+	public void add(HttpServletRequest request, HttpServletResponse response,
+			ModelMap modelMap, @ModelAttribute Infomation infomation)
+			throws IOException {
 		StringBuffer sbResult = new StringBuffer();
 		if (basicSituationService
-				.addBasicSituationOfEnterpriseService(infomation)) {
+				.addBasicSituationOfEnterpriseService(infomation) != -1.0) {
+			request.getSession().setAttribute("enterpriseId",
+					infomation.getId());
 			sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
 		} else {
-			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); location.href='../basicSituation/add.jhtml'</script>");
+			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");
 		}
 
 		response.setCharacterEncoding("UTF-8");

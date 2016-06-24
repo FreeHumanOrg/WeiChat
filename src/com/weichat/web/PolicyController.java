@@ -1,15 +1,20 @@
 package com.weichat.web;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.weichat.model.Youhuizhengce;
 import com.weichat.service.PolicyService;
 import com.weichat.util.DateTimeUtils;
 
@@ -56,19 +61,40 @@ public class PolicyController {
 	 */
 	@RequestMapping(value = "/policy", method = RequestMethod.GET)
 	public String policy(ModelMap modelMap) {
-		LOGGER.info("跳转到enterprise_basic_situation下的policy页面成功！"
-				+ DateTimeUtils
-						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		return "/add/enterprise_basic_situation/policy";
 	}
 
 	@RequestMapping(value = "/policyshow", method = RequestMethod.GET)
 	public String policyShow(HttpServletRequest request, ModelMap modelMap) {
-		LOGGER.info("跳转到enterprise_update_situation下的policy页面成功！"
-				+ DateTimeUtils
-						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		Double id = Double.parseDouble(request.getParameter("id"));
 		modelMap.addAttribute("policies", policyService.findYouhuiById(id));
 		return "/update/enterprise_update_situation/policy";
+	}
+
+	/**
+	 * 添加优惠政策情况.
+	 * 
+	 * @param modelMap
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/addPolicy", method = RequestMethod.POST)
+	public void addPolicy(HttpServletRequest request,
+			HttpServletResponse response, ModelMap modelMap,
+			@ModelAttribute Youhuizhengce youhuizhengce) throws IOException {
+		StringBuffer sbResult = new StringBuffer();
+
+		if (policyService.addNewPolicyService(
+				youhuizhengce,
+				Double.valueOf(request.getSession()
+						.getAttribute("enterpriseId").toString()))) {
+			sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+		} else {
+			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");
+		}
+
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		response.getWriter().write(sbResult.toString());
 	}
 }

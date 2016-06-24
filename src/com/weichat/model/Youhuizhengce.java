@@ -3,13 +3,10 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 优惠政策实体类
@@ -29,9 +26,25 @@ public class Youhuizhengce implements java.io.Serializable {
 
 	private Double id;
 	private Infomation infomation;
+
+	/**
+	 * 协议优惠政策内容
+	 */
 	private String content;
+
+	/**
+	 * 应兑现金额
+	 */
 	private String money;
+
+	/**
+	 * 兑现情况
+	 */
 	private String cashsituation;
+
+	/**
+	 * 类目名称
+	 */
 	private String typename;
 
 	public Youhuizhengce() {
@@ -50,9 +63,7 @@ public class Youhuizhengce implements java.io.Serializable {
 		this.typename = typename;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;

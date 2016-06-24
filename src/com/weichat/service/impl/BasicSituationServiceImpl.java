@@ -28,8 +28,20 @@ public class BasicSituationServiceImpl extends
 	private BasicSituationDao basicSituationDao;
 
 	@Override
-	public Boolean addBasicSituationOfEnterpriseService(Infomation information) {
-		information.setId(RandomUtils.createIdentitySerialByUUID());
-		return basicSituationDao.addBasicSituationOfEnterprise(information);
+	public Double addBasicSituationOfEnterpriseService(Infomation information) {
+		Double randomIdentity = RandomUtils.createIdentitySerialByUUID();
+		information.setId(randomIdentity);
+		// 成功返回主键ID
+		if (basicSituationDao.addBasicSituationOfEnterprise(information)) {
+			return randomIdentity;
+		} else {
+			// 失败返回标识符-1
+			return -1.0;
+		}
+	}
+
+	@Override
+	public Infomation findByIdService(Double id) {
+		return basicSituationDao.findById(id);
 	}
 }
