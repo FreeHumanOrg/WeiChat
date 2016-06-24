@@ -5,164 +5,229 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Page分页实体类
+ * 分页工具类
  * 
  * 
- * 项目名称：WeiChat 类名称：Page.java 类描述：TODO 创建人：王晶 创建时间：2016年6月23日 上午8:50:58 修改人：王晶
- * 修改时间：2016年6月23日 上午8:50:58 修改备注：
+ * 项目名称：WeiChat 类名称：Page.java 类描述：TODO 创建人：王晶 创建时间：2016年6月24日 下午3:55:51 修改人：王晶
+ * 修改时间：2016年6月24日 下午3:55:51 修改备注：
  * 
  * FreeHuman Soft Team
  * 
  * @version 1.0 Beta
  */
 public class Page<T> implements Serializable {
-	private static final long serialVersionUID = -2053800594583879853L;
-	private static final int MAX_PAGE_STEP = 10;
-
-	/** 内容. */
-	private final List<T> content = new ArrayList<T>();
-
-	/** 总记录数. */
-	private final long total;
-
-	/** 分页信息. */
-	private final Pageable pageable;
-	private long stepBegin;
-	private long stepEnd;
+	private static final long serialVersionUID = -4964432304535229190L;
 
 	/**
-	 * 初始化一个新创建的Page对象.
+	 * 默认的总页数
 	 */
-	public Page() {
-		this.total = 0L;
-		this.pageable = new Pageable();
-	}
+	private static Integer DEFAULT_TOTAL_PAGE_SIZE = 0;
 
 	/**
-	 * @param content
-	 *            内容
-	 * @param total
-	 *            总记录数
-	 * @param pageable
-	 *            分页信息
+	 * 默认的末页页数
 	 */
-	public Page(List<T> content, long total, Pageable pageable) {
-		this.content.addAll(content);
-		this.total = total;
-		this.pageable = pageable;
-		initStepPage();
-	}
+	private static Integer DEFAULT_LAST_PAGE_INDEX = 0;
 
 	/**
-	 * . .
+	 * 默认每页显示的条数
 	 */
-	private void initStepPage() {
-		int pageNum = pageable.getPageNumber();
-		int totalPages = getTotalPages();
-		if (pageNum < MAX_PAGE_STEP) {
-			stepBegin = 1;
-			stepEnd = MAX_PAGE_STEP <= totalPages ? MAX_PAGE_STEP : totalPages;
-			return;
-		}
-		if ((totalPages - pageNum) < MAX_PAGE_STEP) {
-			stepBegin = totalPages - MAX_PAGE_STEP;
-			stepEnd = totalPages;
-			return;
-		}
-		stepBegin = (pageNum - (int) Math.ceil((double) MAX_PAGE_STEP / 2));
-
-		if (stepBegin < 1) {
-			stepBegin = 1;
-		}
-		stepEnd = pageNum + (MAX_PAGE_STEP / 2);
-		if (stepEnd > totalPages) {
-			stepEnd = totalPages;
-		}
-	}
+	private static Integer DEFAULT_PAGE_SIZE = 10;
 
 	/**
-	 * @return the stepBegin
+	 * 默认的数据总条数
 	 */
-	public long getStepBegin() {
-		return stepBegin;
-	}
+	private static Integer DEFAULT_TOTAL_COUNT = 0;
 
 	/**
-	 * @return the stepEnd
+	 * 当前页面的索引
 	 */
-	public long getStepEnd() {
-		return stepEnd;
-	}
+	private Integer pageIndex;
 
 	/**
-	 * 获取页码.
-	 * 
-	 * @return 页码
+	 * 总页数
 	 */
-	public int getPageNumber() {
-		return pageable.getPageNumber();
-	}
+	private Integer totalPageSize = DEFAULT_TOTAL_PAGE_SIZE;
 
 	/**
-	 * 获取每页记录数.
-	 * 
-	 * @return 每页记录数
+	 * 上一页的页码
 	 */
-	public int getPageSize() {
-		return pageable.getPageSize();
-	}
+	private Integer prevPageIndex;
 
 	/**
-	 * 获取搜索属性.
-	 * 
-	 * @return 搜索属性
+	 * 下一页的页码
 	 */
-	public String getSearchProperty() {
-		return pageable.getSearchProperty();
-	}
+	private Integer nextPageIndex;
 
 	/**
-	 * 获取搜索值.
-	 * 
-	 * @return 搜索值
+	 * 末页的页码
 	 */
-	public String getSearchValue() {
-		return pageable.getSearchValue();
-	}
+	private Integer lastPageIndex = DEFAULT_LAST_PAGE_INDEX;
 
 	/**
-	 * 获取总页数.
-	 * 
-	 * @return 总页数
+	 * 每页要显示的信息条数
 	 */
-	public int getTotalPages() {
-		return (int) Math.ceil((double) getTotal() / (double) getPageSize());
-	}
+	private Integer pageSize = DEFAULT_PAGE_SIZE;
 
 	/**
-	 * 获取内容.
-	 * 
-	 * @return 内容
+	 * 搜索属性
 	 */
+	private String searchProperty;
+
+	/**
+	 * 搜索值
+	 */
+	private String searchValue;
+
+	/**
+	 * 数据总数
+	 */
+	private Integer totalCount = DEFAULT_TOTAL_COUNT;
+
+	/**
+	 * 数据集合
+	 */
+	private List<T> content;
+
 	public List<T> getContent() {
 		return content;
 	}
 
-	/**
-	 * 获取总记录数.
-	 * 
-	 * @return 总记录数
-	 */
-	public long getTotal() {
-		return total;
+	public void setContent(List<T> content) {
+		this.content = content;
+	}
+
+	public Integer getPageIndex() {
+		if (null == pageIndex) {
+			pageIndex = 1;
+		}
+		return pageIndex;
+	}
+
+	public void setPageIndex(Integer pageIndex) {
+		this.pageIndex = pageIndex;
 	}
 
 	/**
-	 * 获取分页信息.
+	 * 设置总页数
 	 * 
-	 * @return 分页信息
+	 * @return
 	 */
-	public Pageable getPageable() {
-		return pageable;
+	public Integer getTotalPageSize() {
+		if (totalCount % pageSize == 0) {
+			totalPageSize = totalCount / pageSize;
+		} else {
+			totalPageSize = totalCount / pageSize + 1;
+		}
+		return totalPageSize;
+	}
+
+	public void setTotalPageSize(Integer totalPageSize) {
+		this.totalPageSize = totalPageSize;
+	}
+
+	/**
+	 * 设置上一页的页码
+	 * 
+	 * @return
+	 */
+	public Integer getPrevPageIndex() {
+		if (pageIndex <= 1) {
+			prevPageIndex = 1;
+		} else if (pageIndex > 1 && pageIndex < totalPageSize) {
+			prevPageIndex = pageIndex - 1;
+		} else if (pageIndex >= totalPageSize) {
+			prevPageIndex = pageIndex - 1;
+		}
+		return prevPageIndex;
+	}
+
+	public void setPrevPageIndex(Integer prevPageIndex) {
+		this.prevPageIndex = prevPageIndex;
+	}
+
+	/**
+	 * 设置下一页的页码
+	 * 
+	 * @return
+	 */
+	public Integer getNextPageIndex() {
+		if (pageIndex <= 1) {
+			nextPageIndex = pageIndex + 1;
+		} else if (pageIndex > 1 && pageIndex < totalPageSize) {
+			nextPageIndex = pageIndex + 1;
+		} else if (pageIndex >= totalPageSize) {
+			nextPageIndex = pageIndex;
+		}
+		return nextPageIndex;
+	}
+
+	public void setNextPageIndex(Integer nextPageIndex) {
+		this.nextPageIndex = nextPageIndex;
+	}
+
+	/**
+	 * 设置末页的页码
+	 * 
+	 * @return
+	 */
+	public Integer getLastPageIndex() {
+		this.lastPageIndex = getTotalPageSize();
+		return lastPageIndex;
+	}
+
+	public void setLastPageIndex(Integer lastPageIndex) {
+		this.lastPageIndex = lastPageIndex;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public String getSearchProperty() {
+		return searchProperty;
+	}
+
+	public void setSearchProperty(String searchProperty) {
+		this.searchProperty = searchProperty;
+	}
+
+	public String getSearchValue() {
+		return searchValue;
+	}
+
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
+
+	public Integer getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(Integer totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	public Page() {
+	}
+
+	/**
+	 * 构造方法，用于填入分页基础数据
+	 * 
+	 * @param contentList
+	 *            分页时携带的数据集合
+	 * @param totalCount
+	 *            数据总数
+	 * @param pageIndex
+	 *            当前页数
+	 */
+	public Page(List<T> contentList, Integer totalCount, Integer pageIndex) {
+		content = new ArrayList<T>();
+		this.content.addAll(contentList);
+		this.totalCount = totalCount;
+		this.pageIndex = pageIndex;
 	}
 }

@@ -1,8 +1,7 @@
 package com.weichat.dao;
 
-import java.util.List;
-
 import com.weichat.model.Infomation;
+import com.weichat.util.Page;
 
 /**
  * 
@@ -16,7 +15,7 @@ import com.weichat.model.Infomation;
  * @version 1.0 Beta
  */
 public interface CompanyDao extends BaseDao<Infomation, Double> {
-	List<Infomation> findAll();
+	Page<Infomation> findAll(Page<Infomation> pageable);
 
 	Infomation findInfomationById(Double id);
 

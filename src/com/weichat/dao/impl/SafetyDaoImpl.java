@@ -24,23 +24,22 @@ import com.weichat.util.RandomUtils;
 @Repository("safetyDaoImpl")
 public class SafetyDaoImpl extends BaseDaoImpl<Anquanshengchan, Double>
 		implements SafetyDao {
-	private static Logger LOGGER = LoggerFactory
-			.getLogger(SafetyDaoImpl.class);
-	
+	private static Logger LOGGER = LoggerFactory.getLogger(SafetyDaoImpl.class);
+
 	/**
 	 * 根据企业id查询安全生产
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Anquanshengchan findAnquanshengchanById(Double id) {
-		// List<Anquanshengchan> list = this.hibernateTemplate.find(
-		// "from Anquanshengchan t where t.infomation.id=?",
-		// new Object[] { id });
-		// if (list != null && list.size() > 0) {
-		// return list.get(0);
-		// } else {
-		// return null;
-		// }
-		return findById(id);
+		List<Anquanshengchan> list = this.hibernateTemplate.find(
+				"from Anquanshengchan t where t.infomation.id=?",
+				new Object[] { id });
+		if (list != null && list.size() > 0) {
+			return list.get(0);
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -57,27 +56,17 @@ public class SafetyDaoImpl extends BaseDaoImpl<Anquanshengchan, Double>
 
 	@Override
 	public Boolean checkAnquanshengchan(Double id) {
-//		try {
-//			List<Anquanshengchan>list=this.hibernateTemplate.find("from Anquanshengchan t where t.infomation.id=?",new Object[]{id});
-//			if(list!=null&&list.size()>0){
-//				return true;
-//			}else{
-//				return false;
-//			}
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//			LOGGER.error(e.getMessage());
-//			return false;
-//		}
 		try {
-			List<Anquanshengchan>list=super.findsById(id);
-			if(list!=null&&list.size()>0){
+			List<Anquanshengchan> list = this.hibernateTemplate.find(
+					"from Anquanshengchan t where t.infomation.id=?",
+					new Object[] { id });
+			if (list != null && list.size() > 0) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 			LOGGER.error(e.getMessage());
 			return false;
@@ -86,17 +75,16 @@ public class SafetyDaoImpl extends BaseDaoImpl<Anquanshengchan, Double>
 
 	@Override
 	public Boolean addAnquanshengchan(Anquanshengchan anquanshengchan) {
-//		try {
-//			anquanshengchan.setId(RandomUtils.createIdentitySerialByUUID());
-//			this.hibernateTemplate.save(anquanshengchan);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//			LOGGER.error(e.getMessage());
-//			return false;
-//		}
-//		return true;
-		
+		// try {
+		// anquanshengchan.setId(RandomUtils.createIdentitySerialByUUID());
+		// this.hibernateTemplate.save(anquanshengchan);
+		// } catch (Exception e) {
+		// // TODO: handle exception
+		// e.printStackTrace();
+		// LOGGER.error(e.getMessage());
+		// return false;
+		// }
+		// return true;
 		try {
 			anquanshengchan.setId(RandomUtils.createIdentitySerialByUUID());
 			super.save(anquanshengchan);

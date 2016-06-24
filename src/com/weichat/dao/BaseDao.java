@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.weichat.dao.impl.BaseDaoImpl.SearchType;
 import com.weichat.util.Page;
-import com.weichat.util.Pageable;
 
 /**
  * DAO基类接口
@@ -47,7 +46,7 @@ public interface BaseDao<T, ID extends Serializable> {
 	 * @param pageable
 	 * @return
 	 */
-	Page<T> findPage(Pageable pageable, SearchType searchType);
+	Page<T> findPage(Page<T> pageable, SearchType searchType);
 
 	/**
 	 * 持久化实体对象.

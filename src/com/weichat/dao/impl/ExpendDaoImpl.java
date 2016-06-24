@@ -1,5 +1,7 @@
 package com.weichat.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.ExpendDao;
@@ -19,16 +21,17 @@ import com.weichat.model.Qiyefazhan;
 public class ExpendDaoImpl extends BaseDaoImpl<Qiyefazhan, Double> implements
 		ExpendDao {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Qiyefazhan findQiyefazhanById(Double id) {
-		// List<Qiyefazhan>list=this.hibernateTemplate.find("from Qiyefazhan t where t.infomation.id=?",new
-		// Object[]{id});
-		// if(list!=null&&list.size()>0){
-		// return list.get(0);
-		// }else{
-		// return null;
-		// }
-		return findById(id);
+		List<Qiyefazhan> list = this.hibernateTemplate.find(
+				"from Qiyefazhan t where t.infomation.id=?",
+				new Object[] { id });
+		if (list != null && list.size() > 0) {
+			return list.get(0);
+		} else {
+			return null;
+		}
 	}
 
 }

@@ -23,7 +23,6 @@ public class UserDaoImpl extends BaseDaoImpl<User, Double> implements UserDao {
 
 	@Override
 	public List<User> findAll() {
-		// return hibernateTemplate.find(" from User ");
 		return super.findAll();
 	}
 }

@@ -7,7 +7,6 @@ import com.weichat.dao.BaseDao;
 import com.weichat.dao.impl.BaseDaoImpl.SearchType;
 import com.weichat.service.BaseService;
 import com.weichat.util.Page;
-import com.weichat.util.Pageable;
 
 /**
  * DAO基类业务接口的实现类
@@ -43,7 +42,7 @@ public class BaseServiceImpl<T, ID extends Serializable> implements
 	}
 
 	@Override
-	public Page<T> findPageService(Pageable pageable, SearchType searchType) {
+	public Page<T> findPageService(Page<T> pageable, SearchType searchType) {
 		return baseDao.findPage(pageable, searchType);
 	}
 

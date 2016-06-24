@@ -1,5 +1,7 @@
 package com.weichat.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.ServerDao;
@@ -19,16 +21,16 @@ import com.weichat.model.Qiyefuwu;
 public class ServerDaoImpl extends BaseDaoImpl<Qiyefuwu, Double> implements
 		ServerDao {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Qiyefuwu findQiyefuwuById(Double id) {
-		// List<Qiyefuwu>list=this.hibernateTemplate.find("from Qiyefuwu t where t.infomation.id=?",new
-		// Object[]{id});
-		// if(list!=null&&list.size()>0){
-		// return list.get(0);
-		// }else{
-		// return null;
-		// }
-		return super.findById(id);
+		List<Qiyefuwu> list = this.hibernateTemplate.find(
+				"from Qiyefuwu t where t.infomation.id=?", new Object[] { id });
+		if (list != null && list.size() > 0) {
+			return list.get(0);
+		} else {
+			return null;
+		}
 	}
 
 }

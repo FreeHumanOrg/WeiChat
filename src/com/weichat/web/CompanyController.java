@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.weichat.model.Infomation;
 import com.weichat.service.CompanyService;
 import com.weichat.util.DateTimeUtils;
+import com.weichat.util.Page;
 
 /**
  * 
@@ -40,16 +41,17 @@ public class CompanyController {
 	private CompanyService companyService;
 
 	/**
-	 * 企业列表
+	 * 企业列表（主页）
 	 * 
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/companylist", method = RequestMethod.GET)
-	public String companylist(ModelMap modelMap) {
-		System.out
-				.println("----------------------进入查询企业列表方法----------------------");
-		modelMap.addAttribute("companyList", companyService.findAllService());
+	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String companylist(ModelMap modelMap,
+			@ModelAttribute Page<Infomation> page) {
+		Page<Infomation> list = companyService.findAllService(page);
+		modelMap.addAttribute("page", list);
 		return "/home/companylist";
 	}
 
@@ -84,13 +86,17 @@ public class CompanyController {
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/enterprise_update_situation/index";
 	}
+
 	@RequestMapping(value = "/ebu", method = RequestMethod.POST)
-	public void enterpriseBasicSituationUpdate(HttpServletResponse response,@ModelAttribute Infomation infomation)throws IOException{
-		LOGGER.info("企业基本情况修改!"+DateTimeUtils.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+	public void enterpriseBasicSituationUpdate(HttpServletResponse response,
+			@ModelAttribute Infomation infomation) throws IOException {
+		LOGGER.info("企业基本情况修改!"
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		StringBuffer sbResult = new StringBuffer();
-		if(companyService.updateInfomation(infomation)){
+		if (companyService.updateInfomation(infomation)) {
 			sbResult.append("<script>alert('恭喜！数据已成功修改。'); parent.location.href='../company/companylist.jhtml';</script>");
-		}else{
+		} else {
 			sbResult.append("<script>alert('非常抱歉，修改数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
 		}
 		response.setCharacterEncoding("UTF-8");

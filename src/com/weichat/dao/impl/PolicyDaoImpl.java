@@ -24,12 +24,11 @@ public class PolicyDaoImpl extends BaseDaoImpl<Youhuizhengce, Double> implements
 	/**
 	 * 根据企业id查询优惠政策
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Youhuizhengce> findYouhuiById(Double id) {
-		// return this.hibernateTemplate.find(
-		// "from Youhuizhengce t where t.infomation.id=?",
-		// new Object[] { id });
-		// return null;
-		return findsById(id);
+		return this.hibernateTemplate.find(
+				"from Youhuizhengce t where t.infomation.id=?",
+				new Object[] { id });
 	}
 }

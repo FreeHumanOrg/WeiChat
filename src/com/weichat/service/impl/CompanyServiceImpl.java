@@ -1,7 +1,5 @@
 package com.weichat.service.impl;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.weichat.dao.CompanyDao;
 import com.weichat.model.Infomation;
 import com.weichat.service.CompanyService;
+import com.weichat.util.Page;
 
 /**
  * 
@@ -29,8 +28,8 @@ public class CompanyServiceImpl extends BaseServiceImpl<Infomation, Double>
 	private CompanyDao companyDao;
 
 	@Override
-	public List<Infomation> findAllService() {
-		return companyDao.findAll();
+	public Page<Infomation> findAllService(Page<Infomation> pageable) {
+		return companyDao.findAll(pageable);
 	}
 
 	@Override

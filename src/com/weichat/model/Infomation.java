@@ -114,9 +114,20 @@ public class Infomation implements java.io.Serializable {
 	private String qyname;
 
 	/**
+	 * 企业跟进人
+	 */
+	private String genjinren;
+
+	/**
+	 * 企业跟进进度
+	 */
+	private String genjinjindu;
+
+	/**
 	 * 备注
 	 */
 	private String beizhu;
+
 	private Set<Xiangqing> xiangqings = new HashSet<Xiangqing>(0);
 	private Set<Prolist> prolists = new HashSet<Prolist>(0);
 	private Set<Dangtuanjianshe> dangtuanjianshes = new HashSet<Dangtuanjianshe>(
@@ -145,9 +156,9 @@ public class Infomation implements java.io.Serializable {
 			String dustry, String legalperson, String telenumber,
 			String signingtime, String agreement, String annualtax,
 			String completiontime, String qyname, String beizhu,
-			Set<Xiangqing> xiangqings, Set<Prolist> prolists,
-			Set<Dangtuanjianshe> dangtuanjianshes, Set<User> users,
-			Set<Dangtuanjianshe> dangtuanjianshes_1,
+			String genjinren, String genjinjindu, Set<Xiangqing> xiangqings,
+			Set<Prolist> prolists, Set<Dangtuanjianshe> dangtuanjianshes,
+			Set<User> users, Set<Dangtuanjianshe> dangtuanjianshes_1,
 			Set<Youhuizhengce> youhuizhengces,
 			Set<Anquanshengchan> anquanshengchans,
 			Set<Zhengwuqingkuang> zhengwuqingkuangs,
@@ -186,6 +197,8 @@ public class Infomation implements java.io.Serializable {
 		this.projects = projects;
 		this.yaosus = yaosus;
 		this.jiansejindus = jiansejindus;
+		this.genjinren = genjinren;
+		this.genjinjindu = genjinjindu;
 	}
 
 	@Id
@@ -358,6 +371,24 @@ public class Infomation implements java.io.Serializable {
 
 	public void setBeizhu(String beizhu) {
 		this.beizhu = beizhu;
+	}
+
+	@Column(name = "genjinren", length = 455)
+	public String getGenjinren() {
+		return genjinren;
+	}
+
+	public void setGenjinren(String genjinren) {
+		this.genjinren = genjinren;
+	}
+
+	@Column(name = "genjinjindu", length = 15)
+	public String getGenjinjindu() {
+		return genjinjindu;
+	}
+
+	public void setGenjinjindu(String genjinjindu) {
+		this.genjinjindu = genjinjindu;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "infomation")

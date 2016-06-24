@@ -1,8 +1,7 @@
 package com.weichat.service;
 
-import java.util.List;
-
 import com.weichat.model.Infomation;
+import com.weichat.util.Page;
 
 /**
  * 
@@ -16,7 +15,7 @@ import com.weichat.model.Infomation;
  * @version 1.0 Beta
  */
 public interface CompanyService extends BaseService<Infomation, Double> {
-	List<Infomation> findAllService();
+	Page<Infomation> findAllService(Page<Infomation> pageable);
 
 	Infomation findInfomationById(Double id);
 

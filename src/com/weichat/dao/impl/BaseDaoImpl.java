@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,6 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.weichat.dao.BaseDao;
 import com.weichat.util.Page;
-import com.weichat.util.Pageable;
 
 /**
  * DAO基类接口的实现类
@@ -74,7 +74,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 	private final Class<T> entityClass;
 
 	@Resource
-	private HibernateTemplate hibernateTemplate;
+	protected HibernateTemplate hibernateTemplate;
 
 	@SuppressWarnings("unchecked")
 	public BaseDaoImpl() {
@@ -110,32 +110,31 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Page<T> findPage(Pageable pageable, SearchType searchType) {
-		final Pageable pageableIn = pageable;
+	public Page<T> findPage(Page<T> page, SearchType searchType) {
+		final Page<T> pageIn = page;
 		final SearchType searchTypeIn = searchType;
-
 		List<T> contentList = hibernateTemplate
 				.executeFind(new HibernateCallback<List<T>>() {
 					@Override
 					public List<T> doInHibernate(Session session)
 							throws HibernateException, SQLException {
 						Criteria criteria = session.createCriteria(entityClass);
-						criteria.setFirstResult((pageableIn.getPageNumber() - 1)
-								* pageableIn.getPageSize());
-						criteria.setMaxResults(pageableIn.getPageSize());
+						criteria.setFirstResult((pageIn.getPageIndex() - 1)
+								* pageIn.getPageSize());
+						criteria.setMaxResults(pageIn.getPageSize());
 
 						// 模糊匹配
 						if (searchTypeIn.hashCode() == SearchType.ILIKE
 								.hashCode()) {
 							criteria.add(Restrictions.ilike(
-									pageableIn.getSearchProperty(),
-									pageableIn.getSearchValue()));
+									pageIn.getSearchProperty(),
+									pageIn.getSearchValue()));
 							// 精确匹配
 						} else if (searchTypeIn.hashCode() == SearchType.EQUAL
 								.hashCode()) {
 							criteria.add(Restrictions.eq(
-									pageableIn.getSearchProperty(),
-									pageableIn.getSearchValue()));
+									pageIn.getSearchProperty(),
+									pageIn.getSearchValue()));
 						}
 						return criteria.list();
 					}
@@ -147,27 +146,27 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 					public Long doInHibernate(Session session)
 							throws HibernateException, SQLException {
 						Criteria criteria = session.createCriteria(entityClass);
-						criteria.setFirstResult((pageableIn.getPageNumber() - 1)
-								* pageableIn.getPageSize());
-						criteria.setMaxResults(pageableIn.getPageSize());
 
 						// 模糊匹配
 						if (searchTypeIn.hashCode() == SearchType.ILIKE
 								.hashCode()) {
 							criteria.add(Restrictions.ilike(
-									pageableIn.getSearchProperty(),
-									pageableIn.getSearchValue()));
+									pageIn.getSearchProperty(),
+									pageIn.getSearchValue()));
 							// 精确匹配
 						} else if (searchTypeIn.hashCode() == SearchType.EQUAL
 								.hashCode()) {
 							criteria.add(Restrictions.eq(
-									pageableIn.getSearchProperty(),
-									pageableIn.getSearchValue()));
+									pageIn.getSearchProperty(),
+									pageIn.getSearchValue()));
 						}
-						return Long.valueOf(criteria.uniqueResult().toString());
+						criteria.setProjection(Projections.rowCount());
+						Object result = criteria.uniqueResult();
+						return Long.valueOf(result.toString());
 					}
 				});
-		return new Page<T>(contentList, totalCount, pageable);
+		return new Page<T>(contentList, totalCount.intValue(),
+				pageIn.getPageIndex());
 	}
 
 	@Override

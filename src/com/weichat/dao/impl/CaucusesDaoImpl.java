@@ -1,5 +1,7 @@
 package com.weichat.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.CaucusesDao;
@@ -18,16 +20,16 @@ import com.weichat.model.Dangtuanjianshe;
 @Repository("caucusesDaoImpl")
 public class CaucusesDaoImpl extends BaseDaoImpl<Dangtuanjianshe, Double>
 		implements CaucusesDao {
+	@SuppressWarnings("unchecked")
 	@Override
 	public Dangtuanjianshe findDangtuanjiansheById(Double id) {
-		// List<Dangtuanjianshe> list = find(
-		// "find Dangtuanjianshe t where t.infomation.id=?",
-		// new Object[] { id });
-		// if (list != null && list.size() > 0) {
-		// return list.get(0);
-		// } else {
-		// return null;
-		// }
-		return super.findById(id);
+		List<Dangtuanjianshe> list = hibernateTemplate.find(
+				"find Dangtuanjianshe t where t.infomation.id=?",
+				new Object[] { id });
+		if (list != null && list.size() > 0) {
+			return list.get(0);
+		} else {
+			return null;
+		}
 	}
 }

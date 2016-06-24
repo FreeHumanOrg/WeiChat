@@ -24,12 +24,12 @@ public class DevelopmentDaoImpl extends BaseDaoImpl<Productpeoper, Double>
 	/**
 	 * 根据企业id查询建设情况中的项目促进联系人
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Productpeoper> findProductpeoperById(Double id) {
-		// return this.hibernateTemplate.find(
-		// "from Productpeoper t where t.infomation.id=?",
-		// new Object[] { id });
-		return super.findsById(id);
+		return this.hibernateTemplate.find(
+				"from Productpeoper t where t.infomation.id=?",
+				new Object[] { id });
 	}
 
 }
