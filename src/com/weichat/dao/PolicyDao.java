@@ -18,6 +18,7 @@ import com.weichat.model.Youhuizhengce;
 public interface PolicyDao extends BaseDao<Youhuizhengce, Double> {
 	List<Youhuizhengce> findYouhuiById(Double id);
 
+
 	/**
 	 * 添加一个优惠政策情况.
 	 * 

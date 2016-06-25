@@ -12,6 +12,7 @@
 		</script>
 	</head>
 	<body>
+	<form name="expendform" action="../expend/expendupdate.jhtml" method="POST">
 		<div class="qyfz subcontent clearfloat">
 			<div class="intbox">
 				<span class="name">固定资产投资</span>
@@ -54,5 +55,6 @@
 				<a href="##" class="submit">提交</a>
 			</div>
 		</div>
+	</form>
 	</body>
 </html>

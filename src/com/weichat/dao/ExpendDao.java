@@ -20,4 +20,8 @@ public interface ExpendDao extends BaseDao<Qiyefazhan, Double> {
 	 * @return
 	 */
 	Qiyefazhan findQiyefazhanById(Double id);
+	
+	Boolean checkQiyefazhan(Double id);
+	
+	Boolean updateQiyefazhan(Qiyefazhan qiyefazhan);
 }

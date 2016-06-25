@@ -30,4 +30,14 @@ public class ExpendServiceImpl extends BaseServiceImpl<Qiyefazhan, Double>
 		return expendDao.findQiyefazhanById(id);
 	}
 
+	@Override
+	public Boolean checkQiyefazhan(Double id) {
+		return expendDao.checkQiyefazhan(id);
+	}
+
+	@Override
+	public Boolean updateQiyefazhan(Qiyefazhan qiyefazhan) {
+		return expendDao.updateQiyefazhan(qiyefazhan);
+	}
+
 }

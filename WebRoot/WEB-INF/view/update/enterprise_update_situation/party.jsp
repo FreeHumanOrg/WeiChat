@@ -12,7 +12,9 @@
 		</script>
 	</head>
 	<body>
-	<form action="../party/partyupdate.jhtml" method="POST" id="partyform"></form>
+	<form action="../party/partyupdate.jhtml" method="POST" id="partyform">
+		<input name="id" type="text" hidden="hidden" value="${party.id }">
+		<input name="infomation.id" hidden="hidden" value="${id }">
 		<div class="dtjs subcontent clearfloat">
 			<div class="intbox">
 				<span class="name">党组织建设情况</span>
@@ -47,8 +49,9 @@
 				<input name="huoDongkaiZhan" type="text" class="write" value="${party.huoDongkaiZhan }"/>
 			</div>
 			<div class="btn clearfloat">
-					<a href="##" class="submit">提交</a>
+					<a href="##" class="submit" onclick="document.getElementById('partyform').submit();">提交</a>
 				</div>
 		</div>
+		</form>
 	</body>
 </html>

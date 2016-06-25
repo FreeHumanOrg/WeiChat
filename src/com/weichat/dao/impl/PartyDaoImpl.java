@@ -43,7 +43,7 @@ public class PartyDaoImpl extends BaseDaoImpl<Dangtuanjianshe, Double>
 	@Override
 	public Boolean checkDangtuanjianshe(Double id) {
 		try {
-			List<Dangtuanjianshe>list=super.findsById(id);
+			List<Dangtuanjianshe>list=this.hibernateTemplate.find("from Dangtuanjianshe t where t.infomation.id=?",new Object[]{id});
 			if(list!=null&&list.size()>0){
 				return true;
 			}else{

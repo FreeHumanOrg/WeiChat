@@ -14,4 +14,8 @@ import com.weichat.model.Qiyefuwu;
  */
 public interface ServerService extends BaseService<Qiyefuwu, Double> {
 	Qiyefuwu findQiyefuwuById(Double id);
+	
+	Boolean checkQiyefuwu(Double id);
+	
+	Boolean updateQiyefuwu(Qiyefuwu qiyefuwu);
 }

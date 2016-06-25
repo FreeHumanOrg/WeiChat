@@ -31,4 +31,14 @@ public class ServerServiceImpl extends BaseServiceImpl<Qiyefuwu, Double>
 		return serverDao.findQiyefuwuById(id);
 	}
 
+	@Override
+	public Boolean checkQiyefuwu(Double id) {
+		return serverDao.checkQiyefuwu(id);
+	}
+
+	@Override
+	public Boolean updateQiyefuwu(Qiyefuwu qiyefuwu) {
+		return serverDao.updateQiyefuwu(qiyefuwu);
+	}
+
 }

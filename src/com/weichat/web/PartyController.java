@@ -37,7 +37,12 @@ public class PartyController {
 	
 	@Resource(name = "partyServiceImpl")
 	private PartyService partyService;
-	
+	/**
+	 * 查询党团建设详情
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
 	@RequestMapping(value = "/partyshow", method = RequestMethod.GET)
 	public String partyShow(HttpServletRequest request, ModelMap modelMap) {
 		LOGGER.info("跳转到enterprise_update_situation下的party页面成功！"

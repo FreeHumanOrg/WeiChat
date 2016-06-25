@@ -2,6 +2,8 @@ package com.weichat.dao.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.ExpendDao;
@@ -20,7 +22,7 @@ import com.weichat.model.Qiyefazhan;
 @Repository("expendDaoImpl")
 public class ExpendDaoImpl extends BaseDaoImpl<Qiyefazhan, Double> implements
 		ExpendDao {
-
+	private static Logger LOGGER = LoggerFactory.getLogger(ExpendDaoImpl.class);
 	@SuppressWarnings("unchecked")
 	@Override
 	public Qiyefazhan findQiyefazhanById(Double id) {
@@ -32,6 +34,35 @@ public class ExpendDaoImpl extends BaseDaoImpl<Qiyefazhan, Double> implements
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public Boolean checkQiyefazhan(Double id) {
+		try {
+			List<Qiyefazhan>list=this.hibernateTemplate.find("from Qiyefazhan t where t.infomation.id=?",new Object[]{id});
+			if(list!=null&&list.size()>0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOGGER.error(e.getMessage());
+			return false;
+		}
+		
+	}
+
+	@Override
+	public Boolean updateQiyefazhan(Qiyefazhan qiyefazhan) {
+		try {
+			super.update(qiyefazhan);
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOGGER.error(e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 }
