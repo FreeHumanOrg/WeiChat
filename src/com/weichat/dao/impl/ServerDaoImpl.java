@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.ServerDao;
-import com.weichat.model.Anquanshengchan;
 import com.weichat.model.Qiyefuwu;
 
 /**
@@ -24,6 +23,7 @@ import com.weichat.model.Qiyefuwu;
 public class ServerDaoImpl extends BaseDaoImpl<Qiyefuwu, Double> implements
 		ServerDao {
 	private static Logger LOGGER = LoggerFactory.getLogger(ServerDaoImpl.class);
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Qiyefuwu findQiyefuwuById(Double id) {
@@ -39,7 +39,9 @@ public class ServerDaoImpl extends BaseDaoImpl<Qiyefuwu, Double> implements
 	@Override
 	public Boolean checkQiyefuwu(Double id) {
 		try {
-			List<Qiyefuwu> list = this.hibernateTemplate.find("from Qiyefuwu t where t.infomation.id=?",new Object[] { id });
+			List<Qiyefuwu> list = this.hibernateTemplate.find(
+					"from Qiyefuwu t where t.infomation.id=?",
+					new Object[] { id });
 			if (list != null && list.size() > 0) {
 				return true;
 			} else {
@@ -63,6 +65,17 @@ public class ServerDaoImpl extends BaseDaoImpl<Qiyefuwu, Double> implements
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Boolean addServerByEnterprise(Qiyefuwu qiyefuwu) {
+		try {
+			super.save(qiyefuwu);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

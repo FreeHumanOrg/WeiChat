@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.DevelopmentDao;
+import com.weichat.model.Guotu;
+import com.weichat.model.Jiansejindu;
 import com.weichat.model.Productpeoper;
+import com.weichat.model.Yaosu;
+import com.weichat.model.Zhengwuqingkuang;
 
 /**
  * 建设情况接口实现类
@@ -19,8 +23,8 @@ import com.weichat.model.Productpeoper;
  * @version 1.0 Beta
  */
 @Repository("developmentDaoImpl")
-public class DevelopmentDaoImpl extends BaseDaoImpl<Productpeoper, Double>
-		implements DevelopmentDao {
+public class DevelopmentDaoImpl extends BaseDaoImpl<Object, Double> implements
+		DevelopmentDao {
 	/**
 	 * 根据企业id查询建设情况中的项目促进联系人
 	 */
@@ -30,6 +34,64 @@ public class DevelopmentDaoImpl extends BaseDaoImpl<Productpeoper, Double>
 		return this.hibernateTemplate.find(
 				"from Productpeoper t where t.infomation.id=?",
 				new Object[] { id });
+	}
+
+	@Override
+	public Boolean addNewProductPeoperFromDevelopment(
+			Productpeoper productpeoper) {
+		try {
+			super.save(productpeoper);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean addNewGovernmentSituationFromDevelopment(
+			Zhengwuqingkuang zhengwuqingkuang) {
+		try {
+			super.save(zhengwuqingkuang);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean addNewLandSituationFromDevelopment(Guotu guotu) {
+		try {
+			super.save(guotu);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean addNewElementsOfSecurityFromDevelopment(Yaosu yaosu) {
+		try {
+			save(yaosu);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean addNewProjectBuildToProgressFromDevelopment(
+			Jiansejindu jiansejindu) {
+		try {
+			save(jiansejindu);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

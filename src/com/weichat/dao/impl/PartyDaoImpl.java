@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.PartyDao;
 import com.weichat.model.Dangtuanjianshe;
-import com.weichat.util.RandomUtils;
 
 /**
  * 党团建设接口的实现类
@@ -29,6 +28,7 @@ public class PartyDaoImpl extends BaseDaoImpl<Dangtuanjianshe, Double>
 	public Dangtuanjianshe findDangtuanjiansheById(Double id) {
 		return findById(id);
 	}
+
 	@Override
 	public Boolean updateDangtuanjianshe(Dangtuanjianshe dangtuanjianshe) {
 		try {
@@ -40,13 +40,16 @@ public class PartyDaoImpl extends BaseDaoImpl<Dangtuanjianshe, Double>
 		}
 		return true;
 	}
+
 	@Override
 	public Boolean checkDangtuanjianshe(Double id) {
 		try {
-			List<Dangtuanjianshe>list=this.hibernateTemplate.find("from Dangtuanjianshe t where t.infomation.id=?",new Object[]{id});
-			if(list!=null&&list.size()>0){
+			List<Dangtuanjianshe> list = this.hibernateTemplate.find(
+					"from Dangtuanjianshe t where t.infomation.id=?",
+					new Object[] { id });
+			if (list != null && list.size() > 0) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
 		} catch (Exception e) {
@@ -55,17 +58,17 @@ public class PartyDaoImpl extends BaseDaoImpl<Dangtuanjianshe, Double>
 			return false;
 		}
 	}
+
 	@Override
 	public Boolean addDangtuanjianshe(Dangtuanjianshe dangtuanjianshe) {
 		try {
-			dangtuanjianshe.setId(RandomUtils.createIdentitySerialByUUID());
 			super.save(dangtuanjianshe);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error(e.getMessage());
-			return false;
 		}
-		return true;
+		return false;
 	}
 
 }

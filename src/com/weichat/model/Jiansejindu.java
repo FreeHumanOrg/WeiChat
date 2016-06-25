@@ -3,13 +3,10 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 建设进度实体类
@@ -28,20 +25,77 @@ public class Jiansejindu implements java.io.Serializable {
 	private static final long serialVersionUID = 4633604878072854018L;
 
 	private Double id;
+
 	private Infomation infomation;
+
+	/**
+	 * 计划开工时间
+	 */
 	private String plannedStartTime;
+
+	/**
+	 * 计划开工存在的问题
+	 */
 	private String plannedStartC;
+
+	/**
+	 * 计划竣工时间
+	 */
 	private String plannedJunTime;
+
+	/**
+	 * 计划竣工存在的问题
+	 */
 	private String plannedJunC;
+
+	/**
+	 * 实际开工时间
+	 */
 	private String postnedStartTime;
+
+	/**
+	 * 实际开工存在的问题
+	 */
 	private String postnedStartC;
+
+	/**
+	 * 实际竣工时间
+	 */
 	private String postnedJunTime;
+
+	/**
+	 * 实际竣工存在的问题
+	 */
 	private String postnedJunC;
+
+	/**
+	 * 建筑内容及规模
+	 */
 	private String scale;
+
+	/**
+	 * 项目形象进度
+	 */
 	private String progress;
+
+	/**
+	 * 计划开工的解决方案
+	 */
 	private String plannedStartSol;
+
+	/**
+	 * 计划竣工的解决方案
+	 */
 	private String plannedJunSol;
+
+	/**
+	 * 实际开工的解决方案
+	 */
 	private String postnedStartSol;
+
+	/**
+	 * 实际竣工的解决方案
+	 */
 	private String postnedJunSol;
 
 	public Jiansejindu() {
@@ -74,9 +128,7 @@ public class Jiansejindu implements java.io.Serializable {
 		this.postnedJunSol = postnedJunSol;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;

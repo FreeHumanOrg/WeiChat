@@ -23,6 +23,7 @@ import com.weichat.model.Qiyefazhan;
 public class ExpendDaoImpl extends BaseDaoImpl<Qiyefazhan, Double> implements
 		ExpendDao {
 	private static Logger LOGGER = LoggerFactory.getLogger(ExpendDaoImpl.class);
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Qiyefazhan findQiyefazhanById(Double id) {
@@ -39,10 +40,12 @@ public class ExpendDaoImpl extends BaseDaoImpl<Qiyefazhan, Double> implements
 	@Override
 	public Boolean checkQiyefazhan(Double id) {
 		try {
-			List<Qiyefazhan>list=this.hibernateTemplate.find("from Qiyefazhan t where t.infomation.id=?",new Object[]{id});
-			if(list!=null&&list.size()>0){
+			List<Qiyefazhan> list = this.hibernateTemplate.find(
+					"from Qiyefazhan t where t.infomation.id=?",
+					new Object[] { id });
+			if (list != null && list.size() > 0) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
 		} catch (Exception e) {
@@ -50,7 +53,7 @@ public class ExpendDaoImpl extends BaseDaoImpl<Qiyefazhan, Double> implements
 			LOGGER.error(e.getMessage());
 			return false;
 		}
-		
+
 	}
 
 	@Override
@@ -63,6 +66,17 @@ public class ExpendDaoImpl extends BaseDaoImpl<Qiyefazhan, Double> implements
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Boolean addNewExpend(Qiyefazhan qiyefazhan) {
+		try {
+			super.save(qiyefazhan);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

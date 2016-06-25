@@ -3,13 +3,10 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 政务情况实体类
@@ -28,30 +25,127 @@ public class Zhengwuqingkuang implements java.io.Serializable {
 	private static final long serialVersionUID = 701045092500196431L;
 
 	private Double id;
+
 	private Infomation infomation;
+
+	/**
+	 * 工商税务办理时间
+	 */
 	private String commercialtaxtime;
+
+	/**
+	 * 工商税务存在的问题
+	 */
 	private String commercialtaxcon;
+
+	/**
+	 * 发改立项办理时间
+	 */
 	private String projexttime;
+
+	/**
+	 * 发改立项存在的问题
+	 */
 	private String projextcon;
+
+	/**
+	 * 环评办理时间
+	 */
 	private String eiatime;
+
+	/**
+	 * 环评存在的问题
+	 */
 	private String eiacon;
+
+	/**
+	 * 用地许可办理时间
+	 */
 	private String permittime;
+
+	/**
+	 * 用地许可存在的问题
+	 */
 	private String permitcon;
+
+	/**
+	 * 工程许可办理时间
+	 */
 	private String permissiontime;
+
+	/**
+	 * 工程许可存在的问题
+	 */
 	private String permissioncon;
+
+	/**
+	 * 施工工程办理时间
+	 */
 	private String constructionprojectTime;
+
+	/**
+	 * 施工工程存在的文体
+	 */
 	private String constructionprojectCon;
+
+	/**
+	 * 消防备检办理时间
+	 */
 	private String fireinspectionTime;
+
+	/**
+	 * 消防备检存在的问题
+	 */
 	private String fireinspectionCon;
+
+	/**
+	 * 总平图设计及方案报规办理时间
+	 */
 	private String programmeReportTime;
+
+	/**
+	 * 总平图设计及方案报规存在的问题
+	 */
 	private String programmeReportcon;
+
+	/**
+	 * 施工图设计及图审办理时间
+	 */
 	private String chartreviewtime;
+
+	/**
+	 * 施工图设计及图审存在的问题
+	 */
 	private String chartreviewcon;
+
+	/**
+	 * 施工、监理单位确定办理时间
+	 */
 	private String controlUnitTime;
+
+	/**
+	 * 施工、监理单位确定存在的问题
+	 */
 	private String controlUnitcon;
+
+	/**
+	 * 招标备案办理时间
+	 */
 	private String recordTime;
+
+	/**
+	 * 招标备案存在的问题
+	 */
 	private String recordcon;
+
+	/**
+	 * 其他办理时间
+	 */
 	private String otherTime;
+
+	/**
+	 * 其他存在的问题
+	 */
 	private String othercon;
 
 	public Zhengwuqingkuang() {
@@ -98,9 +192,7 @@ public class Zhengwuqingkuang implements java.io.Serializable {
 		this.othercon = othercon;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;

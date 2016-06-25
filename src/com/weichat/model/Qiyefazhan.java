@@ -3,13 +3,10 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 企业发展实体类
@@ -28,15 +25,52 @@ public class Qiyefazhan implements java.io.Serializable {
 	private static final long serialVersionUID = 3756156090935771980L;
 
 	private Double id;
+
 	private Infomation infomation;
+
+	/**
+	 * 固定资产投资
+	 */
 	private String investment;
+
+	/**
+	 * 产值
+	 */
 	private String chanzhi;
+
+	/**
+	 * 税收
+	 */
 	private String shuishou;
+
+	/**
+	 * 上规时间
+	 */
 	private String shangTime;
+
+	/**
+	 * 下规时间
+	 */
 	private String xiaTime;
+
+	/**
+	 * 投产时间
+	 */
 	private String touTime;
+
+	/**
+	 * 高新技术企业
+	 */
 	private String jiushuQiye;
+
+	/**
+	 * 从业人员总数
+	 */
 	private String renYuan;
+
+	/**
+	 * 主要产品
+	 */
 	private String zhuyaoPro;
 
 	public Qiyefazhan() {
@@ -57,9 +91,7 @@ public class Qiyefazhan implements java.io.Serializable {
 		this.zhuyaoPro = zhuyaoPro;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;

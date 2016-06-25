@@ -3,13 +3,10 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 项目促进联系人实体类
@@ -29,7 +26,15 @@ public class Productpeoper implements java.io.Serializable {
 
 	private Double id;
 	private Infomation infomation;
+
+	/**
+	 * 姓名
+	 */
 	private String name;
+
+	/**
+	 * 联系方式
+	 */
 	private String telphone;
 
 	public Productpeoper() {
@@ -45,9 +50,7 @@ public class Productpeoper implements java.io.Serializable {
 		this.telphone = telphone;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;

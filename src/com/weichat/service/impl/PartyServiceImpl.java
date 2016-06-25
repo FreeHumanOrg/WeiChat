@@ -4,10 +4,12 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.weichat.dao.BasicSituationDao;
 import com.weichat.dao.PartyDao;
-import com.weichat.dao.SafetyDao;
 import com.weichat.model.Dangtuanjianshe;
 import com.weichat.service.PartyService;
+import com.weichat.util.RandomUtils;
+
 /**
  * 党团建设业务接口的实现类
  * 
@@ -19,23 +21,35 @@ import com.weichat.service.PartyService;
  * @version 1.0 Beta
  */
 @Service("partyServiceImpl")
-public class PartyServiceImpl extends BaseServiceImpl<Dangtuanjianshe, Double> implements PartyService{
+public class PartyServiceImpl extends BaseServiceImpl<Dangtuanjianshe, Double>
+		implements PartyService {
 	@Resource(name = "partyDaoImpl")
 	private PartyDao partyDao;
+
+	@Resource(name = "basicSituationDaoImpl")
+	private BasicSituationDao basicSituationDao;
+
 	@Override
 	public Dangtuanjianshe findDangtuanjiansheById(Double id) {
 		return partyDao.findDangtuanjiansheById(id);
 	}
+
 	@Override
 	public Boolean updateDangtuanjianshe(Dangtuanjianshe dangtuanjianshe) {
 		return partyDao.updateDangtuanjianshe(dangtuanjianshe);
 	}
+
 	@Override
 	public Boolean checkDangtuanjianshe(Double id) {
 		return partyDao.checkDangtuanjianshe(id);
 	}
+
 	@Override
-	public Boolean addDangtuanjianshe(Dangtuanjianshe dangtuanjianshe) {
+	public Boolean addDangtuanjiansheService(Dangtuanjianshe dangtuanjianshe,
+			Double enterpriseSituationId) {
+		dangtuanjianshe.setId(RandomUtils.createIdentitySerialByUUID());
+		dangtuanjianshe.setInfomation(basicSituationDao
+				.findById(enterpriseSituationId));
 		return partyDao.addDangtuanjianshe(dangtuanjianshe);
 	}
 

@@ -14,8 +14,18 @@ import com.weichat.model.Qiyefazhan;
  */
 public interface ExpendService extends BaseService<Qiyefazhan, Double> {
 	Qiyefazhan findQiyefazhanById(Double id);
-	
+
 	Boolean checkQiyefazhan(Double id);
-	
+
 	Boolean updateQiyefazhan(Qiyefazhan qiyefazhan);
+
+	/**
+	 * 添加一个新的企业发展信息.
+	 * 
+	 * @param qiyefazhan
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	Boolean addNewExpendService(Qiyefazhan qiyefazhan,
+			Double enterpriseSituationId);
 }

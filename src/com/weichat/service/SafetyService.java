@@ -15,10 +15,11 @@ import com.weichat.model.Anquanshengchan;
  */
 public interface SafetyService extends BaseService<Anquanshengchan, Double> {
 	Anquanshengchan findAnquanshengchanById(Double id);
-	
+
 	Boolean updateAnquanshengchan(Anquanshengchan anquanshengchan);
-	
+
 	Boolean checkAnquanshengchan(Double id);
-	
-	Boolean addAnquanshengchan(Anquanshengchan anquanshengchan);
+
+	Boolean addAnquanshengchan(Anquanshengchan anquanshengchan,
+			Double enterpriseSituationId);
 }

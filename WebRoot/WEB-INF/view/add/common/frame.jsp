@@ -21,11 +21,11 @@
 		<div class="leftPanel">
 			<a name="qyjbqk" class="sel" href="../addindex/ebs.jhtml" target="myFrameName"><i class="one"></i>企业基本情况</a>
 			<a name="yhzcqk" href="../addindex/policy.jhtml" target="myFrameName"><i class="two"></i>优惠政策情况</a>
-			<a name="jsqk" href="jsqk.html" target="myFrameName"><i class="three"></i>建设情况</a>
-			<a name="aqsc" href="aqsc.html" target="myFrameName"><i class="four"></i>安全生产</a>
-			<a name="qyfz" href="qyfz.html" target="myFrameName"><i class="five"></i>企业发展</a>
-			<a name="qyfw" href="qyfw.html" target="myFrameName"><i class="six"></i>企业服务</a>
-			<a name="dtjs" href="dtjs.html" target="myFrameName"><i class="seven"></i>党团建设</a>
+			<a name="jsqk" href="../addindex/development.jhtml" target="myFrameName"><i class="three"></i>建设情况</a>
+			<a name="aqsc" href="../addindex/safety.jhtml" target="myFrameName"><i class="four"></i>安全生产</a>
+			<a name="qyfz" href="../addindex/expand.jhtml" target="myFrameName"><i class="five"></i>企业发展</a>
+			<a name="qyfw" href="../addindex/server.jhtml" target="myFrameName"><i class="six"></i>企业服务</a>
+			<a name="dtjs" href="../addindex/party.jhtml" target="myFrameName"><i class="seven"></i>党团建设</a>
 		</div>
 		
 		<!--右边内容-->

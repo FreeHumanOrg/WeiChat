@@ -4,9 +4,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.weichat.dao.BasicSituationDao;
 import com.weichat.dao.ServerDao;
 import com.weichat.model.Qiyefuwu;
 import com.weichat.service.ServerService;
+import com.weichat.util.RandomUtils;
 
 /**
  * 企业服务业务接口的实现类
@@ -26,6 +28,9 @@ public class ServerServiceImpl extends BaseServiceImpl<Qiyefuwu, Double>
 	@Resource(name = "serverDaoImpl")
 	private ServerDao serverDao;
 
+	@Resource(name = "basicSituationDaoImpl")
+	private BasicSituationDao basicSituationDao;
+
 	@Override
 	public Qiyefuwu findQiyefuwuById(Double id) {
 		return serverDao.findQiyefuwuById(id);
@@ -39,6 +44,15 @@ public class ServerServiceImpl extends BaseServiceImpl<Qiyefuwu, Double>
 	@Override
 	public Boolean updateQiyefuwu(Qiyefuwu qiyefuwu) {
 		return serverDao.updateQiyefuwu(qiyefuwu);
+	}
+
+	@Override
+	public Boolean addServerByEnterpriseService(Qiyefuwu qiyefuwu,
+			Double enterpriseSituationId) {
+		qiyefuwu.setId(RandomUtils.createIdentitySerialByUUID());
+		qiyefuwu.setInfomation(basicSituationDao
+				.findById(enterpriseSituationId));
+		return serverDao.addServerByEnterprise(qiyefuwu);
 	}
 
 }

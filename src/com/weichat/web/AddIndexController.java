@@ -63,4 +63,59 @@ public class AddIndexController {
 	public String preferentialPolicyIndex(ModelMap modelMap) {
 		return "/add/enterprise_basic_situation/policy";
 	}
+
+	/**
+	 * 建设情况主页跳转.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/development", method = RequestMethod.GET)
+	public String developmentIndex(ModelMap modelMap) {
+		return "/add/enterprise_basic_situation/development";
+	}
+
+	/**
+	 * 安全生产主页跳转.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/safety", method = RequestMethod.GET)
+	public String safetyIndex(ModelMap modelMap) {
+		return "/add/enterprise_basic_situation/safety";
+	}
+
+	/**
+	 * 企业发展主页跳转.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/expand", method = RequestMethod.GET)
+	public String expandIndex(ModelMap modelMap) {
+		return "/add/enterprise_basic_situation/expand";
+	}
+
+	/**
+	 * 企业服务主页跳转.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/server", method = RequestMethod.GET)
+	public String serverIndex(ModelMap modelMap) {
+		return "/add/enterprise_basic_situation/server";
+	}
+
+	/**
+	 * 企业建设主页跳转.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/party", method = RequestMethod.GET)
+	public String partyIndex(ModelMap modelMap) {
+		return "/add/enterprise_basic_situation/party";
+	}
 }

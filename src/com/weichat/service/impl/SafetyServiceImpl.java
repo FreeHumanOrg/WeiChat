@@ -4,9 +4,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.weichat.dao.BasicSituationDao;
 import com.weichat.dao.SafetyDao;
 import com.weichat.model.Anquanshengchan;
 import com.weichat.service.SafetyService;
+import com.weichat.util.RandomUtils;
 
 /**
  * 安全生产业务实现类
@@ -26,20 +28,30 @@ public class SafetyServiceImpl extends BaseServiceImpl<Anquanshengchan, Double>
 	@Resource(name = "safetyDaoImpl")
 	private SafetyDao safetyDao;
 
+	@Resource(name = "basicSituationDaoImpl")
+	private BasicSituationDao basicSituationDao;
+
 	@Override
 	public Anquanshengchan findAnquanshengchanById(Double id) {
 		return safetyDao.findAnquanshengchanById(id);
 	}
+
 	@Override
 	public Boolean updateAnquanshengchan(Anquanshengchan anquanshengchan) {
 		return safetyDao.updateAnquanshengchan(anquanshengchan);
 	}
+
 	@Override
 	public Boolean checkAnquanshengchan(Double id) {
 		return safetyDao.checkAnquanshengchan(id);
 	}
+
 	@Override
-	public Boolean addAnquanshengchan(Anquanshengchan anquanshengchan) {
+	public Boolean addAnquanshengchan(Anquanshengchan anquanshengchan,
+			Double enterpriseSituationId) {
+		anquanshengchan.setId(RandomUtils.createIdentitySerialByUUID());
+		anquanshengchan.setInfomation(basicSituationDao
+				.findById(enterpriseSituationId));
 		return safetyDao.addAnquanshengchan(anquanshengchan);
 	}
 

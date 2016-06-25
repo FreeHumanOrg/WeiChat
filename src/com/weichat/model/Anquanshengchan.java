@@ -3,13 +3,10 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 
@@ -28,32 +25,137 @@ public class Anquanshengchan implements java.io.Serializable {
 	private static final long serialVersionUID = 1787637852628757821L;
 
 	private Double id;
+
 	private Infomation infomation;
+
+	/**
+	 * 安全生产管理机构及人员配备情况
+	 */
 	private String peoYuanQingk;
+
+	/**
+	 * 安全生产负责人姓名
+	 */
 	private String fuzeName;
+
+	/**
+	 * 安全生产负责人联系方式
+	 */
 	private String phone;
+
+	/**
+	 * 安全生产管理规章制度建立健全情况
+	 */
 	private String jianquanqingk;
+
+	/**
+	 * 是否安装监控设备
+	 */
 	private String yesOrNoJianko;
+
+	/**
+	 * 是否加入园区安全生产管理QQ群
+	 */
 	private String yesOrNoJoinQq;
+
+	/**
+	 * 安全设施“三同时”情况
+	 */
 	private String anquansheshi;
+
+	/**
+	 * 职业病防护设施“三同时”情况
+	 */
 	private String zhiyebing;
+
+	/**
+	 * 安全生产标准化建设情况
+	 */
 	private String anquanshengchan;
+
+	/**
+	 * 安全生产教育培训情况
+	 */
 	private String jiaoyuqingk;
+
+	/**
+	 * 事故隐患排查治理情况
+	 */
 	private String shiguyinhuan;
+
+	/**
+	 * 生产、储存、使用危化品情况
+	 */
 	private String shengchanchucun;
+
+	/**
+	 * 是否涉及可燃性粉尘
+	 */
 	private String yesornofenchen;
+
+	/**
+	 * 涉及可燃性粉尘的名称
+	 */
 	private String yesName;
+
+	/**
+	 * 是否存在有限空间作业
+	 */
 	private String yesoryouxiankj;
+
+	/**
+	 * 存在有限空间作业的名称
+	 */
 	private String yesyouname;
+
+	/**
+	 * 是否存在重大危险源
+	 */
 	private String yesorzhongda;
+
+	/**
+	 * 是否消防重点单位
+	 */
 	private String yesorxiaofang;
+
+	/**
+	 * 职业病危害及职业健康管理情况
+	 */
 	private String zhiybjiankang;
+
+	/**
+	 * 安全管理人员、职业健康管理人员持证情况
+	 */
 	private String anquanguanli;
+
+	/**
+	 * 电工作业
+	 */
 	private String diangongzuoye;
+
+	/**
+	 * 焊接与热切割作业
+	 */
 	private String hanjiezuoye;
+
+	/**
+	 * 高处作业
+	 */
 	private String gaochuzuoye;
+
+	/**
+	 * 制冷与空调作业
+	 */
 	private String zhilengzuoye;
+
+	/**
+	 * 危险化学品安全作业
+	 */
 	private String weixianhuaxue;
+
+	/**
+	 * 安全监管总局认定的其他作业
+	 */
 	private String qitazuoye;
 
 	public Anquanshengchan() {

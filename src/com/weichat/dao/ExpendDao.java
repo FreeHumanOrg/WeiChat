@@ -20,8 +20,17 @@ public interface ExpendDao extends BaseDao<Qiyefazhan, Double> {
 	 * @return
 	 */
 	Qiyefazhan findQiyefazhanById(Double id);
-	
+
 	Boolean checkQiyefazhan(Double id);
-	
+
 	Boolean updateQiyefazhan(Qiyefazhan qiyefazhan);
+
+	/**
+	 * 添加一个新的企业发展信息.
+	 * 
+	 * @param qiyefazhan
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	Boolean addNewExpend(Qiyefazhan qiyefazhan);
 }

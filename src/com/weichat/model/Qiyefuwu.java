@@ -3,13 +3,10 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 企业服务实体类
@@ -28,10 +25,27 @@ public class Qiyefuwu implements java.io.Serializable {
 	private static final long serialVersionUID = -6946385790618799914L;
 
 	private Double id;
+
 	private Infomation infomation;
+
+	/**
+	 * 融资
+	 */
 	private String longzhi;
+
+	/**
+	 * 用工
+	 */
 	private String yongGong;
+
+	/**
+	 * 品牌
+	 */
 	private String pinpai;
+
+	/**
+	 * 培训
+	 */
 	private String pinxun;
 
 	public Qiyefuwu() {
@@ -50,9 +64,7 @@ public class Qiyefuwu implements java.io.Serializable {
 		this.pinxun = pinxun;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;

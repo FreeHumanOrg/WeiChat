@@ -2,11 +2,11 @@ package com.weichat.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 国土实体类
@@ -25,28 +25,61 @@ public class Guotu implements java.io.Serializable {
 	private static final long serialVersionUID = 1613875893519075523L;
 
 	private Double id;
+
+	private Infomation infomation;
+
+	/**
+	 * 下达指标时间
+	 */
 	private String indexTime;
+
+	/**
+	 * 土地报征时间
+	 */
 	private String landSignTime;
+
+	/**
+	 * 下达指标面积
+	 */
 	private String indexCon;
+
+	/**
+	 * 土地抱征面积
+	 */
 	private String landSigncon;
+
+	/**
+	 * 土地挂牌时间
+	 */
 	private String landListingTime;
+
+	/**
+	 * 土地挂牌面积
+	 */
 	private String landListingcon;
+
+	/**
+	 * 土地挂牌价格
+	 */
 	private String landListingPri;
+
+	/**
+	 * 土地办证时间
+	 */
 	private String landCertificateT;
+
+	/**
+	 * 土地办证面积
+	 */
 	private String landCertificateC;
-	private Double infomationid;
 
 	public Guotu() {
-	}
-
-	public Guotu(Double infomationid) {
-		this.infomationid = infomationid;
 	}
 
 	public Guotu(String indexTime, String landSignTime, String indexCon,
 			String landSigncon, String landListingTime, String landListingcon,
 			String landListingPri, String landCertificateT,
-			String landCertificateC, Double infomationid) {
+			String landCertificateC, Infomation infomation) {
 		this.indexTime = indexTime;
 		this.landSignTime = landSignTime;
 		this.indexCon = indexCon;
@@ -56,12 +89,10 @@ public class Guotu implements java.io.Serializable {
 		this.landListingPri = landListingPri;
 		this.landCertificateT = landCertificateT;
 		this.landCertificateC = landCertificateC;
-		this.infomationid = infomationid;
+		this.infomation = infomation;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;
@@ -152,13 +183,18 @@ public class Guotu implements java.io.Serializable {
 		this.landCertificateC = landCertificateC;
 	}
 
-	@Column(name = "infomationid", nullable = false, precision = 22, scale = 0)
-	public Double getInfomationid() {
-		return this.infomationid;
+	public Guotu(Infomation infomation) {
+		this.infomation = infomation;
 	}
 
-	public void setInfomationid(Double infomationid) {
-		this.infomationid = infomationid;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "infomationid", nullable = false)
+	public Infomation getInfomation() {
+		return this.infomation;
+	}
+
+	public void setInfomation(Infomation infomation) {
+		this.infomation = infomation;
 	}
 
 }

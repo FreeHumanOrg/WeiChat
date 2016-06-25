@@ -1,6 +1,5 @@
 package com.weichat.dao;
 
-import com.weichat.model.Anquanshengchan;
 import com.weichat.model.Qiyefuwu;
 
 /**
@@ -21,17 +20,29 @@ public interface ServerDao extends BaseDao<Qiyefuwu, Double> {
 	 * @return
 	 */
 	Qiyefuwu findQiyefuwuById(Double id);
+
 	/**
 	 * 查询企业服务是否存在
+	 * 
 	 * @param id
 	 * @return
 	 */
 	Boolean checkQiyefuwu(Double id);
+
 	/**
 	 * 更新企业服务
+	 * 
 	 * @param anquanshengchan
 	 * @return
 	 */
 	Boolean updateQiyefuwu(Qiyefuwu qiyefuwu);
-	
+
+	/**
+	 * 添加一个企业服务信息.
+	 * 
+	 * @param qiyefuwu
+	 * @return
+	 */
+	Boolean addServerByEnterprise(Qiyefuwu qiyefuwu);
+
 }

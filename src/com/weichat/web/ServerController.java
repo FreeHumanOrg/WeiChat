@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.weichat.model.Dangtuanjianshe;
 import com.weichat.model.Qiyefuwu;
-import com.weichat.service.SafetyService;
 import com.weichat.service.ServerService;
 import com.weichat.util.DateTimeUtils;
+
 /**
  * 企业服务Controller
  * 
@@ -37,7 +36,7 @@ public class ServerController {
 
 	@Resource(name = "serverServiceImpl")
 	private ServerService serverService;
-	
+
 	@RequestMapping(value = "/servershow", method = RequestMethod.GET)
 	public String serverShow(HttpServletRequest request, ModelMap modelMap) {
 		LOGGER.info("跳转到enterprise_update_situation下的server页面成功！"
@@ -48,28 +47,59 @@ public class ServerController {
 		modelMap.addAttribute("id", id);
 		return "/update/enterprise_update_situation/server";
 	}
-	
+
 	/**
 	 * 修改企业服务
+	 * 
 	 * @param response
 	 * @param dangtuanjianshe
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/partyupdate", method = RequestMethod.POST)
-	public void updateQiyefuwu(HttpServletResponse response,@ModelAttribute Qiyefuwu qiyefuwu)throws IOException{
-		LOGGER.info("企业服务修改!"+DateTimeUtils.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+	public void updateQiyefuwu(HttpServletResponse response,
+			@ModelAttribute Qiyefuwu qiyefuwu) throws IOException {
+		LOGGER.info("企业服务修改!"
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		StringBuffer sbResult = new StringBuffer();
-		//判断企业安全是否存在
-		if(serverService.checkQiyefuwu(qiyefuwu.getInfomation().getId())){//存在
+		// 判断企业安全是否存在
+		if (serverService.checkQiyefuwu(qiyefuwu.getInfomation().getId())) {// 存在
 			if (serverService.updateQiyefuwu(qiyefuwu)) {
 				sbResult.append("<script>alert('恭喜！数据已成功修改。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
 				sbResult.append("<script>alert('非常抱歉，修改数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
 			}
-		}else{//不存在
-			//调用新增方法
-			
+		} else {// 不存在
+				// 调用新增方法
+
 		}
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
+		response.getWriter().write(sbResult.toString());
+	}
+
+	/**
+	 * 添加一个企业服务信息.
+	 * 
+	 * @param response
+	 * @param dangtuanjianshe
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/serveradd", method = RequestMethod.POST)
+	public void addServer(HttpServletRequest request,
+			HttpServletResponse response, @ModelAttribute Qiyefuwu qiyefuwu)
+			throws IOException {
+		StringBuffer sbResult = new StringBuffer();
+
+		if (serverService.addServerByEnterpriseService(
+				qiyefuwu,
+				Double.valueOf(request.getSession()
+						.getAttribute("enterpriseId").toString()))) {
+			sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+		} else {
+			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");
+		}
+
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		response.getWriter().write(sbResult.toString());

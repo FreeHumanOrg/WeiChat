@@ -3,20 +3,17 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 /**
  * 要素实体类
  * 
  * 
- * 项目名称：WeiChat 类名称：Yaosu.java 类描述：TODO 创建人：王晶 创建时间：2016年6月22日 下午3:55:59 修改人：王晶
- * 修改时间：2016年6月22日 下午3:55:59 修改备注：
+ * 项目名称：WeiChat 类名称：Yaosu.java 类描述：TODO 创建人：王晶 创建时间：2016年6月25日 下午4:04:12 修改人：王晶
+ * 修改时间：2016年6月25日 下午4:04:12 修改备注：
  * 
  * FreeHuman Soft Team
  * 
@@ -25,28 +22,55 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "yaosu", catalog = "new")
 public class Yaosu implements java.io.Serializable {
-	private static final long serialVersionUID = 3394678673397183880L;
+	private static final long serialVersionUID = 5788633981245311085L;
 
 	private Double id;
 	private Infomation infomation;
-	private String load;
+
+	/**
+	 * 路
+	 */
+	private String loaded;
+
+	/**
+	 * 电
+	 */
 	private String electric;
+
+	/**
+	 * 视
+	 */
 	private String regard;
+
+	/**
+	 * 水
+	 */
 	private String water;
+
+	/**
+	 * 气
+	 */
 	private String gas;
+
+	/**
+	 * 讯
+	 */
 	private String hearing;
 
 	public Yaosu() {
 	}
 
-	public Yaosu(Infomation infomation) {
+	public Yaosu(Double id, Infomation infomation) {
+		this.id = id;
 		this.infomation = infomation;
 	}
 
-	public Yaosu(Infomation infomation, String load, String electric,
-			String regard, String water, String gas, String hearing) {
+	public Yaosu(Double id, Infomation infomation, String loaded,
+			String electric, String regard, String water, String gas,
+			String hearing) {
+		this.id = id;
 		this.infomation = infomation;
-		this.load = load;
+		this.loaded = loaded;
 		this.electric = electric;
 		this.regard = regard;
 		this.water = water;
@@ -54,10 +78,7 @@ public class Yaosu implements java.io.Serializable {
 		this.hearing = hearing;
 	}
 
-	// Property accessors
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;
@@ -77,13 +98,18 @@ public class Yaosu implements java.io.Serializable {
 		this.infomation = infomation;
 	}
 
-	@Column(name = "load", length = 600)
-	public String getLoad() {
-		return this.load;
+	/**
+	 * 数据库原字段名为load导致底层使用SQL插入异常，要避免关键字
+	 * 
+	 * @return
+	 */
+	@Column(name = "loaded", length = 600)
+	public String getLoaded() {
+		return this.loaded;
 	}
 
-	public void setLoad(String load) {
-		this.load = load;
+	public void setLoaded(String loaded) {
+		this.loaded = loaded;
 	}
 
 	@Column(name = "electric", length = 600)
