@@ -35,12 +35,9 @@ public class DevelopmentServiceImpl extends BaseServiceImpl<Object, Double>
 
 	@Resource(name = "basicSituationDaoImpl")
 	private BasicSituationDao basicSituationDao;
-
-	@Override
-	public List<Productpeoper> findProductpeoperById(Double id) {
-		return developmentDao.findProductpeoperById(id);
-	}
-
+	/**
+	 * 新增项目促建联系人
+	 */
 	@Override
 	public Boolean addNewProductPeoperFromDevelopmentService(
 			Productpeoper productpeoper, Double enterpriseSituationId) {
@@ -49,7 +46,9 @@ public class DevelopmentServiceImpl extends BaseServiceImpl<Object, Double>
 				.findById(enterpriseSituationId));
 		return developmentDao.addNewProductPeoperFromDevelopment(productpeoper);
 	}
-
+	/**
+	 * 新增政务办理情况
+	 */
 	@Override
 	public Boolean addNewGovernmentSituationFromDevelopmentService(
 			Zhengwuqingkuang zhengwuqingkuang, Double enterpriseSituationId) {
@@ -59,7 +58,9 @@ public class DevelopmentServiceImpl extends BaseServiceImpl<Object, Double>
 		return developmentDao
 				.addNewGovernmentSituationFromDevelopment(zhengwuqingkuang);
 	}
-
+	/**
+	 * 新增国土办理情况
+	 */
 	@Override
 	public Boolean addNewLandSituationFromDevelopmentService(Guotu guotu,
 			Double enterpriseSituationId) {
@@ -67,7 +68,9 @@ public class DevelopmentServiceImpl extends BaseServiceImpl<Object, Double>
 		guotu.setInfomation(basicSituationDao.findById(enterpriseSituationId));
 		return developmentDao.addNewLandSituationFromDevelopment(guotu);
 	}
-
+	/**
+	 * 新增要素保障
+	 */
 	@Override
 	public Boolean addNewElementsOfSecurityFromDevelopmentService(Yaosu yaosu,
 			Double enterpriseSituationId) {
@@ -75,7 +78,9 @@ public class DevelopmentServiceImpl extends BaseServiceImpl<Object, Double>
 		yaosu.setInfomation(basicSituationDao.findById(enterpriseSituationId));
 		return developmentDao.addNewElementsOfSecurityFromDevelopment(yaosu);
 	}
-
+	/**
+	 * 新增项目建设进度
+	 */
 	@Override
 	public Boolean addNewProjectBuildToProgressFromDevelopmentService(
 			Jiansejindu jiansejindu, Double enterpriseSituationId) {
@@ -84,6 +89,77 @@ public class DevelopmentServiceImpl extends BaseServiceImpl<Object, Double>
 				.findById(enterpriseSituationId));
 		return developmentDao
 				.addNewProjectBuildToProgressFromDevelopment(jiansejindu);
+	}
+	/**
+	 * 根据企业编号查询项目促建联系人
+	 */
+	@Override
+	public Productpeoper findProductpeoperById(Double id) {
+		return developmentDao.findProductpeoperById(id);
+	}
+	/**
+	 * 根据企业编号查询项目建设促建人是否存在
+	 */
+	@Override
+	public Boolean checkProductpeoperById(Double id) {
+		return developmentDao.checkProductpeoperById(id);
+	}
+
+	@Override
+	public Boolean updateProductpeoper(Productpeoper productpeoper) {
+		return developmentDao.updateProductpeoper(productpeoper);
+	}
+
+	@Override
+	public Zhengwuqingkuang findZhengwuqingkuangById(Double id) {
+		return developmentDao.findZhengwuqingkuangById(id);
+	}
+
+	@Override
+	public Guotu findGuotuById(Double id) {
+		return developmentDao.findGuotuById(id);
+	}
+
+	@Override
+	public Yaosu findYaosuById(Double id) {
+		return developmentDao.findYaosuById(id);
+	}
+
+	@Override
+	public Jiansejindu findJiansejinduById(Double id) {
+		return developmentDao.findJiansejinduById(id);
+	}
+	@Override
+	public Boolean checkZhengwuqingkuang(Double id) {
+		return developmentDao.checkZhengwuqingkuangById(id);
+	}
+	@Override
+	public Boolean checkGuotu(Double id) {
+		return developmentDao.checkGuotuById(id);
+	}
+	@Override
+	public Boolean checkYaosu(Double id) {
+		return developmentDao.checkYaosuById(id);
+	}
+	@Override
+	public Boolean checkJiansejindu(Double id) {
+		return developmentDao.checkJiansejinduById(id);
+	}
+	@Override
+	public Boolean updateZhengwuqingkuang(Zhengwuqingkuang zhengwuqingkuang) {
+		return developmentDao.updateZhengwuqingkuang(zhengwuqingkuang);
+	}
+	@Override
+	public Boolean updateGuotu(Guotu guotu) {
+		return developmentDao.updateGuotu(guotu);
+	}
+	@Override
+	public Boolean updateYaosu(Yaosu yaosu) {
+		return developmentDao.updateYaosu(yaosu);
+	}
+	@Override
+	public Boolean updateJiansejindu(Jiansejindu jiansejindu) {
+		return developmentDao.updateJiansejindu(jiansejindu);
 	}
 
 }

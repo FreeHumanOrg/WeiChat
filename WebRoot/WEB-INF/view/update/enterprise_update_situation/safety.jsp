@@ -24,8 +24,9 @@
 				<span class="name name-long">安全生产管理机构及人员配备情况</span>
 				<input name="peoYuanQingk" type="text" class="write" value="${safety.peoYuanQingk }"/>
 			</div>
-			<p class="title">安全生产负责人</p>
+			
 			<div class="intbox">
+				<p class="title">安全生产负责人</p>
 				<span class="name name-long">姓名</span>
 				<input name="fuzeName" type="text" class="write" value="${safety.fuzeName }"/>
 			</div>
@@ -40,8 +41,8 @@
 			<div class="intbox">
 				<span class="name name-long">是否安装监控设备</span>
 				<c:if test="${safety.yesOrNoJianko eq '是' }">
-					<input class="choose" type="radio" name="yesOrNoJianko" id="yesjianko" value="是" checked="checked"><label class="choose" for="yesjianko">是</label>
-					<input class="choose" type="radio" name="yesOrNoJianko" id="nojianko" value="否"><label class="choose" for="nojianko">否</label>
+					<input class="chose" type="radio" name="yesOrNoJianko" id="yesjianko" value="是" checked="checked"><label class="chose" for="yesjianko">是</label>
+					<input class="chose" type="radio" name="yesOrNoJianko" id="nojianko" value="否"><label class="chose" for="nojianko">否</label>
 				</c:if>
 				<c:if test="${safety.yesOrNoJianko eq '否' }">
 					<input class="choose" type="radio" name="yesOrNoJianko" id="yesjianko" value="是"><label class="choose" for="yesjianko">是</label>

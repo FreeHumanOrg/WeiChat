@@ -43,7 +43,7 @@ public class ServerController {
 				+ DateTimeUtils
 						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		Double id = Double.parseDouble(request.getParameter("id"));
-		modelMap.addAttribute("safety", serverService.findQiyefuwuById(id));
+		modelMap.addAttribute("server", serverService.findQiyefuwuById(id));
 		modelMap.addAttribute("id", id);
 		return "/update/enterprise_update_situation/server";
 	}
@@ -55,8 +55,8 @@ public class ServerController {
 	 * @param dangtuanjianshe
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/partyupdate", method = RequestMethod.POST)
-	public void updateQiyefuwu(HttpServletResponse response,
+	@RequestMapping(value = "/serverupdate", method = RequestMethod.POST)
+	public void updateQiyefuwu(HttpServletResponse response,HttpServletRequest request,
 			@ModelAttribute Qiyefuwu qiyefuwu) throws IOException {
 		LOGGER.info("企业服务修改!"
 				+ DateTimeUtils
@@ -71,6 +71,11 @@ public class ServerController {
 			}
 		} else {// 不存在
 				// 调用新增方法
+			if (serverService.addServerByEnterpriseService(qiyefuwu,qiyefuwu.getInfomation().getId())){
+				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+			} else {
+				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
+			}
 
 		}
 		response.setCharacterEncoding("UTF-8");

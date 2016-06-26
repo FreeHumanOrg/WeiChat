@@ -1,7 +1,5 @@
 package com.weichat.service;
 
-import java.util.List;
-
 import com.weichat.model.Guotu;
 import com.weichat.model.Jiansejindu;
 import com.weichat.model.Productpeoper;
@@ -20,8 +18,58 @@ import com.weichat.model.Zhengwuqingkuang;
  * @version 1.0 Beta
  */
 public interface DevelopmentService extends BaseService<Object, Double> {
-	List<Productpeoper> findProductpeoperById(Double id);
-
+	/**
+	 * 根据企业id查询项目促建联系人
+	 * @param id
+	 * @return
+	 */
+	Productpeoper findProductpeoperById(Double id);
+	/**
+	 * 根据企业id查询政务情况
+	 * @param id
+	 * @return
+	 */
+	Zhengwuqingkuang findZhengwuqingkuangById(Double id);
+	/**
+	 * 根据企业id查询国土办理情况
+	 * @param id
+	 * @return
+	 */
+	Guotu findGuotuById(Double id);
+	/**
+	 * 根据企业id查询要素保障
+	 * @param id
+	 * @return
+	 */
+	Yaosu findYaosuById(Double id);
+	/**
+	 * 根据企业id查询项目建设进度
+	 * @param id
+	 * @return
+	 */
+	Jiansejindu findJiansejinduById(Double id);
+	
+	
+	Boolean checkProductpeoperById(Double id);
+	
+	Boolean checkZhengwuqingkuang(Double id);
+	
+	Boolean checkGuotu(Double id);
+	
+	Boolean checkYaosu(Double id);
+	
+	Boolean checkJiansejindu(Double id);
+	
+	
+	Boolean updateProductpeoper(Productpeoper productpeoper);
+	
+	Boolean updateZhengwuqingkuang(Zhengwuqingkuang zhengwuqingkuang);
+	
+	Boolean updateGuotu(Guotu guotu);
+	
+	Boolean updateYaosu(Yaosu yaosu);
+	
+	Boolean updateJiansejindu(Jiansejindu jiansejindu);
 	/**
 	 * 添加一个新的项目促建联系人信息.
 	 * 

@@ -51,6 +51,7 @@ public class ExpendController {
 						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		Double id = Double.parseDouble(request.getParameter("id"));
 		modelMap.addAttribute("expend", expendService.findQiyefazhanById(id));
+		modelMap.addAttribute("id", id);
 		return "/update/enterprise_update_situation/expand";
 	}
 
@@ -62,7 +63,7 @@ public class ExpendController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/partyupdate", method = RequestMethod.POST)
-	public void updateExpend(HttpServletResponse response,
+	public void updateExpend(HttpServletResponse response,HttpServletRequest request,
 			@ModelAttribute Qiyefazhan qiyefazhan) throws IOException {
 		LOGGER.info("企业发展修改!"
 				+ DateTimeUtils
@@ -77,7 +78,11 @@ public class ExpendController {
 			}
 		} else {// 不存在
 				// 调用新增方法
-
+			if (expendService.addNewExpendService(qiyefazhan,qiyefazhan.getInfomation().getId())){
+				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+			} else {
+				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
+			}
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");

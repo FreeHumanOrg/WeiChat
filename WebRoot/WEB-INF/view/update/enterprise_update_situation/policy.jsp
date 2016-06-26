@@ -10,33 +10,40 @@
 		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
+	<form action="../policy/policyupdate.jhtml" name="policyform" method="POST">
+		<input name="infomation.id" value="${id }" type="hidden">
+		<input name="id" value="${policy.id }" type="hidden">
 		<div class="yhzcqk subcontent clearfloat">
-			<c:forEach items="${policies }" var="item" varStatus="itemstatus">
 				<div class="yh-cont">
-					<span class="yh-name">优惠政策${itemstatus }</span>
+					<span class="yh-name">优惠政策</span>
 					<div class="intbox">
 					<span class="name">协议优惠政策内容</span>
-					<input type="text" class="write" value="${item.content }"/>
+					<input type="text" class="write" value="${policy.content }"/>
 					<a href="##" class="delete">删除</a>
 				</div>
 				<div class="intbox">
 					<span class="name">应兑现金额</span>
-					<input type="text" class="write" value="${item.money }"/>
+					<input type="text" class="write" value="${policy.money }"/>
 					<a href="##" class="delete">删除</a>
 				</div>
 				<div class="intbox">
 					<span class="name">兑现情况</span>
-					<input type="text" class="write" value="${item.cashsituation }"/>
+					<input type="text" class="write" value="${policy.cashsituation }"/>
 					<a href="##" class="delete">删除</a>
 				</div>
+				<!--  
 				<div class="intbox lmmcbox">
 					<span class="name">输入类目名称</span>
 					<input type="text"  class="lmmc write" value="${item.typename }"/>
 					<a href="##" class="add">增加</a>
+				-->
 				</div>
 				</div>
-			</c:forEach>
-			
+				<div class="btn">
+					<a href="##" class="add" onclick="document.getElementById('policyform').submit();">提交</a>
+				</div>
+				</form>
+				<!--  
 			<div class="yh-cont">
 				<span class="yh-name">优惠政策1</span>
 				<div class="intbox">
@@ -86,7 +93,7 @@
 			<div class="btn">
 					<a href="##" class="add">提交</a>
 				</div>
-		</div>
+		</div>-->
 		
 	</body>
 </html>
@@ -105,7 +112,5 @@
 			var oLm = '<div class="intbox"><span class="name">'+oLmmc+'</span><input type="text" class="write" /><a href="##" class="delete">'+'删除'+'</a></div>'
 			$("div.lmmcbox").before(oLm);
 		}
-
-	    
 	});
 </script>

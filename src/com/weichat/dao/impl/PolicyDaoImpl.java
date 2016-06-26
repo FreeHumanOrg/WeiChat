@@ -26,10 +26,19 @@ public class PolicyDaoImpl extends BaseDaoImpl<Youhuizhengce, Double> implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Youhuizhengce> findYouhuiById(Double id) {
+	public List<Youhuizhengce> findYouhuisById(Double id) {
 		return this.hibernateTemplate.find(
 				"from Youhuizhengce t where t.infomation.id=?",
 				new Object[] { id });
+	}
+	@Override
+	public Youhuizhengce findYouhuizhengceById(Double id) {
+		List<Youhuizhengce>list=this.hibernateTemplate.find("from Youhuizhengce t where t.infomation.id=?",new Object[]{id});
+		if(list.size()>0){
+			return list.get(0);
+		}else{
+			return null;
+		}
 	}
 
 	@Override
@@ -41,5 +50,26 @@ public class PolicyDaoImpl extends BaseDaoImpl<Youhuizhengce, Double> implements
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public Boolean checkYouhuizhengce(Double id) {
+		List<Youhuizhengce>list=this.hibernateTemplate.find("from Youhuizhengce t where t.infomation.id=?",new Object[]{id});
+		if(list!=null&&list.size()>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean updateYouhuizhengce(Youhuizhengce youhuizhengce) {
+		try {
+			super.update(youhuizhengce);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }

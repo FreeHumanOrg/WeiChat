@@ -28,23 +28,25 @@
 					<li> <a href="##">项目建设进度</a></li>
 				</ul>
 			</div>
-		<form action="" id="productpeople">
+		<form action="../development/ppupdate.jhtml" id="productpeople">
+		<input name="id" value="${pp.id }">
+		<input name="infomation.id" value="${id }">
 			<div class="jsqk-con">
 				<div class="intbox">
 					<span class="name">姓名</span>
-					<input type="text" class="write" />
+					<input name="name" type="text" class="write" value="${pp.name }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">联系方式</span>
-					<input type="text" class="write" />
+					<input name="telphone" type="text" class="write" value="${pp.telphone }"/>
 				</div>
 				<div class="btn clearfloat">
-					<a href="##" class="submit">提交</a>
+					<a href="##" class="submit" onclick="document.getElementById('productpeople').submit();">提交</a>
 				</div>
 			</div>
 		</form>
 		
-		<form action="" id="zhengwu">
+		<form action="" id="zhengwu" method="post">
 			<div class="jsqk-con">
 				<p class="title">工商税务</p>
 				<div class="intbox">

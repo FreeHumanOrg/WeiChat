@@ -26,7 +26,7 @@ public class PartyDaoImpl extends BaseDaoImpl<Dangtuanjianshe, Double>
 
 	@Override
 	public Dangtuanjianshe findDangtuanjiansheById(Double id) {
-		return findById(id);
+		return findTById(id);
 	}
 
 	@Override

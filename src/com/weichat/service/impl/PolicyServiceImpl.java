@@ -33,10 +33,13 @@ public class PolicyServiceImpl extends BaseServiceImpl<Youhuizhengce, Double>
 	private BasicSituationDao basicSituationDao;
 
 	@Override
-	public List<Youhuizhengce> findYouhuiById(Double id) {
-		return policyDao.findYouhuiById(id);
+	public List<Youhuizhengce> findYouhuisById(Double id) {
+		return policyDao.findYouhuisById(id);
 	}
-
+	@Override
+	public Youhuizhengce findYouhuizhengceById(Double id) {
+		return policyDao.findYouhuizhengceById(id);
+	}
 	@Override
 	public Boolean addNewPolicyService(Youhuizhengce youhuizhengce,
 			Double enterpriseSituationId) {
@@ -44,5 +47,15 @@ public class PolicyServiceImpl extends BaseServiceImpl<Youhuizhengce, Double>
 		youhuizhengce.setInfomation(basicSituationDao
 				.findById(enterpriseSituationId));
 		return policyDao.addNewPolicy(youhuizhengce);
+	}
+
+	@Override
+	public Boolean checkYouhuizhengce(Double id) {
+		return policyDao.checkYouhuizhengce(id);
+	}
+
+	@Override
+	public Boolean updateYouhuizhengce(Youhuizhengce youhuizhengce) {
+		return policyDao.updateYouhuizhengce(youhuizhengce);
 	}
 }

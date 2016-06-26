@@ -12,47 +12,49 @@
 		</script>
 	</head>
 	<body>
-	<form name="expendform" action="../expend/expendupdate.jhtml" method="POST">
+	<form id="expendform" action="../expend/expendupdate.jhtml" method="POST">
+	<input name="id" value="${expend.id }" type="hidden">
+	<input name="infomation.id" value="${id }" type="hidden">
 		<div class="qyfz subcontent clearfloat">
 			<div class="intbox">
 				<span class="name">固定资产投资</span>
-				<input type="text" class="write" value="${expend.investment }"/>
+				<input name="investment" type="text" class="write" value="${expend.investment }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">产值</span>
-				<input type="text" class="write" value="${expend.chanzhi }"/>
+				<input name="chanzhi" type="text" class="write" value="${expend.chanzhi }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">税收</span>
-				<input type="text" class="write" value="${expend.shuishou }"/>
+				<input name="shuishou" type="text" class="write" value="${expend.shuishou }"/>
 			</div>
 			<p class="title">规模企业培育</p>
 			<div class="intbox">
 				<span class="name">上规时间</span>
-				<input type="text" class="write" value="${expend.shangTime }"/>
+				<input name="shangTime" type="text" class="write" value="${expend.shangTime }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">下规时间</span>
-				<input type="text" class="write" value="${expend.xiaTime }"/>
+				<input name="xiaTime" type="text" class="write" value="${expend.xiaTime }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">投产时间</span>
-				<input type="text" class="write" value="${expend.touTime }"/>
+				<input name="touTime" type="text" class="write" value="${expend.touTime }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">高新技术企业</span>
-				<input type="text" class="write" value="${expend.jiushuQiye }"/>
+				<input name="jiushuQiye" type="text" class="write" value="${expend.jiushuQiye }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">从业人员总数</span>
-				<input type="text" class="write" value="${expend.renYuan }"/>
+				<input name="renYuan" type="text" class="write" value="${expend.renYuan }"/>
 			</div>
 			<div class="intbox">
 				<span class="name">主要产品</span>
-				<input type="text" class="write" value="${expend.zhuyaoPro }"/>
+				<input name="zhuyaoPro" type="text" class="write" value="${expend.zhuyaoPro }"/>
 			</div>
 			<div class="btn clearfloat">
-				<a href="##" class="submit">提交</a>
+				<a href="##" class="submit" onclick="document.getElementById('expendform').submit();">提交</a>
 			</div>
 		</div>
 	</form>

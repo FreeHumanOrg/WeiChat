@@ -26,7 +26,53 @@ public interface DevelopmentDao extends BaseDao<Object, Double> {
 	 * @param id
 	 * @return
 	 */
-	List<Productpeoper> findProductpeoperById(Double id);
+	Productpeoper findProductpeoperById(Double id);
+	
+	Boolean checkProductpeoperById(Double id);
+	
+	Boolean updateProductpeoper(Productpeoper productpeoper);
+	/**
+	 * 根据企业id查询政务情况
+	 * @param id
+	 * @return
+	 */
+	Zhengwuqingkuang findZhengwuqingkuangById(Double id);
+	
+	Boolean checkZhengwuqingkuangById(Double id);
+	
+	Boolean updateZhengwuqingkuang(Zhengwuqingkuang zhengwuqingkuang);
+	
+	/**
+	 * 根据企业id查询国土办理情况
+	 * @param id
+	 * @return
+	 */
+	Guotu findGuotuById(Double id);
+	
+	Boolean checkGuotuById(Double id);
+	
+	Boolean updateGuotu(Guotu guotu);
+	/**
+	 * 根据企业id查询要素保障
+	 * @param id
+	 * @return
+	 */
+	Yaosu findYaosuById(Double id);
+	
+	Boolean checkYaosuById(Double id);
+	
+	Boolean updateYaosu(Yaosu yaosu);
+	
+	/**
+	 * 根据企业id查询项目建设进度
+	 * @param id
+	 * @return
+	 */
+	Jiansejindu findJiansejinduById(Double id);
+	
+	Boolean checkJiansejinduById(Double id);
+	
+	Boolean updateJiansejindu(Jiansejindu jiansejindu);
 
 	/**
 	 * 添加一个新的项目促建联系人信息.

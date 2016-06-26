@@ -50,6 +50,18 @@ public class SafetyController {
 		return "/update/enterprise_update_situation/safety";
 	}
 
+	@RequestMapping(value = "/safetymobileshow", method = RequestMethod.GET)
+	public String safetyMobileShow(HttpServletRequest request, ModelMap modelMap) {
+		LOGGER.info("跳转到enterprise_update_situation下的safety页面成功！"
+				+ DateTimeUtils
+						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+		Double id = Double.parseDouble(request.getParameter("id"));
+		modelMap.addAttribute("safety",
+				safetyService.findAnquanshengchanById(id));
+		modelMap.addAttribute("id", id);
+		return "/mobile/update/enterprise_update_situation/safety";
+	}
+	
 	/**
 	 * 修改安全生产详情
 	 * 
@@ -75,9 +87,7 @@ public class SafetyController {
 			}
 		} else {// 不存在
 			if (safetyService.addAnquanshengchan(
-					anquanshengchan,
-					Double.valueOf(request.getSession()
-							.getAttribute("enterpriseId").toString()))) {
+					anquanshengchan,anquanshengchan.getInfomation().getId())) {
 				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
 				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");

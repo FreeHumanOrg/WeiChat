@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<c:forEach items="${page.content}" var="item">
 					<tr>
-    					<td><a href="/WeiChat/company/companyshow.jhtml?id=${item.id }">${item.name }</a></td>
+    					<td><a href="/WeiChat/company/mobileshow.jhtml?id=${item.id }">${item.name }</a></td>
     					<td class="status_dropdown">
   							<select id="progress" class="form-control">
     							<option value="success">成交</option>

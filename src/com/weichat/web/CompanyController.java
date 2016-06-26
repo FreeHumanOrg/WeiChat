@@ -69,6 +69,7 @@ public class CompanyController {
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/common/frame";
 	}
+	
 
 	/**
 	 * 企业详情
@@ -86,7 +87,22 @@ public class CompanyController {
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/enterprise_update_situation/index";
 	}
-
+	
+	/**
+	 * 手机端企业列表（主页）
+	 * @param modelMap
+	 * @param page
+	 * @return
+	 */
+	@RequestMapping(value = "/mobilelist", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String mobilelist(ModelMap modelMap,
+			@ModelAttribute Page<Infomation> page) {
+		Page<Infomation> list = companyService.findAllService(page);
+		modelMap.addAttribute("page", list);
+		return "/mobile/home/companylist";
+	}
+	
 	@RequestMapping(value = "/ebu", method = RequestMethod.POST)
 	public void enterpriseBasicSituationUpdate(HttpServletResponse response,
 			@ModelAttribute Infomation infomation) throws IOException {
