@@ -1,7 +1,14 @@
 package com.weichat.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.UserDao;
@@ -24,5 +31,26 @@ public class UserDaoImpl extends BaseDaoImpl<User, Double> implements UserDao {
 	@Override
 	public List<User> findAll() {
 		return super.findAll();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findUsersByIds(final String[] genJinRenIds) {
+		return hibernateTemplate
+				.executeFind(new HibernateCallback<List<User>>() {
+
+					@Override
+					public List<User> doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						Criteria criteria = session.createCriteria(User.class);
+						Disjunction disjunction = Restrictions.disjunction();
+						for (int i = 0; i < genJinRenIds.length; i++) {
+							disjunction.add(Restrictions.eq("id",
+									Double.valueOf(genJinRenIds[i].toString())));
+						}
+						criteria.add(disjunction);
+						return criteria.list();
+					}
+				});
 	}
 }

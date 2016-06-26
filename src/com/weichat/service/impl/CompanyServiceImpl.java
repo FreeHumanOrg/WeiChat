@@ -41,4 +41,14 @@ public class CompanyServiceImpl extends BaseServiceImpl<Infomation, Double>
 	public Boolean updateInfomation(Infomation infomation) {
 		return companyDao.updateInfomation(infomation);
 	}
+
+	@Override
+	public Boolean updateGenJinRensInfoByEnterpriseSituationIdService(
+			Double enterpriseSituationId, String latestGenJinRensToString) {
+		// 这里首先需要从数据库中读取出当前企业的信息
+		Infomation infomation = companyDao.findById(enterpriseSituationId);
+		// 然后将其中的跟进人字段更新
+		infomation.setGenjinren(latestGenJinRensToString);
+		return companyDao.updateInfomation(infomation);
+	}
 }

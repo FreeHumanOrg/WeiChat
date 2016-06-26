@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -18,6 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<link rel="stylesheet" type="text/css" href="window/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="window/css/themes/bootstrap/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="window/css/themes/icon.css" />
 	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 		.pagination{
@@ -39,15 +42,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			float: left;
 		}
 		
-		.status_dropdown button{
+		.status_dropdown button,button[data-toggle*='modal']{
 			margin-top: -1px;
 			margin-left: 10px;
 		}
 	</style>
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-	<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-	<script src="window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="window/js/base.js" type="text/javascript" charset="utf-8"></script>
   </head>
 	<body>
 		<div class="search clearfloat">
@@ -100,14 +99,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<tr>
     					<td><a href="/WeiChat/company/mobileshow.jhtml?id=${item.id }">${item.name }</a></td>
     					<td class="status_dropdown">
-  							<select id="progress" class="form-control">
-    							<option value="success">成交</option>
-    							<option value="follow">正在跟进</option>
-    							<option value="failed">失败</option>
+  							<select id="progress" operate="progresses" class="form-control">
+    							<option value="成交">成交</option>
+    							<option value="正在跟进">正在跟进</option>
+    							<option value="失败">失败</option>
   							</select>
-  							<button class="btn btn-primary" style="display: inline;">应用</button>
+  							<button class="btn btn-primary" style="display: inline;" operate="applyButtonSingle" disabled="disabled" enterpriseSituationId="${item.id }">应用</button>
     					</td>
-    					<td>程光华，邓超，何兴轩</td>
+    					<td>
+    						<c:choose>
+    							<c:when test="${item.genjinren eq null }">
+    								暂无跟进人
+    							</c:when>
+    							<c:otherwise>
+    								<c:set var="string2" value="${fn:replace(item.genjinren,';', '、')}" />
+    								${string2 }
+    							</c:otherwise>
+    						</c:choose>
+    					<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="display: inline;" enterpriseId="${item.id }">编辑</button></td>
     					<td><a href="##" onclick="$(this).parent().parent().remove();">删除</a></td>
     				</tr>
     			</c:forEach>
@@ -169,6 +178,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</form>
 		</div>
 		
+<!-- 		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> -->
+<!-- 			开始演示模态框 -->
+<!-- 		</button> -->
+		
+		<!-- 模态对话框 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+		      <div class="modal-content">
+		         <div class="modal-header">
+		            <button type="button" class="close" 
+		               data-dismiss="modal" aria-hidden="true">
+		                  &times;
+		            </button>
+		            <h4 class="modal-title" id="myModalLabel">编辑跟进人</h4>
+		         </div>
+		         <div class="modal-body">
+					跟进人：<br/>
+					<ul id="tree"></ul>
+		         </div>
+		         <!-- <input type="text" id="enterpriseId" /> -->
+		         <div class="modal-footer">
+		            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:65px;">关闭</button>
+		            <button id="applyButton" type="button" class="btn btn-primary">应用</button>
+		        </div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		<script src="window/js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="window/js/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function (){
 				//首页
@@ -215,6 +257,82 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}else {
 					$(".nextPageButton").css("display","block");
 				}
+				
+				
+				$("button[data-toggle*='modal']").click(function (){
+					var eId = $(this).attr("enterpriseId");
+					$("#enterpriseId").val(eId);
+					//alert(eId);
+					$('#tree').tree({
+						//设置url为在struts.xml文件中配置的action的访问路径
+						url:'<%=basePath%>company/getUsersInfo.jhtml?enterpriseId='+eId,
+						//开启动画效果
+						animate:true,
+						//每个节点都要显示复选框
+						checkbox:true,
+						//关闭级联选中
+						cascadeCheck:false,
+						//只在叶节点上才显示复选框
+						onlyLeafCheck:true,
+						//开启拖拽功能
+						dnd:false,
+						//鼠标双击事件
+						onDbClick:function(node){
+							//改变当前节点的折叠/展开状态
+							$(this).tree("toggle",node.target);
+		                }
+					});
+					$("#tree").tree('reload');
+       			});
+       	
+		       	$("#applyButton").click(function (){
+		       		var selectItems = $('#tree').tree('getChecked');
+		       		
+		       		var genjinrenIds = new Array();
+		       		for (var i = 0; i < selectItems.length; i++) {
+		       			var id = selectItems[i].id;
+						genjinrenIds[i] = id;
+					}
+					
+					$.ajax({
+					    url: 'company/changeGenJinRenInfo.jhtml',         
+					    data: {"selectItems" : genjinrenIds , "enterpriseSituationId" : $("#enterpriseId").val()},
+					    dataType : "json",
+					    type: "POST",          
+					    success: function (data) {
+					        if (data.result === "success") {
+								alert("恭喜！更改跟进人信息操作成功！");
+								location.reload();
+							} else {
+								alert("非常抱歉，更新跟进人信息失败！请您重试操作。");
+							}
+					    }
+					});
+		       	});
+		       	
+				$("button[operate*='applyButtonSingle']").click(function (){
+					var eId = $(this).attr("enterpriseSituationId");
+					var pValue = $(this).siblings("select[operate*='progresses']").val();
+					//alert(pValue);
+					$.ajax({
+					    url: 'company/updateProgress.jhtml',         
+					    data: {"enterpriseSituationId" : eId , "progressValue" : pValue},
+					    dataType : "json",
+					    type: "POST",          
+					    success: function (data) {
+					        if (data.result === "success") {
+								alert("恭喜！更改跟进人信息操作成功！");
+								location.reload();
+							} else {
+								alert("非常抱歉，更新跟进人信息失败！请您重试操作。");
+							}
+					    }
+					});
+				});
+				
+				$("select[operate*='progresses']").change(function (){
+					$(this).find("~ button").removeAttr("disabled");
+				});
 			});
 		
 			function pageSkip(num,type){

@@ -31,4 +31,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Double> implements
 	public List<User> findAllService() {
 		return userDao.findAll();
 	}
+
+	@Override
+	public List<User> findUsersByIdsService(String[] genJinRenIds) {
+		return userDao.findUsersByIds(genJinRenIds);
+	}
 }

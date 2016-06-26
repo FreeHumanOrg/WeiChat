@@ -17,4 +17,12 @@ import com.weichat.model.User;
  */
 public interface UserDao extends BaseDao<User, Double> {
 	List<User> findAll();
+
+	/**
+	 * 根据多个跟进人编号查询多个跟进人信息.
+	 * 
+	 * @param genJinRenIds
+	 * @return
+	 */
+	List<User> findUsersByIds(String[] genJinRenIds);
 }

@@ -20,4 +20,14 @@ public interface CompanyService extends BaseService<Infomation, Double> {
 	Infomation findInfomationById(Double id);
 
 	Boolean updateInfomation(Infomation infomation);
+
+	/**
+	 * 根据企业编号更新企业跟进人信息.
+	 * 
+	 * @param enterpriseSituationId
+	 * @param genJinRenGroup
+	 * @return
+	 */
+	Boolean updateGenJinRensInfoByEnterpriseSituationIdService(
+			Double enterpriseSituationId, String latestGenJinRensToString);
 }

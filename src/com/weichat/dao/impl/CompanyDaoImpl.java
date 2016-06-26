@@ -53,5 +53,4 @@ public class CompanyDaoImpl extends BaseDaoImpl<Infomation, Double> implements
 		}
 		return true;
 	}
-
 }

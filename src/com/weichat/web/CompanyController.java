@@ -1,6 +1,11 @@
 package com.weichat.web;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +18,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.weichat.dto.TreeNodeDTO;
 import com.weichat.model.Infomation;
+import com.weichat.model.User;
 import com.weichat.service.CompanyService;
+import com.weichat.service.UserService;
 import com.weichat.util.DateTimeUtils;
 import com.weichat.util.Page;
 
@@ -39,6 +49,9 @@ public class CompanyController {
 
 	@Resource(name = "companyServiceImpl")
 	private CompanyService companyService;
+
+	@Resource(name = "userServiceImpl")
+	private UserService userService;
 
 	/**
 	 * 企业列表（主页）
@@ -118,5 +131,111 @@ public class CompanyController {
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		response.getWriter().write(sbResult.toString());
+	}
+
+	/**
+	 * 获取所有跟进人信息.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/getUsersInfo", method = RequestMethod.POST)
+	@ResponseBody
+	public Set<TreeNodeDTO> getUsersInfo(ModelMap modelMap, String enterpriseId) {
+		/**
+		 * 根据这个企业的编号将跟进人分解到数组中
+		 */
+		Infomation infomation = companyService.findInfomationById(Double
+				.valueOf(enterpriseId));
+
+		Set<TreeNodeDTO> treeNodeDTOs = new HashSet<TreeNodeDTO>();
+		String[] genjinrenGroup = new String[] {};
+		if (null != infomation.getGenjinren()) {
+			// 按照分号分割跟进人
+			genjinrenGroup = infomation.getGenjinren().split(";");
+		}
+		List<User> usersList = userService.findAllService();
+
+		boolean flag = false;
+		for (User user : usersList) {
+			flag = false;
+			for (int j = 0; j < genjinrenGroup.length; j++) {
+				if (user.getUsername().contains(genjinrenGroup[j])) {
+					flag = true;
+				}
+			}
+
+			treeNodeDTOs.add(new TreeNodeDTO(user.getId(), user.getUsername(),
+					"icon-man", flag));
+		}
+		return treeNodeDTOs;
+	}
+
+	/**
+	 * 更改跟进人信息.
+	 * 
+	 * @param modelMap
+	 * @param enterpriseSituationId
+	 *            企业编号
+	 * @param selectItems
+	 *            跟进人编号
+	 * @return
+	 */
+	@RequestMapping(value = "/changeGenJinRenInfo", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> changeGenJinRenInfo(ModelMap modelMap,
+			@RequestParam String enterpriseSituationId,
+			@RequestParam(value = "selectItems[]") String[] selectItems) {
+		// 首先根据传入的跟进人编号查询出所有的跟进人信息
+		List<User> allGenJinRenInfo = userService
+				.findUsersByIdsService(selectItems);
+
+		// 之后将查询出的所有跟进人信息的用户名保存到更新的参数中
+		String latestGenJinRensToString = new String();
+		for (int i = 0; i < allGenJinRenInfo.size(); i++) {
+			latestGenJinRensToString += allGenJinRenInfo.get(i).getUsername()
+					+ ";";
+		}
+		latestGenJinRensToString = latestGenJinRensToString.substring(0,
+				latestGenJinRensToString.lastIndexOf(";"));
+
+		Map<String, String> resultMap = new HashMap<String, String>();
+
+		if (companyService
+				.updateGenJinRensInfoByEnterpriseSituationIdService(
+						Double.valueOf(enterpriseSituationId),
+						latestGenJinRensToString)) {
+			resultMap.put("result", "success");
+			LOGGER.info("成功！");
+		} else {
+			resultMap.put("result", "failed");
+			LOGGER.error("失败！");
+		}
+
+		return resultMap;
+	}
+
+	/**
+	 * 更新跟进进度信息.
+	 * 
+	 * @param modelMap
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/updateProgress", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateProgress(ModelMap modelMap,
+			String enterpriseSituationId, String progressValue,
+			HttpServletResponse response) throws IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Infomation infomation = companyService.findInfomationById(Double
+				.valueOf(enterpriseSituationId));
+		infomation.setGenjinjindu(progressValue);
+		if (companyService.updateInfomation(infomation)) {
+			map.put("result", "success");
+		} else {
+			map.put("result", "failed");
+		}
+		return map;
 	}
 }
