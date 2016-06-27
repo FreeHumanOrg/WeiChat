@@ -51,4 +51,10 @@ public class CompanyServiceImpl extends BaseServiceImpl<Infomation, Double>
 		infomation.setGenjinren(latestGenJinRensToString);
 		return companyDao.updateInfomation(infomation);
 	}
+
+	@Override
+	public Boolean deleteEnterpriseInfoByIdService(Double enterpriseSituationId) {
+		Infomation infomation = companyDao.findById(enterpriseSituationId);
+		return companyDao.deleteEnterpriseInfoById(infomation);
+	}
 }

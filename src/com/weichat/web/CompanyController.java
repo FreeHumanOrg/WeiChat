@@ -82,7 +82,6 @@ public class CompanyController {
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/common/frame";
 	}
-	
 
 	/**
 	 * 企业详情
@@ -100,9 +99,10 @@ public class CompanyController {
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/enterprise_update_situation/index";
 	}
-	
+
 	/**
 	 * 手机端企业列表（主页）
+	 * 
 	 * @param modelMap
 	 * @param page
 	 * @return
@@ -115,7 +115,7 @@ public class CompanyController {
 		modelMap.addAttribute("page", list);
 		return "/mobile/home/companylist";
 	}
-	
+
 	@RequestMapping(value = "/ebu", method = RequestMethod.POST)
 	public void enterpriseBasicSituationUpdate(HttpServletResponse response,
 			@ModelAttribute Infomation infomation) throws IOException {
@@ -183,22 +183,30 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/changeGenJinRenInfo", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> changeGenJinRenInfo(ModelMap modelMap,
+	public Map<String, String> changeGenJinRenInfo(
+			ModelMap modelMap,
 			@RequestParam String enterpriseSituationId,
-			@RequestParam(value = "selectItems[]") String[] selectItems) {
-		// 首先根据传入的跟进人编号查询出所有的跟进人信息
-		List<User> allGenJinRenInfo = userService
-				.findUsersByIdsService(selectItems);
+			@RequestParam(value = "selectItems[]", required = false, defaultValue = "") String[] selectItems) {
 
-		// 之后将查询出的所有跟进人信息的用户名保存到更新的参数中
 		String latestGenJinRensToString = new String();
-		for (int i = 0; i < allGenJinRenInfo.size(); i++) {
-			latestGenJinRensToString += allGenJinRenInfo.get(i).getUsername()
-					+ ";";
-		}
-		latestGenJinRensToString = latestGenJinRensToString.substring(0,
-				latestGenJinRensToString.lastIndexOf(";"));
 
+		// 如果为空则表示取消所有跟进人
+		if (null != selectItems) {
+
+			// 首先根据传入的跟进人编号查询出所有的跟进人信息
+			List<User> allGenJinRenInfo = userService
+					.findUsersByIdsService(selectItems);
+
+			// 之后将查询出的所有跟进人信息的用户名保存到更新的参数中
+			for (int i = 0; i < allGenJinRenInfo.size(); i++) {
+				latestGenJinRensToString += allGenJinRenInfo.get(i)
+						.getUsername() + ";";
+			}
+			latestGenJinRensToString = latestGenJinRensToString.substring(0,
+					latestGenJinRensToString.lastIndexOf(";"));
+		} else {
+			latestGenJinRensToString = null;
+		}
 		Map<String, String> resultMap = new HashMap<String, String>();
 
 		if (companyService
@@ -206,10 +214,14 @@ public class CompanyController {
 						Double.valueOf(enterpriseSituationId),
 						latestGenJinRensToString)) {
 			resultMap.put("result", "success");
-			LOGGER.info("成功！");
+			LOGGER.info("更新此企业的跟进人成功。"
+					+ DateTimeUtils
+							.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		} else {
 			resultMap.put("result", "failed");
-			LOGGER.error("失败！");
+			LOGGER.error("更新此企业的跟进人失败。"
+					+ DateTimeUtils
+							.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		}
 
 		return resultMap;
@@ -230,12 +242,32 @@ public class CompanyController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Infomation infomation = companyService.findInfomationById(Double
 				.valueOf(enterpriseSituationId));
-		infomation.setGenjinjindu(progressValue);
+		infomation.setGenjinjindu(progressValue.contains("-1") ? null
+				: progressValue);
 		if (companyService.updateInfomation(infomation)) {
 			map.put("result", "success");
 		} else {
 			map.put("result", "failed");
 		}
 		return map;
+	}
+
+	/**
+	 * 删除一个企业信息.
+	 * 
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	@RequestMapping(value = "/delEnterpriseInfo", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> deleteEnterpriseInfo(String enterpriseSituationId) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		if (companyService.deleteEnterpriseInfoByIdService(Double
+				.valueOf(enterpriseSituationId))) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "failed");
+		}
+		return resultMap;
 	}
 }

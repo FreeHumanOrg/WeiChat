@@ -20,7 +20,7 @@
       <url-pattern>*.jsp</url-pattern>
    </filter-mapping>
   <servlet>
-    <servlet-name>WC</servlet-name>
+    <servlet-name>WeiChat</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
@@ -29,7 +29,7 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>WC</servlet-name>
+    <servlet-name>WeiChat</servlet-name>
     <url-pattern>*.jhtml</url-pattern>
   </servlet-mapping>
   <welcome-file-list>

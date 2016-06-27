@@ -20,4 +20,12 @@ public interface CompanyDao extends BaseDao<Infomation, Double> {
 	Infomation findInfomationById(Double id);
 
 	Boolean updateInfomation(Infomation infomation);
+
+	/**
+	 * 根据企业编号删除一个企业信息.
+	 * 
+	 * @param infomation
+	 * @return
+	 */
+	Boolean deleteEnterpriseInfoById(Infomation infomation);
 }

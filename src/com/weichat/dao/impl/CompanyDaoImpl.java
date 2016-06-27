@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.CompanyDao;
 import com.weichat.model.Infomation;
+import com.weichat.util.DateTimeUtils;
 import com.weichat.util.Page;
 
 /**
@@ -52,5 +53,21 @@ public class CompanyDaoImpl extends BaseDaoImpl<Infomation, Double> implements
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Boolean deleteEnterpriseInfoById(Infomation infomation) {
+		try {
+			super.remove(infomation);
+			LOGGER.info("delete an enterprise situation info was successed!"
+					+ DateTimeUtils
+							.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOGGER.error("delete an enterprise situation info was failed!"
+					+ e.getMessage());
+		}
+		return false;
 	}
 }

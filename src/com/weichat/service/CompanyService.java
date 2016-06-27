@@ -30,4 +30,12 @@ public interface CompanyService extends BaseService<Infomation, Double> {
 	 */
 	Boolean updateGenJinRensInfoByEnterpriseSituationIdService(
 			Double enterpriseSituationId, String latestGenJinRensToString);
+
+	/**
+	 * 根据企业编号删除一个企业信息.
+	 * 
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	Boolean deleteEnterpriseInfoByIdService(Double enterpriseSituationId);
 }

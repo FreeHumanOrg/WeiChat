@@ -50,7 +50,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 	<body>
 		<div class="search clearfloat">
-			<div class="mod_select clearfloat">
+			<h2>企业列表</h2>
+			<!-- <div class="mod_select clearfloat">
 				<table style="border-color: white; margin-top: -10px; width: 230px;">
 					<tr>
 						<td style="border-color: white;">
@@ -87,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 					</tr>
 				</table>
-			</div>
+			</div> -->
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<th>企业名称</th>
@@ -100,15 +101,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     					<td><a href="/WeiChat/company/mobileshow.jhtml?id=${item.id }">${item.name }</a></td>
     					<td class="status_dropdown">
   							<select id="progress" operate="progresses" class="form-control">
-    							<option value="成交">成交</option>
-    							<option value="正在跟进">正在跟进</option>
-    							<option value="失败">失败</option>
+  								<option value="-1" <c:if test="${item.genjinjindu eq '' or item.genjinjindu eq null  }"> selected="selected" </c:if> >--未选择--</option>
+    							<option value="成交" <c:if test="${item.genjinjindu eq '成交' }"> selected="selected" </c:if> >成交</option>
+    							<option value="正在跟进" <c:if test="${item.genjinjindu eq '正在跟进' }"> selected="selected" </c:if> >正在跟进</option>
+    							<option value="失败" <c:if test="${item.genjinjindu eq '失败' }"> selected="selected" </c:if> >失败</option>
   							</select>
   							<button class="btn btn-primary" style="display: inline;" operate="applyButtonSingle" disabled="disabled" enterpriseSituationId="${item.id }">应用</button>
     					</td>
     					<td>
     						<c:choose>
-    							<c:when test="${item.genjinren eq null }">
+    							<c:when test="${item.genjinren eq null}">
     								暂无跟进人
     							</c:when>
     							<c:otherwise>
@@ -116,8 +118,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     								${string2 }
     							</c:otherwise>
     						</c:choose>
-    					<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="display: inline;" enterpriseId="${item.id }">编辑</button></td>
-    					<td><a href="##" onclick="$(this).parent().parent().remove();">删除</a></td>
+    						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="display: inline;" enterpriseId="${item.id }">编辑</button>
+    					</td>
+    					<td>
+    						<a href="javascript:removeAnEnterpriseSituationInfo(${item.id });">删除</a>
+    					</td>
     				</tr>
     			</c:forEach>
 			</table>
@@ -197,7 +202,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					跟进人：<br/>
 					<ul id="tree"></ul>
 		         </div>
-		         <!-- <input type="text" id="enterpriseId" /> -->
+		         <input type="hidden" id="enterpriseId" />
 		         <div class="modal-footer">
 		            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:65px;">关闭</button>
 		            <button id="applyButton" type="button" class="btn btn-primary">应用</button>
@@ -295,14 +300,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					}
 					
 					$.ajax({
-					    url: 'company/changeGenJinRenInfo.jhtml',         
+					    url: '<%=basePath%>company/changeGenJinRenInfo.jhtml',         
 					    data: {"selectItems" : genjinrenIds , "enterpriseSituationId" : $("#enterpriseId").val()},
-					    dataType : "json",
+					    dataType:"json",
 					    type: "POST",          
 					    success: function (data) {
-					        if (data.result === "success") {
+					        if (data.result == "success") {
 								alert("恭喜！更改跟进人信息操作成功！");
-								location.reload();
+								window.location.reload(true);
 							} else {
 								alert("非常抱歉，更新跟进人信息失败！请您重试操作。");
 							}
@@ -320,11 +325,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    dataType : "json",
 					    type: "POST",          
 					    success: function (data) {
-					        if (data.result === "success") {
-								alert("恭喜！更改跟进人信息操作成功！");
-								location.reload();
+					        if (data.result == "success") {
+								alert("恭喜！更改跟进进度信息操作成功！");
+								window.location.reload(true);
 							} else {
-								alert("非常抱歉，更新跟进人信息失败！请您重试操作。");
+								alert("非常抱歉，更新跟进进度信息失败！请您重试操作。");
 							}
 					    }
 					});
@@ -346,6 +351,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("input[name*='pageIndex']").val($("#homePageNum").text()*1);
 				}
 				$("#paginationForm").submit();
+			}
+			
+			function removeAnEnterpriseSituationInfo(identity){
+				$.ajax({
+					    url: 'company/delEnterpriseInfo.jhtml',         
+					    data: {"enterpriseSituationId" : identity},
+					    dataType : "json",
+					    type: "get",          
+					    success: function (data) {
+					        if (data.result == "success") {
+								alert("恭喜！您已成功删除此企业的信息！");
+						window.location.reload(true);
+							} else {
+								alert("非常抱歉，删除此企业的信息失败！请重试操作。");
+							}
+					    }
+				});
 			}
 		</script>		
 	</body>
