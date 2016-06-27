@@ -1,6 +1,11 @@
 package com.weichat.mobile;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +18,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.weichat.dto.TreeNodeDTO;
 import com.weichat.model.Infomation;
+import com.weichat.model.User;
 import com.weichat.service.CompanyService;
+import com.weichat.service.UserService;
 import com.weichat.util.DateTimeUtils;
 import com.weichat.util.Page;
 
@@ -40,7 +50,9 @@ public class CompanyController {
 	@Resource(name = "companyServiceImpl")
 	private CompanyService companyService;
 
-	
+	@Resource(name = "userServiceImpl")
+	private UserService userService;
+
 	/**
 	 * 
 	 * 
@@ -49,7 +61,8 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/mobileshow", method = RequestMethod.GET)
 	public String mobileshow(HttpServletRequest request, ModelMap modelMap) {
-		System.out.println("----------------------进入手机端查询企业详情方法----------------------");
+		System.out
+				.println("----------------------进入手机端查询企业详情方法----------------------");
 		Double id = Double.parseDouble(request.getParameter("id"));
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/mobile/update/common/frame";
@@ -62,8 +75,8 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping(value = "/mobileebs", method = RequestMethod.GET)
-	public String enterpriseBasicSituationMobileShow(HttpServletRequest request,
-			ModelMap modelMap) {
+	public String enterpriseBasicSituationMobileShow(
+			HttpServletRequest request, ModelMap modelMap) {
 		LOGGER.info("跳转到enterprise_update_situation下的index页面成功！"
 				+ DateTimeUtils
 						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
@@ -71,7 +84,6 @@ public class CompanyController {
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/mobile/update/enterprise_update_situation/index";
 	}
-	
 
 	@RequestMapping(value = "/ebu", method = RequestMethod.POST)
 	public void enterpriseBasicSituationUpdate(HttpServletResponse response,
@@ -88,5 +100,158 @@ public class CompanyController {
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		response.getWriter().write(sbResult.toString());
+	}
+
+	/**
+	 * 企业列表（主页）
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String companylist(ModelMap modelMap,
+			@ModelAttribute Page<Infomation> page) {
+		Page<Infomation> list = companyService.findAllService(page);
+		modelMap.addAttribute("page", list);
+		return "/mobile/home/companylist";
+	}
+
+	/**
+	 * 获取所有跟进人信息.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/getUsersInfo", method = RequestMethod.POST)
+	@ResponseBody
+	public Set<TreeNodeDTO> getUsersInfo(ModelMap modelMap, String enterpriseId) {
+		/**
+		 * 根据这个企业的编号将跟进人分解到数组中
+		 */
+		Infomation infomation = companyService.findInfomationById(Double
+				.valueOf(enterpriseId));
+
+		Set<TreeNodeDTO> treeNodeDTOs = new HashSet<TreeNodeDTO>();
+		String[] genjinrenGroup = new String[] {};
+		if (null != infomation.getGenjinren()) {
+			// 按照分号分割跟进人
+			genjinrenGroup = infomation.getGenjinren().split(";");
+		}
+		List<User> usersList = userService.findAllService();
+
+		boolean flag = false;
+		for (User user : usersList) {
+			flag = false;
+			for (int j = 0; j < genjinrenGroup.length; j++) {
+				if (user.getUsername().contains(genjinrenGroup[j])) {
+					flag = true;
+				}
+			}
+
+			treeNodeDTOs.add(new TreeNodeDTO(user.getId(), user.getUsername(),
+					"icon-man", flag));
+		}
+		return treeNodeDTOs;
+	}
+
+	/**
+	 * 更改跟进人信息.
+	 * 
+	 * @param modelMap
+	 * @param enterpriseSituationId
+	 *            企业编号
+	 * @param selectItems
+	 *            跟进人编号
+	 * @return
+	 */
+	@RequestMapping(value = "/changeGenJinRenInfo", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> changeGenJinRenInfo(
+			ModelMap modelMap,
+			@RequestParam String enterpriseSituationId,
+			@RequestParam(value = "selectItems[]", required = false, defaultValue = "") String[] selectItems) {
+
+		String latestGenJinRensToString = new String();
+
+		// 如果为空则表示取消所有跟进人
+		if (null != selectItems) {
+
+			// 首先根据传入的跟进人编号查询出所有的跟进人信息
+			List<User> allGenJinRenInfo = userService
+					.findUsersByIdsService(selectItems);
+
+			// 之后将查询出的所有跟进人信息的用户名保存到更新的参数中
+			for (int i = 0; i < allGenJinRenInfo.size(); i++) {
+				latestGenJinRensToString += allGenJinRenInfo.get(i)
+						.getUsername() + ";";
+			}
+			latestGenJinRensToString = latestGenJinRensToString.substring(0,
+					latestGenJinRensToString.lastIndexOf(";"));
+		} else {
+			latestGenJinRensToString = null;
+		}
+		Map<String, String> resultMap = new HashMap<String, String>();
+
+		if (companyService
+				.updateGenJinRensInfoByEnterpriseSituationIdService(
+						Double.valueOf(enterpriseSituationId),
+						latestGenJinRensToString)) {
+			resultMap.put("result", "success");
+			LOGGER.info("更新此企业的跟进人成功。"
+					+ DateTimeUtils
+							.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+		} else {
+			resultMap.put("result", "failed");
+			LOGGER.error("更新此企业的跟进人失败。"
+					+ DateTimeUtils
+							.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+		}
+
+		return resultMap;
+	}
+
+	/**
+	 * 更新跟进进度信息.
+	 * 
+	 * @param modelMap
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/updateProgress", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateProgress(ModelMap modelMap,
+			String enterpriseSituationId, String progressValue,
+			HttpServletResponse response) throws IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Infomation infomation = companyService.findInfomationById(Double
+				.valueOf(enterpriseSituationId));
+		infomation.setGenjinjindu(progressValue.contains("-1") ? null
+				: progressValue);
+		if (companyService.updateInfomation(infomation)) {
+			map.put("result", "success");
+		} else {
+			map.put("result", "failed");
+		}
+		return map;
+	}
+
+	/**
+	 * 删除一个企业信息.
+	 * 
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	@RequestMapping(value = "/delEnterpriseInfo", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> deleteEnterpriseInfo(String enterpriseSituationId) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		if (companyService.deleteEnterpriseInfoByIdService(Double
+				.valueOf(enterpriseSituationId))) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "failed");
+		}
+		return resultMap;
 	}
 }

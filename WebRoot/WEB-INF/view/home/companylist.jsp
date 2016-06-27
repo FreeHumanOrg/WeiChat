@@ -89,6 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 				</table>
 			</div> -->
+			<button class="btn" onclick="location.href='/WeiChat/addindex/frame.jhtml'" style="margin-top: -1px;">新建</button>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<th>企业名称</th>
