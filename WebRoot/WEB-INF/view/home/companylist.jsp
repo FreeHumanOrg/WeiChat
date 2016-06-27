@@ -51,7 +51,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 		<div class="search clearfloat">
 			<h2>企业列表</h2>
-			<!-- <div class="mod_select clearfloat">
+			<!--  
+			 <div class="mod_select clearfloat">
 				<table style="border-color: white; margin-top: -10px; width: 230px;">
 					<tr>
 						<td style="border-color: white;">
@@ -67,10 +68,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 					</tr>
 				</table>
-			</div>
+			</div>-->
 			<div class="intbox">
 				<table style="border-color: white; margin-top: -10px; width: 260px;">
 					<tr>
+					<!--  
 						<td style="border-color: white;">
 							跟进人：
 						</td>
@@ -82,13 +84,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td style="border-color: white;">
 							<button class="btn btn-primary" style="margin-top: -1px;">搜索</button>
 						</td>
-						
+						-->
 						<td style="border-color: white;">
 							<button class="btn" onclick="location.href='/WeiChat/addindex/frame.jhtml'" style="margin-top: -1px;">新建</button>
 						</td>
 					</tr>
 				</table>
-			</div> -->
+			</div> 
 			<button class="btn" onclick="location.href='/WeiChat/addindex/frame.jhtml'" style="margin-top: -1px;">新建</button>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
@@ -99,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 				<c:forEach items="${page.content}" var="item">
 					<tr>
-    					<td><a href="/WeiChat/company/mobileshow.jhtml?id=${item.id }">${item.name }</a></td>
+    					<td><a href="/WeiChat/company/companyshow.jhtml?id=${item.id }">${item.name }</a></td>
     					<td class="status_dropdown">
   							<select id="progress" operate="progresses" class="form-control">
   								<option value="-1" <c:if test="${item.genjinjindu eq '' or item.genjinjindu eq null  }"> selected="selected" </c:if> >--未选择--</option>
