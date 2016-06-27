@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 					</tr>
 				</table>
-			</div>-->
+			</div>
 			<div class="intbox">
 				<table style="border-color: white; margin-top: -10px; width: 260px;">
 					<tr>
@@ -84,13 +84,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td style="border-color: white;">
 							<button class="btn btn-primary" style="margin-top: -1px;">搜索</button>
 						</td>
-						-->
+						
 						<td style="border-color: white;">
 							<button class="btn" onclick="location.href='/WeiChat/addindex/frame.jhtml'" style="margin-top: -1px;">新建</button>
 						</td>
 					</tr>
 				</table>
-			</div> 
+			</div> -->
 			<button class="btn" onclick="location.href='/WeiChat/addindex/frame.jhtml'" style="margin-top: -1px;">新建</button>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
