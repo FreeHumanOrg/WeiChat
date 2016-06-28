@@ -117,7 +117,7 @@
             <ref bean="myJob" />  
         </property>  
         <property name="targetMethod">  
-            <value>doWork</value>  
+            <value>findEmployeeList</value>  
         </property>  
     </bean>  
   
