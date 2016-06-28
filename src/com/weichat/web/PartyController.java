@@ -80,9 +80,7 @@ public class PartyController {
 			}
 		} else {// 不存在
 			if (partyService.addDangtuanjiansheService(
-					dangtuanjianshe,
-					Double.valueOf(request.getSession()
-							.getAttribute("enterpriseId").toString()))) {
+					dangtuanjianshe,dangtuanjianshe.getInfomation().getId())) {
 				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
 				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");

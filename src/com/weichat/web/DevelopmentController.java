@@ -36,7 +36,7 @@ public class DevelopmentController {
 		Jiansejindu jd=developmentService.findJiansejinduById(id);
 		modelMap.addAttribute("pp", pp);
 		modelMap.addAttribute("zw", zw);
-		modelMap.addAttribute("gt", gt);
+		modelMap.addAttribute("guotu", gt);
 		modelMap.addAttribute("ys", ys);
 		modelMap.addAttribute("jd", jd);
 		
@@ -54,7 +54,7 @@ public class DevelopmentController {
 		Jiansejindu jd=developmentService.findJiansejinduById(id);
 		modelMap.addAttribute("pp", pp);
 		modelMap.addAttribute("zw", zw);
-		modelMap.addAttribute("gt", gt);
+		modelMap.addAttribute("guotu", gt);
 		modelMap.addAttribute("ys", ys);
 		modelMap.addAttribute("jd", jd);
 		

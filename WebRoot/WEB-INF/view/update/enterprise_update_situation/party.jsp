@@ -12,9 +12,9 @@
 		</script>
 	</head>
 	<body>
-	<form action="../party/partyupdate.jhtml" method="POST" id="partyform">
-		<input name="id" type="text" hidden="hidden" value="${party.id }">
-		<input name="infomation.id" hidden="hidden" value="${id }">
+	<form action="../party/partyupdate.jhtml" method="post" id="partyform">
+		<input name="id" type="text" value="${party.id }" hidden="hidden">
+		<input name="infomation.id" hidden="hidden" value="${id }" type="text">
 		<div class="dtjs subcontent clearfloat">
 			<div class="intbox">
 				<span class="name">党组织建设情况</span>

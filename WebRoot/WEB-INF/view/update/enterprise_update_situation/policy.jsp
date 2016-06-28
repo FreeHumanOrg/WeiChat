@@ -18,17 +18,17 @@
 					<span class="yh-name">优惠政策</span>
 					<div class="intbox">
 					<span class="name">协议优惠政策内容</span>
-					<input type="text" class="write" value="${policy.content }"/>
+					<input name="content" type="text" class="write" value="${policy.content }"/>
 					<a href="##" class="delete">删除</a>
 				</div>
 				<div class="intbox">
 					<span class="name">应兑现金额</span>
-					<input type="text" class="write" value="${policy.money }"/>
+					<input name="money" type="text" class="write" value="${policy.money }"/>
 					<a href="##" class="delete">删除</a>
 				</div>
 				<div class="intbox">
 					<span class="name">兑现情况</span>
-					<input type="text" class="write" value="${policy.cashsituation }"/>
+					<input name="cashsituation" type="text" class="write" value="${policy.cashsituation }"/>
 					<a href="##" class="delete">删除</a>
 				</div>
 				<!--  
@@ -38,9 +38,9 @@
 					<a href="##" class="add">增加</a>
 				-->
 				</div>
-				</div>
-				<div class="btn">
-					<a href="##" class="add" onclick="document.getElementById('policyform').submit();">提交</a>
+					<div class="btn">
+						<a href="##" class="add" onclick="document.getElementById('policyform').submit();">提交</a>
+					</div>
 				</div>
 				</form>
 				<!--  

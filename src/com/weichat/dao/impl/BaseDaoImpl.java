@@ -234,7 +234,8 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 	@Override
 	public Boolean update(T entity) {
 		try {
-			hibernateTemplate.update(entity);
+			//Illegal attempt to associate a collection with two open sessions±¨´í
+			hibernateTemplate.update(hibernateTemplate.merge(entity));
 			return true;
 		} catch (DataAccessException dataAccessException) {
 			dataAccessException.printStackTrace();

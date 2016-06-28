@@ -62,7 +62,7 @@ public class ExpendController {
 	 * @param qiyefazhan
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/partyupdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/expendupdate", method = RequestMethod.POST)
 	public void updateExpend(HttpServletResponse response,HttpServletRequest request,
 			@ModelAttribute Qiyefazhan qiyefazhan) throws IOException {
 		LOGGER.info("企业发展修改!"

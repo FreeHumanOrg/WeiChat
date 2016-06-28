@@ -28,7 +28,7 @@
 					<li> <a href="##">项目建设进度</a></li>
 				</ul>
 			</div>
-		<form action="../development/ppupdate.jhtml" id="productpeople">
+		<form action="../development/ppupdate.jhtml" id="productpeople" method="post">
 		<input name="id" value="${pp.id }" hidden="hidden" type="text">
 		<input name="infomation.id" value="${id }" hidden="hidden" type="text">
 			<div class="jsqk-con">
@@ -46,271 +46,278 @@
 			</div>
 		</form>
 		
-		<form action="" id="zhengwu" method="post">
+		<form action="../development/zwupdate.jhtml" id="zhengwu" method="post">
+		<input name="id" value="${zw.id }" hidden="hidden" type="text">
+		<input name="infomation.id" value="${id }" hidden="hidden" type="text">
 			<div class="jsqk-con">
 				<p class="title">工商税务</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="commercialtaxtime" type="text" class="write" value="${zw.commercialtaxtime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="commercialtaxcon" type="text" class="write" value="${zw.commercialtaxcon }"/>
 				</div>
 				<p class="title">发改立项</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="projexttime" type="text" class="write" value="${zw.projexttime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="projextcon" type="text" class="write" value="${zw.projextcon }"/>
 				</div>
 				<p class="title">环评</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="eiatime" type="text" class="write" value="${zw.eiatime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="eiacon" type="text" class="write" value="${zw.eiacon }"/>
 				</div>
 				<p class="title">用地许可</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="permittime" type="text" class="write" value="${zw.permittime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="permitcon" type="text" class="write" value="${zw.permitcon }"/>
 				</div>
 				<p class="title">工程许可</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="permissiontime" type="text" class="write" value="${zw.permissiontime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="permissioncon" type="text" class="write" value="${zw.permissioncon }"/>
 				</div>
 				<p class="title">施工工程</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="constructionprojectTime" type="text" class="write" value="${zw.constructionprojectTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="constructionprojectCon" type="text" class="write" value="${zw.constructionprojectCon }"/>
 				</div>
 				<p class="title">消防备验</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="fireinspectionTime" type="text" class="write" value="${zw.fireinspectionTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="fireinspectionCon" type="text" class="write" value="${zw.fireinspectionCon }"/>
 				</div>
 				<p class="title">总平图设计及方案报规</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="programmeReportTime" type="text" class="write" value="${zw.programmeReportTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="programmeReportcon" type="text" class="write" value="${zw.programmeReportcon }"/>
 				</div>
 				<p class="title">施工图设计及图审</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="chartreviewtime" type="text" class="write" value="${zw.chartreviewtime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="chartreviewcon" type="text" class="write" value="${zw.chartreviewcon }"/>
 				</div>
 				<p class="title">施工、监理单位确定</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="controlUnitTime" type="text" class="write" value="${zw.controlUnitTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="controlUnitcon" type="text" class="write" value="${zw.controlUnitcon }"/>
 				</div>
 				<p class="title">招标备案</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="recordTime" type="text" class="write" value="${zw.recordTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="recordcon" type="text" class="write" value="${zw.recordcon }"/>
 				</div>
 				<p class="title">其他</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" />
+					<input name="otherTime" type="text" class="write" value="${zw.otherTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="othercon" type="text" class="write" value="${zw.othercon }"/>
 				</div>
 				<div class="btn clearfloat">
-					<a href="##" class="submit">提交</a>
+					<a href="##" class="submit" onclick="document.getElementById('zhengwu').submit();">提交</a>
 				</div>
 			</div>
 		</form>
 		
-		<form action="" id="guotu">
+		<form action="../development/gtupdate.jhtml" id="guotu" method="post">
+		<input name="id" type="text" hidden="hidden" value="${guotu.id }">
+		<input name="infomation.id" type="text" hidden="hidden" value="${id }">
 			<div class="jsqk-con">
 				<p class="title">下达指标</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" />
+					<input name="indexTime" type="text" class="write" value="${guotu.indexTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">面积</span>
-					<input type="text" class="write" />
+					<input name="indexCon" type="text" class="write" value="${guotu.indexCon }"/>
 				</div>
 				<p class="title">土地报征</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" />
+					<input name="landSignTime" type="text" class="write" value="${guotu.landSignTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">面积</span>
-					<input type="text" class="write" />
+					<input name="landSigncon" type="text" class="write" value="${guotu.landSigncon }"/>
 				</div>
 				<p class="title">土地挂牌</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" />
+					<input name="landListingTime" type="text" class="write" value="${guotu.landListingTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">面积</span>
-					<input type="text" class="write" />
+					<input name="landListingcon" type="text" class="write" value="${guotu.landListingcon }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">价格</span>
-					<input type="text" class="write" />
+					<input name="landListingPri" type="text" class="write" value="${guotu.landListingPri }"/>
 				</div>
 				<p class="title">土地办证</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" />
+					<input name="landCertificateT" type="text" class="write" value="${guotu.landCertificateT }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">面积</span>
-					<input type="text" class="write" />
+					<input name="landCertificateC" type="text" class="write" value="${guotu.landCertificateC }"/>
 				</div>
 				<div class="btn clearfloat">
-					<a href="##" class="submit">提交</a>
+					<a href="##" class="submit" onclick="document.getElementById('guotu').submit();">提交</a>
 				</div>
 			</div>
 		</form>
 		
-		<form action="" id="yaosu">
+		<form action="../development/ysupdate.jhtml" id="yaosu" method="post">
+		<input name="id" type="text" hidden="hidden" value="${ys.id }">
+		<input name="infomation.id" type="text" hidden="hidden" value="${id }">
 		    <div class="jsqk-con">
 				<div class="intbox">
 					<span class="name">道路</span>
-					<input type="text" class="write" placeholder="描述"/>
+					<input name="loaded" type="text" class="write" placeholder="描述" value="${ys.loaded }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">水</span>
-					<input type="text" class="write" placeholder="描述"/>
+					<input name="water" type="text" class="write" placeholder="描述" value="${ys.water }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">电</span>
-					<input type="text" class="write" placeholder="描述"/>
+					<input name="electric" type="text" class="write" placeholder="描述" value="${ys.electric }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">气</span>
-					<input type="text" class="write" placeholder="描述"/>
+					<input name="gas" type="text" class="write" placeholder="描述" value="${ys.gas }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">视</span>
-					<input type="text" class="write" placeholder="描述"/>
+					<input name="regard" type="text" class="write" placeholder="描述" value="${ys.regard }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">讯</span>
-					<input type="text" class="write" placeholder="描述"/>
+					<input name="hearing" type="text" class="write" placeholder="描述" value="${ys.hearing }"/>
 				</div>
 				<div class="btn clearfloat">
-					<a href="##" class="submit">提交</a>
+					<a href="##" class="submit" onclick="document.getElementById('yaosu').submit();">提交</a>
 				</div>
 		    </div>
 		 </form>
 		 
-		 <form action="" id="jianshejindu">
+		 <form action="../development/jdupdate.jhtml" id="jianshejindu" method="post">
+		 <input name="id" type="text" hidden="hidden" value="${jd.id }">
+		<input name="infomation.id" type="text" hidden="hidden" value="${id }">
 		    <div class="jsqk-con">
 		    	<p class="title">计划开工时间</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" />
+					<input name="plannedStartTime" type="text" class="write" value="${jd.plannedStartTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="plannedStartC" type="text" class="write" value="${jd.plannedStartC }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">解决方案</span>
-					<input type="text" class="write" />
+					<input name="plannedStartSol" type="text" class="write" value="${jd.plannedStartSol }"/>
 				</div>
 				<p class="title">计划竣工时间</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" />
+					<input name="plannedJunTime" type="text" class="write" value="${jd.plannedJunTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="plannedJunC" type="text" class="write" value="${jd.plannedJunC }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">解决方案</span>
-					<input type="text" class="write" />
+					<input name="plannedJunSol" type="text" class="write" value="${jd.plannedJunSol }"/>
 				</div>
 				<p class="title">实际开工时间</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" />
+					<input name="postnedStartTime" type="text" class="write" value="${jd.postnedStartTime }" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="postnedStartC" type="text" class="write" value="${jd.postnedStartC }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">解决方案</span>
-					<input type="text" class="write" />
+					<input name="plannedStartSol" type="text" class="write" value="${jd.plannedStartSol }"/>
 				</div>
 				<p class="title">实际竣工时间</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" />
+					<input name="postnedJunTime" type="text" class="write" value="${jd.postnedJunTime }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
-					<input type="text" class="write" />
+					<input name="postnedJunC" type="text" class="write" value="${jd.postnedJunC }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">解决方案</span>
-					<input type="text" class="write" />
+					<input name="postnedJunSol" type="text" class="write" value="${jd.postnedJunSol }"/>
 				</div>
 				<p class="title">项目建设进度</p>
 				<div class="intbox">
 					<span class="name">建筑内容及规模</span>
-					<input type="text" class="write" />
+					<input name="scale" type="text" class="write" value="${jd.scale }"/>
 				</div>
 				<div class="intbox">
 					<span class="name">项目形象进度</span>
-					<input type="text" class="write" />
+					<input name="progress" type="text" class="write" value="${jd.progress }"/>
 				</div>
 				<div class="btn clearfloat">
-					<a href="##" class="submit">提交</a>
+					<a href="##" class="submit" onclick="document.getElementById('jianshejindu').submit();">提交</a>
 				</div>
 		    </div>
 		 </form>
-		 
 		</div>
 	</body>
 </html>
