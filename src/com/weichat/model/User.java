@@ -38,13 +38,14 @@ public class User implements java.io.Serializable {
 	private Double usertype;
 	private Double zhucetype;
 	private String name;
-
+	private String openid;
+	private String account;
 	public User() {
 	}
 
 	public User(Infomation infomation, String username, String password,
 			String email, String place, String des, String hobbit,
-			Double usertype, Double zhucetype, String name) {
+			Double usertype, Double zhucetype, String name,String openid,String account) {
 		this.infomation = infomation;
 		this.username = username;
 		this.password = password;
@@ -55,11 +56,11 @@ public class User implements java.io.Serializable {
 		this.usertype = usertype;
 		this.zhucetype = zhucetype;
 		this.name = name;
+		this.openid=openid;
+		this.account=account;
 	}
 
-	@GenericGenerator(name = "generator", strategy = "increment")
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "id", unique = true, nullable = false, precision = 22, scale = 0)
 	public Double getId() {
 		return this.id;
@@ -159,5 +160,20 @@ public class User implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Column(name = "openid", length = 50)
+	public String getOpenid() {
+		return openid;
+	}
 
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+	@Column(name = "account", length = 50)
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
 }

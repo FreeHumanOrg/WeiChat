@@ -1,16 +1,10 @@
-package com.weichat.job;
+package com.weichat.web;
 
+import java.util.ArrayList;
 import java.util.List;
-
-
-
-
-
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -18,6 +12,7 @@ import org.springframework.stereotype.Component;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import com.weichat.job.WeqiaClient;
 import com.weichat.model.OpenEmployeeForm;
 import com.weichat.model.OpenEmployeeListForm;
 import com.weichat.model.User;
@@ -37,13 +32,12 @@ import com.weichat.util.RandomUtils;
  * 
  * @version 1.0 Beta
  */
+@Component
 public class MyJob{
-
-	public void doWork(){
-		//
-		new MyJob().findEmployeeList();;
-	}
 	
+	@Resource(name = "userServiceImpl")
+	private UserService userService;
+
 	/**
 	 * 
 	 * @Description 初始化企业信息
@@ -86,33 +80,40 @@ public class MyJob{
 		form.setPageSize(1);
 		String sRet = wqClient.findEmployeeList(form);
 		System.out.println(sRet);
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:cn/../applicationContext.xml"); 
-		UserService userService = (UserService) applicationContext.getBean("userService");
 		List<User>userlist=userService.findAllService();
 		//处理同步的用户json数据
 		JSONObject jsonObject=JSONObject.fromObject(sRet);
 		JSONArray jsonArray=jsonObject.getJSONArray("list");
-		for (Object object : jsonArray) {
-			JSONObject obj=JSONObject.fromObject(object);
-			System.out.println(obj.get("openId"));
-			String openId=obj.getString("openId");
-			String account=obj.getString("account");
-			String name=obj.getString("name");
-			if(userlist!=null&&userlist.size()>0){//更新
-				for (User users : userlist) {
-					if(users.getOpenid().equals(openId)&&users.getAccount().equals(account)){
-						
-					}else{
-						User user=new User();
-						user.setId(RandomUtils.createIdentitySerialByUUID());//主键ID
-						user.setAccount(account);//同步过来的账户
-						user.setName(name);//同步过来的用户名
-						user.setUsername(name);//用户名
-						user.setOpenid(openId);//同步过来的openid
-						userService.saveService(user);
-					}
+				
+		List<String>strs=new ArrayList<>();
+		if(userlist!=null&&userlist.size()>0){//存在用户数据
+			for (User user : userlist) {
+				strs.add(user.getOpenid());
+			}
+			for (Object object : jsonArray) {
+				JSONObject obj=JSONObject.fromObject(object);
+				String openId=obj.getString("openId");
+				String account=obj.getString("account");
+				String name=obj.getString("name");
+				System.out.println(openId+","+account+","+name);
+				if(strs.isEmpty()&&strs.contains(openId)){
+					break;
+				}else{
+					User inituser=new User();
+					inituser.setId(RandomUtils.createIdentitySerialByUUID());//主键ID
+					inituser.setAccount(account);//同步过来的账户
+					inituser.setName(name);//同步过来的用户名
+					inituser.setUsername(name);//用户名
+					inituser.setOpenid(openId);//同步过来的openid
+					userService.addUser(inituser);
 				}
-			}else{//第一次初始化数据
+			}
+		}else{//不存在用户数据
+			for (Object object : jsonArray) {
+				JSONObject obj=JSONObject.fromObject(object);
+				String openId=obj.getString("openId");
+				String account=obj.getString("account");
+				String name=obj.getString("name");
 				User inituser=new User();
 				inituser.setId(RandomUtils.createIdentitySerialByUUID());//主键ID
 				inituser.setAccount(account);//同步过来的账户

@@ -36,4 +36,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Double> implements
 	public List<User> findUsersByIdsService(String[] genJinRenIds) {
 		return userDao.findUsersByIds(genJinRenIds);
 	}
+
+	@Override
+	public Boolean addUser(User user) {
+		return userDao.addUser(user);
+	}
 }

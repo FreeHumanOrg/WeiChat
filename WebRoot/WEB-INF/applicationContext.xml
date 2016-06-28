@@ -99,9 +99,9 @@
         </property>  
         <property name="cronExpression">  
             <!-- 每隔一秒钟执行一次 -->  
-			<!--             <value>0/1 * * * * ?</value>   -->
+			            <value>0/60 * * * * ?</value>   
 			<!--每隔两小时同步一次用户信息  -->
-			<value>0 0 */2 * * ? </value>
+<!-- 			<value>0 0 */2 * * ? </value> -->
         </property>  
     </bean>  
     
@@ -112,11 +112,11 @@
             <ref bean="myJob" />  
         </property>  
         <property name="targetMethod">  
-            <value>doWork</value>  
+            <value>findEmployeeList</value>  
         </property>  
     </bean>  
   
     <!-- 配置自定义的时间任务(Job) -->  
-    <bean id="myJob" class="com.weichat.job.MyJob" />  
+    <bean id="myJob" class="com.weichat.web.MyJob" />  
 	
 </beans>

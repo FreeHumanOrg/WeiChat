@@ -53,4 +53,15 @@ public class UserDaoImpl extends BaseDaoImpl<User, Double> implements UserDao {
 					}
 				});
 	}
+
+	@Override
+	public Boolean addUser(User user) {
+		try {
+			this.hibernateTemplate.save(user);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
