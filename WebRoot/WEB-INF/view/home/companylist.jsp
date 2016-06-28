@@ -46,13 +46,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			margin-top: -1px;
 			margin-left: 10px;
 		}
+		
+		#newButtonArea{
+			text-align:right;
+		}
+		
+		#newButtonArea button{
+			width:125px;
+		}
 	</style>
   </head>
 	<body>
 		<div class="search clearfloat">
 			<h2>企业列表</h2>
-			<!--  
-			 <div class="mod_select clearfloat">
+			<!-- <div class="mod_select clearfloat">
 				<table style="border-color: white; margin-top: -10px; width: 230px;">
 					<tr>
 						<td style="border-color: white;">
@@ -72,7 +79,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="intbox">
 				<table style="border-color: white; margin-top: -10px; width: 260px;">
 					<tr>
-					<!--  
 						<td style="border-color: white;">
 							跟进人：
 						</td>
@@ -91,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 				</table>
 			</div> -->
-			<button class="btn" onclick="location.href='/WeiChat/addindex/frame.jhtml'" style="margin-top: -1px;">新建</button>
+			<p id="newButtonArea"><button class="btn btn-warning" onclick="location.href='/WeiChat/addindex/frame.jhtml'">新建</button></p>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<th>企业名称</th>

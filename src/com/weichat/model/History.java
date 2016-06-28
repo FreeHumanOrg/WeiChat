@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -137,4 +138,21 @@ public class History implements java.io.Serializable {
 	public void setOperateValue(String operateValue) {
 		this.operateValue = operateValue;
 	}
+
+	/**
+	 * ∆Û“µ±‡∫≈
+	 */
+	@Transient
+	private Double infomationId;
+
+	@Transient
+	public Double getInfomationId() {
+		return infomationId;
+	}
+
+	@Transient
+	public void setInfomationId(Double infomationId) {
+		this.infomationId = infomationId;
+	}
+
 }

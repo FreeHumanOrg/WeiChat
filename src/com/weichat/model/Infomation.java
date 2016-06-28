@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 信息实体类
@@ -24,7 +27,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "infomation", catalog = "new")
-public class Infomation implements java.io.Serializable {
+public class Infomation implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 1459018372173537723L;
 
 	/**
@@ -515,6 +518,34 @@ public class Infomation implements java.io.Serializable {
 
 	public void setJiansejindus(Set<Jiansejindu> jiansejindus) {
 		this.jiansejindus = jiansejindus;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("产品描述：" + productdes);
+		sbLog.append("企业名称：" + name);
+		sbLog.append("行业代码：" + industrycode);
+		sbLog.append("企业联系人：" + contacts);
+		sbLog.append("企业网站：" + enterprisewebsite);
+		sbLog.append("占地面积（亩）：" + area);
+		sbLog.append("预计年产值：" + estimated);
+		sbLog.append("协议开工时间：" + begintime);
+		sbLog.append("项目名称：" + productname);
+		sbLog.append("行业分类：" + dustry);
+		sbLog.append("企业法人：" + legalperson);
+		sbLog.append("企业联系方式：" + telenumber);
+		sbLog.append("签约时间：" + signingtime);
+		sbLog.append("协议投资（万元）：" + agreement);
+		sbLog.append("预计年税收：" + annualtax);
+		sbLog.append("协议竣工时间：" + completiontime);
+		sbLog.append("企业跟进人：" + genjinren);
+		sbLog.append("企业跟进进度：" + genjinjindu);
+		sbLog.append("备注：" + beizhu);
+		return sbLog.toString();
 	}
 
 }

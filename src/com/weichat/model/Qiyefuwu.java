@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 企业服务实体类
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "qiyefuwu", catalog = "new")
-public class Qiyefuwu implements java.io.Serializable {
+public class Qiyefuwu implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = -6946385790618799914L;
 
 	private Double id;
@@ -118,6 +121,19 @@ public class Qiyefuwu implements java.io.Serializable {
 
 	public void setPinxun(String pinxun) {
 		this.pinxun = pinxun;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("融资：" + longzhi);
+		sbLog.append("用工：" + yongGong);
+		sbLog.append("品牌：" + pinpai);
+		sbLog.append("培训：" + pinxun);
+		return sbLog.toString();
 	}
 
 }
