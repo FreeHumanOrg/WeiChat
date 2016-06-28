@@ -96,8 +96,7 @@ public class MyJob{
 				String account=obj.getString("account");
 				String name=obj.getString("name");
 				System.out.println(openId+","+account+","+name);
-				if(strs.isEmpty()&&strs.contains(openId)){
-					break;
+				if(strs.contains(openId)){
 				}else{
 					User inituser=new User();
 					inituser.setId(RandomUtils.createIdentitySerialByUUID());//Ö÷¼üID
