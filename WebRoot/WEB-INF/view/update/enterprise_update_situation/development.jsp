@@ -29,8 +29,8 @@
 				</ul>
 			</div>
 		<form action="../development/ppupdate.jhtml" id="productpeople">
-		<input name="id" value="${pp.id }">
-		<input name="infomation.id" value="${id }">
+		<input name="id" value="${pp.id }" hidden="hidden" type="text">
+		<input name="infomation.id" value="${id }" hidden="hidden" type="text">
 			<div class="jsqk-con">
 				<div class="intbox">
 					<span class="name">姓名</span>

@@ -10,7 +10,7 @@
 		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-	<form action="../policy/policyupdate.jhtml" name="policyform" method="POST">
+	<form action="../policy/policyupdate.jhtml" id="policyform" method="POST">
 		<input name="infomation.id" value="${id }" type="hidden">
 		<input name="id" value="${policy.id }" type="hidden">
 		<div class="yhzcqk subcontent clearfloat">
