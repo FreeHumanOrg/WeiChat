@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,9 @@ import com.weichat.util.Page;
  * 
  * 
  * 项目名称：WeiChat 类名称：CompanyController.java 类描述：TODO 创建人：李帅康 创建时间：下午10:23:37
- * 修改人：李帅康 修改时间：下午10:23:37 修改备注：
+ * 修改人：李帅康 
+ * 修改时间：2016-06-29 下午15:33:00 
+ * 修改备注：添加用户信息验证方法
  * 
  * FreeHuman Soft Team
  * 
@@ -52,6 +55,50 @@ public class CompanyController {
 
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
+	/**
+	 * 用户信息验证
+	 * @param session
+	 * @param request
+	 * @param response
+	 * @param modelMap
+	 * @param page
+	 * @return
+	 */
+	@RequestMapping(value="/useraccess",method={RequestMethod.POST,RequestMethod.GET})
+	public String useraccess(HttpSession session,HttpServletRequest request,HttpServletResponse response,ModelMap modelMap,@ModelAttribute Page<Infomation> page){
+		String openId=request.getParameter("openId");//openId
+		String flag=request.getParameter("flag");//pc app
+		//判断用户是否存在
+		if(openId!=null&&!"".equals(openId)&&flag!=null&&!"".equals(flag)){
+				//用户是否存在
+			try {
+				User user=userService.findUserByOpenId(openId);
+				if(user!=null){//用户存在
+					if("pc".equals(flag)){//pc端登录
+						session.setAttribute("openId", openId);//将用户openId放到session
+						session.setAttribute("account", user.getAccount());
+						session.setAttribute("flag", flag);
+						Page<Infomation> list = companyService.findAllService(page);
+						modelMap.addAttribute("page", list);
+						return "/home/companylist";
+					}else{//app端登录
+						session.setAttribute("openId", openId);//将用户openId放到session
+						session.setAttribute("account", user.getAccount());
+						session.setAttribute("flag", flag);
+						Page<Infomation> list = companyService.findAllService(page);
+						modelMap.addAttribute("page", list);
+						return "/mobile/home/companylist";
+					}
+				}else{//用户不存在
+					return "/404";
+				}
+			} catch (Exception e) {//服务器查询异常
+				return "/404";
+			}
+		}else{//参数不完全
+			return "/404";
+		}
+	}
 
 	/**
 	 * 企业列表（主页）
@@ -59,8 +106,7 @@ public class CompanyController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,
-			RequestMethod.GET })
+	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,RequestMethod.GET })
 	public String companylist(ModelMap modelMap,
 			@ModelAttribute Page<Infomation> page) {
 		Page<Infomation> list = companyService.findAllService(page);
@@ -76,8 +122,7 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/companyshow", method = RequestMethod.GET)
 	public String companyshow(HttpServletRequest request, ModelMap modelMap) {
-		System.out
-				.println("----------------------进入查询企业详情方法----------------------");
+		System.out.println("----------------------进入查询企业详情方法----------------------");
 		Double id = Double.parseDouble(request.getParameter("id"));
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/common/frame";

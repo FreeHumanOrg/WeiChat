@@ -41,4 +41,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Double> implements
 	public Boolean addUser(User user) {
 		return userDao.addUser(user);
 	}
+
+	@Override
+	public User findUserByOpenId(String openId) {
+		return userDao.findUserByOpenId(openId);
+	}
 }

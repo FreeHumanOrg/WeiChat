@@ -64,4 +64,14 @@ public class UserDaoImpl extends BaseDaoImpl<User, Double> implements UserDao {
 			return false;
 		}
 	}
+
+	@Override
+	public User findUserByOpenId(String openId) {
+		List<User>users=this.hibernateTemplate.find("from User t where t.openid=?",new Object[]{openId});
+		if(users!=null&&users.size()>0){
+			return users.get(0);
+		}else{
+			return null;
+		}
+	}
 }

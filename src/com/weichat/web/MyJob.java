@@ -26,7 +26,7 @@ import com.weichat.util.RandomUtils;
  * 项目名称：WeiChat 类名称：MyJob.java 类描述：TODO 
  * 创建人：李帅康  创建时间：上午9:21:55 
  * 修改人：李帅康  修改时间： 上午9:21:55
- * 修改备注：每隔两小时同步一次用户信息
+ * 修改备注：每隔两小时调用findEmployeeList()同步一次用户信息
  * 
  * FreeHuman Soft Team
  * 
@@ -39,7 +39,6 @@ public class MyJob{
 	private UserService userService;
 
 	/**
-	 * 
 	 * @Description 初始化企业信息
 	 * @return  
 	 *
@@ -80,7 +79,7 @@ public class MyJob{
 		form.setPageSize(1);
 		String sRet = wqClient.findEmployeeList(form);
 		System.out.println(sRet);
-		List<User>userlist=userService.findAllService();
+		List<User>userlist=userService.findAllService();//查询本地用户数据
 		//处理同步的用户json数据
 		JSONObject jsonObject=JSONObject.fromObject(sRet);
 		JSONArray jsonArray=jsonObject.getJSONArray("list");

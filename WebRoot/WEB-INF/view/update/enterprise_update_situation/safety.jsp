@@ -95,37 +95,40 @@
 			<div class="intbox">
 				<span class="name name-long">是否涉及可燃性粉尘（如涉及可燃性粉尘请注明名称）</span>
 				<c:if test="${safety.yesornofenchen eq '是' }">
+				<input name="yesName" type="text" class="write shoter" value="${safety.yesName }"/>
 					<input class="choose" type="radio" name="yesornofenchen" id="yesfenchen" value="是" checked="checked"><label class="choose" for="yesfenchen">是</label>
 					<input class="choose" type="radio" name="yesornofenchen" id="nofenchen" value="否"><label class="choose" for="nofenchen">否</label>
-					<input name="yesName" type="text" class="write shoter" value="${safety.yesName }"/>
+					
 				</c:if>
 				<c:if test="${safety.yesornofenchen eq '否' }">
 					<input class="choose" type="radio" name="yesornofenchen" id="yesfenchen" value="是"><label class="choose" for="yesfenchen">是</label>
 					<input class="choose" type="radio" name="yesornofenchen" id="nofenchen" value="否" checked="checked"><label class="choose" for="nofenchen">否</label>
 				</c:if>
 				<c:if test="${safety.yesornofenchen eq null }">
+				<input name="yesName" type="text" class="write shoter" value="${safety.yesName }"/>
 					<input class="choose" type="radio" name="yesornofenchen" id="yesfenchen" value="是"><label class="choose" for="yesfenchen">是</label>
+					
 					<input class="choose" type="radio" name="yesornofenchen" id="nofenchen" value="否"><label class="choose" for="nofenchen">否</label>
-					<input name="yesName" type="text" class="write shoter" value="${safety.yesName }"/>
+					
 				</c:if>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否存在有限空间作业（如存在有限空间请注明名称)</span>
 				<c:if test="${safety.yesoryouxiankj eq '是'}">
+				<input name="yesyouname" type="text" class="write shoter" value="${safety.yesyouname }"/>
 					<input class="choose" type="radio" name="yesoryouxiankj" id="yesyouxiankj" value="是" checked="checked"><label class="choose" for="yesyouxiankj">是</label>
 					<input class="choose" type="radio" name="yesoryouxiankj" id="noyouxiankj" value="否"><label class="choose" for="noyouxiankj">否</label>
-					<input name="yesyouname" type="text" class="write shoter" value="${safety.yesyouname }"/>
+					
 				</c:if>
 				<c:if test="${safety.yesoryouxiankj eq '否'}">
 					<input class="choose" type="radio" name="yesoryouxiankj" id="yesyouxiankj" value="是"><label class="choose" for="yesyouxiankj">是</label>
 					<input class="choose" type="radio" name="yesoryouxiankj" id="noyouxiankj" value="否" checked="checked"><label class="choose" for="noyouxiankj">否</label>
 				</c:if>
 				<c:if test="${safety.yesoryouxiankj eq null }">
+				<input name="yesyouname" type="text" class="write shoter" value="${safety.yesyouname }"/>
 					<input class="choose" type="radio" name="yesoryouxiankj" id="yesyouxiankj" value="是"><label class="choose" for="yesyouxiankj">是</label>
 					<input class="choose" type="radio" name="yesoryouxiankj" id="noyouxiankj" value="否"><label class="choose" for="noyouxiankj">否</label>
-					<input name="yesyouname" type="text" class="write shoter" value="${safety.yesyouname }"/>
 				</c:if>
-				
 			</div>
 			<div class="intbox">
 				<span class="name name-long">是否存在重大危险源</span>
