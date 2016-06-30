@@ -1,6 +1,7 @@
 package com.weichat.util;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -216,11 +217,17 @@ public class EncryptUtils {
 	public static String generateSecretKey() {
 		return generateSecretKey(128);
 	}
-
+	//加密解密操作
 	public static void main(String[] args) {
-		String encryptText = aesEncrypt("653fb16cce53f1b2bef0450a34e42f49", "{\"cono\":4,\"employees\":[{\"name\":\"wangping\",\"accountType\":1,\"account\":\"13688022801\",\"mobile\":\"\",\"email\":\"wp@weqia.com\",\"sex\":1,\"department\":\"\",\"position\":\"kaifa\",\"status\":1},{\"name\":\"zhangsan\",\"accountType\":1,\"account\":\"13688022802\",\"mobile\":\"\",\"email\":\"zs@weqia.com\",\"sex\":1,\"department\":\"\",\"position\":\"ceshi\",\"status\":1}]}");
-		System.out.println(encryptText);
-		System.out.println(aesDecrypt("653fb16cce53f1b2bef0450a34e42f49", encryptText));
-
+//		String encryptText = aesEncrypt("653fb16cce53f1b2bef0450a34e42f49", "{\"cono\":4,\"employees\":[{\"name\":\"wangping\",\"accountType\":1,\"account\":\"13688022801\",\"mobile\":\"\",\"email\":\"wp@weqia.com\",\"sex\":1,\"department\":\"\",\"position\":\"kaifa\",\"status\":1},{\"name\":\"zhangsan\",\"accountType\":1,\"account\":\"13688022802\",\"mobile\":\"\",\"email\":\"zs@weqia.com\",\"sex\":1,\"department\":\"\",\"position\":\"ceshi\",\"status\":1}]}");
+//		System.out.println(encryptText);
+//		System.out.println(aesDecrypt("653fb16cce53f1b2bef0450a34e42f49", encryptText));
+		String str=URLEncoder.encode("openId=8a25e3ed540dd92901540e24c48f0003&time=2016-06-29 19:37:08&mCoId=1&s=web");
+		System.out.println(str);
+		String strs=aesEncrypt("da72dd333788ad10fedf2db1ac514748", str);
+		System.out.println(strs);
+		//String encryptText1 = aesEncrypt("da72dd333788ad10fedf2db1ac514748","openId=8a25e3ed540dd92901540e24c48f0003&time=2016-06-29 19:37:08&mCoId=1&s=web");
+		//System.out.println(encryptText1);
+		//System.out.println(aesDecrypt("da72dd333788ad10fedf2db1ac514748", "e5GY1mgwt2dMOsB9eHS55+EMqlp4PFX87i4bA9UMrl0pzw6d6qgMG5gFYwmd3UQnclWf8/uSkFxomtBRGrx9kZ5phLDoviUoPj4fISlSwN0="));
 	}
 }
