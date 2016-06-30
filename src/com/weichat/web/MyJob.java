@@ -82,6 +82,7 @@ public class MyJob{
 		List<User>userlist=userService.findAllService();//查询本地用户数据
 		//处理同步的用户json数据
 		JSONObject jsonObject=JSONObject.fromObject(sRet);
+		//此处需要处理
 		JSONArray jsonArray=jsonObject.getJSONArray("list");
 				
 		List<String>strs=new ArrayList<>();
