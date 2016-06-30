@@ -1,5 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,6 +18,25 @@
 		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
 		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript"></script>
 		<script src="../mobile/js/base.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		function removeAnEnterpriseSituationInfo(identity){
+			$.ajax({
+				    url: '<%=basePath%>companymobile/delEnterpriseInfo.jhtml',         
+				    data: {"enterpriseSituationId" : identity},
+				    dataType : "json",
+				    type: "get",          
+				    success: function (data) {
+				        if (data.result == "success") {
+							alert("恭喜！您已成功删除此企业的信息！");
+							//window.location.reload(true);//刷新页面
+							window.location.href="/WeiChat/company/mobilelist.jhtml";//回到首页
+						} else {
+							alert("非常抱歉，删除此企业的信息失败！请重试操作。");
+						}
+				    }
+			});
+		}
+		</script>
 	</head>
 	<body>
 		<form action="../companymobile/ebu.jhtml" id="companyform" method="post">
@@ -71,6 +94,7 @@
 				<span class="name">备注：</span><input id="beizhu" name="beizhu" type="text" class="write" value="${company.beizhu }"/>
 			</div>
 			<div class="btn clearfloat">
+				<a class="submit" href="javascript:removeAnEnterpriseSituationInfo(${company.id });">删除</a>
 				<a href="##" class="submit" onclick="document.getElementById('companyform').submit();">提交</a>
 			</div>
 		</div>

@@ -28,24 +28,20 @@ public class Youhuizhengce implements java.io.Serializable {
 	private Infomation infomation;
 
 	/**
-	 * 协议优惠政策内容
+	 * 优惠政策1，优惠政策2
+	 * 可以用1,2表示
 	 */
-	private String content;
+	private String num;
 
 	/**
-	 * 应兑现金额
+	 * 条目名称
 	 */
-	private String money;
+	private String key;
 
 	/**
-	 * 兑现情况
+	 * 条目值
 	 */
-	private String cashsituation;
-
-	/**
-	 * 类目名称
-	 */
-	private String typename;
+	private String value;
 
 	public Youhuizhengce() {
 	}
@@ -54,13 +50,12 @@ public class Youhuizhengce implements java.io.Serializable {
 		this.infomation = infomation;
 	}
 
-	public Youhuizhengce(Infomation infomation, String content, String money,
-			String cashsituation, String typename) {
+	public Youhuizhengce(Infomation infomation, String num, String key,
+			String value) {
 		this.infomation = infomation;
-		this.content = content;
-		this.money = money;
-		this.cashsituation = cashsituation;
-		this.typename = typename;
+		this.num=num;
+		this.key=key;
+		this.value=value;
 	}
 
 	@Id
@@ -83,40 +78,31 @@ public class Youhuizhengce implements java.io.Serializable {
 		this.infomation = infomation;
 	}
 
-	@Column(name = "content", length = 6000)
-	public String getContent() {
-		return this.content;
+	@Column(name = "key", length = 600)
+	public String getKey() {
+		return key;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
+	@Column(name = "num", length = 6000)
+	public String getNum() {
+		return num;
 	}
 
-	@Column(name = "money", length = 600)
-	public String getMoney() {
-		return this.money;
+	public void setNum(String num) {
+		this.num = num;
 	}
 
-	public void setMoney(String money) {
-		this.money = money;
+	@Column(name = "value", length = 600)
+	public String getValue() {
+		return value;
 	}
 
-	@Column(name = "Cashsituation", length = 600)
-	public String getCashsituation() {
-		return this.cashsituation;
-	}
-
-	public void setCashsituation(String cashsituation) {
-		this.cashsituation = cashsituation;
-	}
-
-	@Column(name = "typename", length = 600)
-	public String getTypename() {
-		return this.typename;
-	}
-
-	public void setTypename(String typename) {
-		this.typename = typename;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 }

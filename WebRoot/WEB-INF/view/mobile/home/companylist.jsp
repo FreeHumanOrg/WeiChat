@@ -43,37 +43,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
 	</head>
 	<body>
+	<form id="paginationForm" action="<%=basePath %>companymobile/companylist.jhtml" method="post">
 		<div class="search clearfloat">
 		<h2>企业列表</h2>
-			<!-- <div class="mod_select clearfloat">
-				<ul>
-					<li>
-						<span class="select_label">跟进进度：</span>
-						<div class="select_box">
-							<span class="select_txt"></span><a class="selet_open"><b></b></a>
-							<div class="option">
-								<a>成交</a>
-								<a>正在跟进</a>
-								<a>失败</a>
-							</div>
-						</div>
-						<br clear="all" />
-					</li>
-				</ul>
-				<input type="hidden" id="select_value" />
+			 <div class="mod_select clearfloat">
+				<span class="select_label">企业名称：</span>
+				<input name="searchValue" type="text" class="write" placeholder="输入企业名称">
+				<input name="searchProperty" type="text" hidden="hidden" value="name">
+				<input name="">
+				<a href="##" class="sousuo" onclick="document.getElementById('paginationForm').submit();">搜索</a> 
+				<a href="/WeiChat/addindexmobile/frame.jhtml" class="new">新建</a>
 			</div>
-			<div class="intbox">
-				<span class="name">跟进人：</span>
-				<input type="text" class="write" placeholder="输入客户、联系人" />
-			</div>
-			<a href="##" class="sousuo">搜索</a> -->
-			<a href="/WeiChat/addindexmobile/frame.jhtml" class="new">新建</a>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<th>企业名称</th>
 					<th>跟进进度</th>
 					<th>跟进人</th>
-					<th>操作</th>
 				</tr>
 				<c:forEach items="${page.content}" var="item">
 					<tr>
@@ -99,7 +84,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     						</c:choose>
     						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" enterpriseId="${item.id }">编辑</button>
     					</td>
-    					<td><a href="javascript:removeAnEnterpriseSituationInfo(${item.id });">删除</a></td>
     				</tr>
     			</c:forEach>
 			</table>
@@ -107,7 +91,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- 分页 -->
 		<div>
-			<form id="paginationForm" action="<%=basePath %>companymobile/companylist.jhtml" method="post">
 				<ul class="pagination">
 				
 					<!-- 首页 -->				
@@ -157,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- 最后一页： --><input type="hidden" name="lastPageIndex" value="${page.lastPageIndex}" />
 				<!-- 总条数： --><input type="hidden" name="totalCount" value="${page.totalCount}" />
 				<!-- 总页数： --><%-- ${page.totalPageSize} --%>
-			</form>
+			
 		</div>
 		
 		<!-- 模态对话框 -->
@@ -183,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
-		
+		</form>
 		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../mobile/js/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>

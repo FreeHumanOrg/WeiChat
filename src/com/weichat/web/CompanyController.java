@@ -1,6 +1,12 @@
 package com.weichat.web;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -28,6 +34,7 @@ import com.weichat.model.User;
 import com.weichat.service.CompanyService;
 import com.weichat.service.UserService;
 import com.weichat.util.DateTimeUtils;
+import com.weichat.util.EncryptUtils;
 import com.weichat.util.Page;
 
 /**
@@ -66,25 +73,51 @@ public class CompanyController {
 	 */
 	@RequestMapping(value="/useraccess",method={RequestMethod.POST,RequestMethod.GET})
 	public String useraccess(HttpSession session,HttpServletRequest request,HttpServletResponse response,ModelMap modelMap,@ModelAttribute Page<Infomation> page){
-		String openId=request.getParameter("openId");//openId
-		String flag=request.getParameter("flag");//pc app
+		String openId="",time="",mCoId="",s="";
+		//da72dd333788ad10fedf2db1ac514748   private_key
+		String c=request.getParameter("c");
+		String decryptstr=EncryptUtils.aesDecrypt("da72dd333788ad10fedf2db1ac514748", c);//解密
+		System.out.println(decryptstr);
+		String[] strs=decryptstr.split("&");
+		for (String str : strs) {
+			String[] r=str.split("=");
+			if(r[0].equals("openId")){
+				openId=r[1];
+			}else if(r[0].equals("time")){
+				time=r[1];
+			}else if(r[0].equals("mCoId")){
+				mCoId=r[1];
+			}else if(r[0].equals("s")){
+				s=r[1];
+			}
+		}
+		//获取当前时间，与time比较，超时处理
+		Date datenow=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date=null;
+		try {
+			date = sdf.parse(time);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println((datenow.getTime()-date.getTime())/60000);
+		if(((datenow.getTime()-date.getTime())/60000)>60){//时差>10min
+			return "/404";
+		}else{
 		//判断用户是否存在
-		if(openId!=null&&!"".equals(openId)&&flag!=null&&!"".equals(flag)){
-				//用户是否存在
+		if(openId!=""){
 			try {
 				User user=userService.findUserByOpenId(openId);
 				if(user!=null){//用户存在
-					if("pc".equals(flag)){//pc端登录
+					if(s.equals("web")){//pc端登录
 						session.setAttribute("openId", openId);//将用户openId放到session
 						session.setAttribute("account", user.getAccount());
-						session.setAttribute("flag", flag);
 						Page<Infomation> list = companyService.findAllService(page);
 						modelMap.addAttribute("page", list);
 						return "/home/companylist";
 					}else{//app端登录
 						session.setAttribute("openId", openId);//将用户openId放到session
 						session.setAttribute("account", user.getAccount());
-						session.setAttribute("flag", flag);
 						Page<Infomation> list = companyService.findAllService(page);
 						modelMap.addAttribute("page", list);
 						return "/mobile/home/companylist";
@@ -99,6 +132,7 @@ public class CompanyController {
 			return "/404";
 		}
 	}
+}
 
 	/**
 	 * 企业列表（主页）

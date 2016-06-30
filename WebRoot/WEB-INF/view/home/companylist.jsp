@@ -57,46 +57,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
   </head>
 	<body>
+	<form id="paginationForm" action="company/companylist.jhtml" method="post">
 		<div class="search clearfloat">
 			<h2>企业列表</h2>
-			<!-- <div class="mod_select clearfloat">
-				<table style="border-color: white; margin-top: -10px; width: 230px;">
-					<tr>
-						<td style="border-color: white;">
-							跟进进度：
-						</td>
-						
-						<td style="border-color: white; width: 150px;">
-							<select class="form-control">
-							<option>成交</option> 
-							<option>正在跟进</option>
-							<option>失败</option>
-							</select>
-						</td>
-					</tr>
-				</table>
-			</div>
 			<div class="intbox">
 				<table style="border-color: white; margin-top: -10px; width: 260px;">
 					<tr>
 						<td style="border-color: white;">
-							跟进人：
+							企业名称：
+						</td>
+						<td style="border-color: white;">
+							<input name="searchValue" type="text" placeholder="输入企业名称" class="form-control" />
+							<input type="text" hidden="hidden" name="searchProperty" value="name">
 						</td>
 						
 						<td style="border-color: white;">
-							<input type="text" placeholder="输入客户、联系人" class="form-control" />
+							<button onclick="document.getElementById('paginationForm').submit();" class="btn btn-primary" style="margin-top: -1px;">搜索</button>
 						</td>
 						
-						<td style="border-color: white;">
-							<button class="btn btn-primary" style="margin-top: -1px;">搜索</button>
-						</td>
 						
-						<td style="border-color: white;">
-							<button class="btn" onclick="location.href='/WeiChat/addindex/frame.jhtml'" style="margin-top: -1px;">新建</button>
-						</td>
 					</tr>
 				</table>
-			</div> -->
+			</div> 
 			<p id="newButtonArea"><button class="btn btn-warning" onclick="location.href='/WeiChat/addindex/frame.jhtml'">新建</button></p>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
@@ -139,7 +121,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- 分页 -->
 		<div>
-			<form id="paginationForm" action="company/companylist.jhtml" method="post">
 				<ul class="pagination">
 				
 					<!-- 首页 -->				

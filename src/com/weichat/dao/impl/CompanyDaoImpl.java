@@ -30,7 +30,7 @@ public class CompanyDaoImpl extends BaseDaoImpl<Infomation, Double> implements
 	public Page<Infomation> findAll(Page<Infomation> pageable) {
 		// return this.hibernateTemplate.find("from Infomation");
 		// return super.findAll();
-		return super.findPage(pageable, SearchType.NONE);
+		return super.findPage(pageable, SearchType.ILIKE);//修改搜索类型为模糊匹配
 	}
 
 	@Override

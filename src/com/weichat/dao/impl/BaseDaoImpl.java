@@ -139,9 +139,12 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 						// 模糊匹配
 						if (searchTypeIn.hashCode() == SearchType.ILIKE
 								.hashCode()) {
-							criteria.add(Restrictions.ilike(
-									pageIn.getSearchProperty(),
-									pageIn.getSearchValue()));
+							System.out.println(pageIn.getSearchValue());
+							if(null!=pageIn.getSearchValue()){
+								criteria.add(Restrictions.ilike(
+										pageIn.getSearchProperty(),
+										"%"+pageIn.getSearchValue()+"%"));
+							}
 							// 精确匹配
 						} else if (searchTypeIn.hashCode() == SearchType.EQUAL
 								.hashCode()) {
@@ -163,9 +166,11 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 						// 模糊匹配
 						if (searchTypeIn.hashCode() == SearchType.ILIKE
 								.hashCode()) {
-							criteria.add(Restrictions.ilike(
-									pageIn.getSearchProperty(),
-									pageIn.getSearchValue()));
+							if(null!=pageIn.getSearchValue()){
+								criteria.add(Restrictions.ilike(
+										pageIn.getSearchProperty(),
+										"%"+pageIn.getSearchValue()+"%"));
+							}
 							// 精确匹配
 						} else if (searchTypeIn.hashCode() == SearchType.EQUAL
 								.hashCode()) {
