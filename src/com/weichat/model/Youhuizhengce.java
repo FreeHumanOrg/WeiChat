@@ -39,12 +39,12 @@ public class Youhuizhengce implements java.io.Serializable, IHistory {
 	/**
 	 * 条目名称
 	 */
-	private String key;
+	private String keystr;
 
 	/**
 	 * 条目值
 	 */
-	private String value;
+	private String valuestr;
 
 	public Youhuizhengce() {
 	}
@@ -53,12 +53,12 @@ public class Youhuizhengce implements java.io.Serializable, IHistory {
 		this.infomation = infomation;
 	}
 
-	public Youhuizhengce(Infomation infomation, String num, String key,
-			String value) {
+	public Youhuizhengce(Infomation infomation, String num, String keystr,
+			String valuestr) {
 		this.infomation = infomation;
 		this.num=num;
-		this.key=key;
-		this.value=value;
+		this.keystr=keystr;
+		this.valuestr=valuestr;
 	}
 
 	@Id
@@ -81,32 +81,35 @@ public class Youhuizhengce implements java.io.Serializable, IHistory {
 		this.infomation = infomation;
 	}
 
-	@Column(name = "key", length = 600)
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-	
 	@Column(name = "num", length = 6000)
 	public String getNum() {
 		return num;
 	}
-
 	public void setNum(String num) {
 		this.num = num;
 	}
-
-	@Column(name = "value", length = 600)
-	public String getValue() {
-		return value;
+	
+	@Column(name = "keystr", length = 600)
+	public String getKeystr() {
+		return keystr;
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	public void setKeystr(String keystr) {
+		this.keystr = keystr;
 	}
+	
+	@Column(name = "valuestr", length = 600)
+	public String getValuestr() {
+		return valuestr;
+	}
+	public void setValuestr(String valuestr) {
+		this.valuestr = valuestr;
+	}
+
+	
+
+	
+	
 
 	/**
 	 * 实现了IHistory接口，重写getLogDetail()方法
@@ -115,8 +118,8 @@ public class Youhuizhengce implements java.io.Serializable, IHistory {
 	public String getLogDetail() {
 		StringBuffer sbLog = new StringBuffer();
 		sbLog.append("优惠政策：" + getNum());
-		sbLog.append(";条目名称：" + getKey());
-		sbLog.append(";条目值：" + getValue());
+		sbLog.append(";条目名称：" + getKeystr());
+		sbLog.append(";条目值：" + getValuestr());
 		return sbLog.toString();
 	}
 

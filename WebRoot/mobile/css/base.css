@@ -65,6 +65,7 @@ i{display: inline-block;font-style: normal;}
 .intbox input.write{font-size:1.6em;height: 24px;line-height: 24px;display: inline-block;border: 1px solid #efefef;float: left;width: 100%;text-indent: 10px;border-radius: 5px;}
 .intbox a.add{font-size:1.6em;float: right;display: inline-block;height: 26px;line-height: 26px;color: #56abe4;margin-right: 10px;}
 .intbox a.delete{font-size:1.6em;color: red;float: right;display: inline-block;height: 26px;line-height: 26px;margin-right: 10px;}
+.intbox a.save{font-size:1.6em;color: red;float: right;display: inline-block;height: 26px;line-height: 26px;margin-right: 10px;}
 .btn{width: 100%;margin-top: 20px;clear: both;text-align: center;}
 .btn a.submit{font-size:2em;width: 80px;text-align: center;margin: 0 auto;display: inline-block;height: 40px;line-height: 40px;color: #fff;background: #56abe4;border-radius: 5px;}
 .btn a.queding{font-size:2em;width: 80px;text-align: center;display: inline-block;height: 40px;line-height: 40px;color: #fff;background: #56abe4;border-radius: 5px;}

@@ -20,61 +20,111 @@
 		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
 		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-	<body>
+<body>
 		<div class="yhzcqk subcontent clearfloat">
-			<form id="postForm" action="<%=basePath%>policymobile/addPolicy.jhtml" method="post">
-				<div class="yh-cont">
-					<span class="yh-name">优惠政策1</span>
-					<div class="intbox">
-						<span class="name">协议优惠政策内容</span>
-						<input type="text" class="write" name="content" />
-						<a href="##" class="delete">删除</a>
-					</div>
-					<div class="intbox">
-						<span class="name">应兑现金额</span>
-						<input type="text" class="write" name="money" />
-						<a href="##" class="delete">删除</a>
-					</div>
-					<div class="intbox">
-						<span class="name">兑现情况</span>
-						<input type="text" class="write" name="cashsituation" />
-						<a href="##" class="delete">删除</a>
-					</div>
-					<div class="intbox lmmcbox">
-						<span class="name">输入类目名称</span>
-						<input type="text" class="lmmc write" name="typename" />
-						<a href="##" class="add">增加</a>
-					</div>
+			<div class="yh-cont">
+			<c:if test="${!empty policy}">
+				<span class="yh-name">优惠政策1</span>
+				<c:forEach items="${policy }" var="item">
+					<c:if test="${item.num eq '1' }">
+						<form action="../policymobile/policyupdate.jhtml" id="itemform${item.id }" method="post">
+							<input name="infomation.id" type="hidden" value="${id }">
+							<input name="id" type="hidden" value="${item.id }">
+							<input name="num" type="hidden" value="${item.num }">
+							<div class="intbox">
+								<span class="name">${item.keystr }</span>
+								<input name="keystr" type="text" hidden="hidden" value="${item.keystr }">
+								<input name="valuestr" type="text" class="write" value="${item.valuestr }"/>
+								<a href="##" class="save" onclick="document.getElementById('itemform${item.id}').submit();">保存</a>
+								<a href="##" class="delete" onclick="deleteItem(${item.id})">删除</a>
+							</div>
+						</form>
+					</c:if>
+				</c:forEach>
+					<form action="../policymobile/addPolicy.jhtml" id="addItem1" method="post">
+						<input name="infomation.id" type="hidden" value="${id }">
+						<div class="intbox lmmcbox">
+							<span class="name">输入类目名称</span>
+							<input type="text"  class="lmmc write" name="keystr"/>
+							<input type="text" type="text" hidden="hidden" name="num" value="1">
+							<a href="##" class="add" onclick="document.getElementById('addItem1').submit();">增加</a>
+						</div>
+					</form>
+				
+				<span class="yh-name">优惠政策2</span>
+				<c:forEach items="${policy }" var="item">
+					<c:if test="${item.num eq '2' }">
+						<form action="../policymobile/policyupdate.jhtml" id="itemform${item.id }" method="post">
+							<input name="infomation.id" type="hidden" value="${id }">
+							<input name="id" type="hidden" value="${item.id }">
+							<input name="num" type="hidden" value="${item.num }">
+							<div class="intbox">
+								<span class="name">${item.keystr }</span>
+								<input name="keystr" type="text" hidden="hidden" value="${item.keystr }">
+								<input name="valuestr" type="text" class="write" value="${item.valuestr }"/>
+								<a href="##" class="save" onclick="document.getElementById('itemform${item.id}').submit();">保存</a>
+								<a href="##" class="delete" onclick="deleteItem(${item.id})">删除</a>
+							</div>
+						</form>
+						</c:if>
+					</c:forEach>
+					<form action="../policymobile/addPolicy.jhtml" id="addItem2" method="post">
+						<input name="infomation.id" type="hidden" value="${id }">
+						<div class="intbox lmmcbox">
+							<span class="name">输入类目名称</span>
+							<input type="text"  class="lmmc write" name="keystr"/>
+							<input type="text" hidden="hidden" name="num" value="2">
+							<a href="##" class="add" onclick="document.getElementById('addItem2').submit();">增加</a>
+						</div>
+					</form>
+				</c:if>
+			<c:if test="${empty policy}">
+			<form action="../policymobile/addPolicy.jhtml" id="addItem1" method="post">
+				<input name="infomation.id" type="hidden" value="${id }">
+				<div class="intbox lmmcbox">
+				<span class="yh-name">优惠政策1</span>
+					<span class="name">输入类目名称</span>
+					<input type="text"  class="lmmc write" name="keystr"/>
+					<input type="text" hidden="hidden" name="num" value="1">
+					<a href="##" class="add" onclick="document.getElementById('addItem1').submit();">增加</a>
 				</div>
 			</form>
-		    <!-- <div class="yh-cont">
-				<span class="yh-name">优惠政策2</span>
-				<div class="intbox">
-					<span class="name">协议优惠政策内容</span>
-					<input type="text" class="write" />
-					<a href="##" class="delete">删除</a>
-				</div>
-				<div class="intbox">
-					<span class="name">应兑现金额</span>
-					<input type="text" class="write" />
-					<a href="##" class="delete">删除</a>
-				</div>
-				<div class="intbox">
-					<span class="name">兑现情况</span>
-					<input type="text" class="write" />
-					<a href="##" class="delete">删除</a>
-				</div>
+			<form action="../policymobile/addPolicy.jhtml" id="addItem2" method="post">
+				<input name="infomation.id" type="hidden" value="${id }">
 				<div class="intbox lmmcbox">
+				<span class="yh-name">优惠政策2</span>
 					<span class="name">输入类目名称</span>
-					<input type="text"  class="lmmc write" />
-					<a href="##" class="add">增加</a>
+					<input type="text"  class="lmmc write" name="keystr"/>
+					<input type="text" hidden="hidden" name="num" value="2">
+					<a href="##" class="add" onclick="document.getElementById('addItem2').submit();">增加</a>
 				</div>
-			</div> -->
-			<div class="btn">
-					<a href="javascript:document.getElementById('postForm').submit();" class="add">提交</a>
-				</div>
+			</form>
+			</c:if>
 		</div>
+		</div>
+		
 		<script type="text/javascript">
+		//删除类目
+		function deleteItem(itemId){
+			if (confirm('确定要删除此类目吗？')) {
+				$.ajax({
+				    url: 'delPolicy.jhtml',         
+				    data: {"enterpriseSituationId" : itemId},
+				    dataType : "json",
+				    type: "get",          
+				    success: function (data) {
+				        if (data.result == "success") {
+							alert("恭喜！您已成功删除此条目！");
+							window.location.reload(true);
+						} else {
+							alert("非常抱歉，删除此企业的信息失败！请重试操作。");
+						}
+				    }
+				});
+			}
+		}
+		
+		/*
 		$(".btn a.add").click(function() {
 			$('.tc', window.parent.document).show();
 		});
@@ -97,6 +147,7 @@
 					$("div.lmmcbox").before(oLm);
 				}
 			});
+		*/
 	</script>
 	</body>
 </html>

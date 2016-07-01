@@ -79,6 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr>
 				</table>
 			</div> 
+			<p id="newButtonArea"><a class="btn btn-warning" onclick="location.href='/WeiChat/addindex/frame.jhtml'">新建</a><a class="btn btn-info" onclick="location.href='/WeiChat/history/historyshow.jhtml';">历史</a></p>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<th>企业名称</th>

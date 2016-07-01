@@ -2,10 +2,14 @@ package com.weichat.dao.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.weichat.dao.PolicyDao;
 import com.weichat.model.Youhuizhengce;
+import com.weichat.util.DateTimeUtils;
+import com.weichat.web.CompanyController;
 
 /**
  * 
@@ -21,6 +25,8 @@ import com.weichat.model.Youhuizhengce;
 @Repository("policyDaoImpl")
 public class PolicyDaoImpl extends BaseDaoImpl<Youhuizhengce, Double> implements
 		PolicyDao {
+	private static Logger LOGGER = LoggerFactory
+			.getLogger(PolicyDaoImpl.class);
 	/**
 	 * 根据企业id查询优惠政策
 	 */
@@ -71,5 +77,20 @@ public class PolicyDaoImpl extends BaseDaoImpl<Youhuizhengce, Double> implements
 			return false;
 		}
 		return true;
+	}
+	@Override
+	public Boolean delPolicy(Youhuizhengce youhuizhengce) {
+		try {
+			super.remove(youhuizhengce);
+			LOGGER.info("delete an enterprise situation info was successed!"
+					+ DateTimeUtils
+							.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOGGER.error("delete an enterprise situation info was failed!"
+					+ e.getMessage());
+		}
+		return false;
 	}
 }

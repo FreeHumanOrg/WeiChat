@@ -39,4 +39,6 @@ public interface PolicyDao extends BaseDao<Youhuizhengce, Double> {
 	 * @return
 	 */
 	Boolean addNewPolicy(Youhuizhengce youhuizhengce);
+	
+	Boolean delPolicy(Youhuizhengce youhuizhengce);
 }

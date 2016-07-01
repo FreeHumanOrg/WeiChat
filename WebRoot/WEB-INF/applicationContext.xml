@@ -25,9 +25,9 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="entityInterceptor">
-        	<ref local="hibernateInterceptor"/>
-    	</property>
+<!-- 		<property name="entityInterceptor"> -->
+<!--         	<ref local="hibernateInterceptor"/> -->
+<!--     	</property> -->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${dataSource.dialect}</prop>
@@ -124,7 +124,7 @@
     <!-- 配置自定义的时间任务(Job) -->  
     <bean id="myJob" class="com.weichat.web.MyJob" />
     
-    <bean id="hibernateInterceptor" class="com.weichat.interceptor.HistoryRecordInterceptor"></bean>
+<!--       <bean id="hibernateInterceptor" class="com.weichat.interceptor.HistoryRecordInterceptor"></bean>   -->
     
 	<!--     <bean id="historyService" class="com.weichat.service.impl.HistoryServiceImpl"> -->
 	<!--     </bean> -->

@@ -41,4 +41,6 @@ public interface PolicyService extends BaseService<Youhuizhengce, Double> {
 	 */
 	Boolean addNewPolicyService(Youhuizhengce youhuizhengce,
 			Double enterpriseSituationId);
+	
+	Boolean delPolicy(Double itemId);
 }

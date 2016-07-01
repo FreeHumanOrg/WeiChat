@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 		.pagination{
-			float:right;
+			float:left;
 			margin-top: -12px;
 			margin-right: 20px;
 		}
