@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 党团建设实体类
@@ -21,18 +24,51 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "dangtuanjianshe", catalog = "new")
-public class Dangtuanjianshe implements java.io.Serializable {
+public class Dangtuanjianshe implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 5378040726126750926L;
 
 	private Double id;
+
 	private Infomation infomation;
+
+	/**
+	 * 党组织建设情况
+	 */
 	private String jianSeQingK;
+
+	/**
+	 * 党支部书记
+	 */
 	private String shuji;
+
+	/**
+	 * 联系电话
+	 */
 	private String phone;
+
+	/**
+	 * 党务工作者
+	 */
 	private String dangwugzz;
+
+	/**
+	 * 党员人数
+	 */
 	private String dangYpeoper;
+
+	/**
+	 * 团组织建设情况
+	 */
 	private String tjianSeQingK;
+
+	/**
+	 * 团员人数
+	 */
 	private String tuanYpeoper;
+
+	/**
+	 * 活动开展情况
+	 */
 	private String huoDongkaiZhan;
 
 	public Dangtuanjianshe() {
@@ -146,6 +182,24 @@ public class Dangtuanjianshe implements java.io.Serializable {
 
 	public void setHuoDongkaiZhan(String huoDongkaiZhan) {
 		this.huoDongkaiZhan = huoDongkaiZhan;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("党组织建设情况：" + jianSeQingK);
+		sbLog.append(";党支部书记：" + shuji);
+		sbLog.append(";联系电话：" + phone);
+		sbLog.append(";党务工作者：" + dangwugzz);
+		sbLog.append(";党员人数：" + dangYpeoper);
+		sbLog.append(";团组织建设情况：" + tjianSeQingK);
+		sbLog.append(";团员人数：" + tuanYpeoper);
+		sbLog.append(";活动开展情况：" + huoDongkaiZhan);
+		return sbLog.toString();
 	}
 
 }

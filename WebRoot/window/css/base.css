@@ -38,6 +38,7 @@ i{display: inline-block;font-style: normal;}
 .leftPanel a i.five{background: url(../img/5.png) no-repeat;}
 .leftPanel a i.six{background: url(../img/6.png) no-repeat;}
 .leftPanel a i.seven{background: url(../img/7.png) no-repeat;}
+.leftPanel a i.eight{background: url(../img/8.png) no-repeat;}
 
 .leftPanel a:hover i.one{background: url(../img/1-cur.png) no-repeat;}
 .leftPanel a:hover i.two{background: url(../img/2-cur.png) no-repeat;}
@@ -126,6 +127,14 @@ i{display: inline-block;font-style: normal;}
 .search table tr th{background: #f7f7f7;height:30px;font-weight: normal;}
 .search table tr td{text-align: center;height: 26px;}
 .search table tr td a{color: #56abe4;}
+
+/*历史记录*/
+.history{padding:30px 50px;}
+.history_con{margin-bottom: 65px;margin-top: 30px;}
+.history_con p{height: 30px;line-height: 30px;margin-bottom: 10px;}
+.history_con p img{width: 30px;height: 30px;border-radius: 30px;margin-right: 10px;}
+.history_con p i{color: #a6a6a7;}
+.history_con span{height: 30px;line-height: 30px;color: #070707;display: block;}
 
 
 

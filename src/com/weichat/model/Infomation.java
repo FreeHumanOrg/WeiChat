@@ -149,25 +149,30 @@ public class Infomation implements java.io.Serializable, IHistory {
 	private Set<Project> projects = new HashSet<Project>(0);
 	private Set<Yaosu> yaosus = new HashSet<Yaosu>(0);
 	private Set<Jiansejindu> jiansejindus = new HashSet<Jiansejindu>(0);
+	private Set<History> histories = new HashSet<History>(0);
+	private Set<Guotu> guotus = new HashSet<Guotu>(0);
 
 	public Infomation() {
 	}
 
-	public Infomation(String productdes, String name, String industrycode,
-			String contacts, String enterprisewebsite, String area,
-			String estimated, String begintime, String productname,
-			String dustry, String legalperson, String telenumber,
-			String signingtime, String agreement, String annualtax,
-			String completiontime, String qyname, String beizhu,
-			String genjinren, String genjinjindu, Set<Xiangqing> xiangqings,
-			Set<Prolist> prolists, Set<Dangtuanjianshe> dangtuanjianshes,
-			Set<User> users, Set<Dangtuanjianshe> dangtuanjianshes_1,
+	public Infomation(Double id, String productdes, String name,
+			String industrycode, String contacts, String enterprisewebsite,
+			String area, String estimated, String begintime,
+			String productname, String dustry, String legalperson,
+			String telenumber, String signingtime, String agreement,
+			String annualtax, String completiontime, String qyname,
+			String beizhu, String genjinren, String genjinjindu,
+			Set<Xiangqing> xiangqings, Set<Prolist> prolists,
+			Set<Dangtuanjianshe> dangtuanjianshes, Set<User> users,
 			Set<Youhuizhengce> youhuizhengces,
 			Set<Anquanshengchan> anquanshengchans,
 			Set<Zhengwuqingkuang> zhengwuqingkuangs,
-			Set<Qiyefazhan> qiyefazhans, Set<Productpeoper> productpeopers,
-			Set<Qiyefuwu> qiyefuwus, Set<Project> projects, Set<Yaosu> yaosus,
-			Set<Jiansejindu> jiansejindus) {
+			Set<Productpeoper> productpeopers, Set<Qiyefuwu> qiyefuwus,
+			Set<Yaosu> yaosus, Set<Jiansejindu> jiansejindus,
+			Set<Dangtuanjianshe> dangtuanjianshes_1,
+			Set<Qiyefazhan> qiyefazhans, Set<History> histories,
+			Set<Project> projects, Set<Guotu> guotus) {
+		this.id = id;
 		this.productdes = productdes;
 		this.name = name;
 		this.industrycode = industrycode;
@@ -186,22 +191,24 @@ public class Infomation implements java.io.Serializable, IHistory {
 		this.completiontime = completiontime;
 		this.qyname = qyname;
 		this.beizhu = beizhu;
+		this.genjinren = genjinren;
+		this.genjinjindu = genjinjindu;
 		this.xiangqings = xiangqings;
 		this.prolists = prolists;
 		this.dangtuanjianshes = dangtuanjianshes;
 		this.users = users;
-		this.dangtuanjianshes_1 = dangtuanjianshes_1;
 		this.youhuizhengces = youhuizhengces;
 		this.anquanshengchans = anquanshengchans;
 		this.zhengwuqingkuangs = zhengwuqingkuangs;
-		this.qiyefazhans = qiyefazhans;
 		this.productpeopers = productpeopers;
 		this.qiyefuwus = qiyefuwus;
-		this.projects = projects;
 		this.yaosus = yaosus;
 		this.jiansejindus = jiansejindus;
-		this.genjinren = genjinren;
-		this.genjinjindu = genjinjindu;
+		this.dangtuanjianshes_1 = dangtuanjianshes_1;
+		this.qiyefazhans = qiyefazhans;
+		this.histories = histories;
+		this.projects = projects;
+		this.guotus = guotus;
 	}
 
 	@Id
@@ -520,6 +527,24 @@ public class Infomation implements java.io.Serializable, IHistory {
 		this.jiansejindus = jiansejindus;
 	}
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "infomation")
+	public Set<History> getHistories() {
+		return this.histories;
+	}
+
+	public void setHistories(Set<History> histories) {
+		this.histories = histories;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "infomation")
+	public Set<Guotu> getGuotus() {
+		return this.guotus;
+	}
+
+	public void setGuotus(Set<Guotu> guotus) {
+		this.guotus = guotus;
+	}
+
 	/**
 	 * 实现了IHistory接口，重写getLogDetail()方法
 	 */
@@ -527,24 +552,24 @@ public class Infomation implements java.io.Serializable, IHistory {
 	public String getLogDetail() {
 		StringBuffer sbLog = new StringBuffer();
 		sbLog.append("产品描述：" + productdes);
-		sbLog.append("企业名称：" + name);
-		sbLog.append("行业代码：" + industrycode);
-		sbLog.append("企业联系人：" + contacts);
-		sbLog.append("企业网站：" + enterprisewebsite);
-		sbLog.append("占地面积（亩）：" + area);
-		sbLog.append("预计年产值：" + estimated);
-		sbLog.append("协议开工时间：" + begintime);
-		sbLog.append("项目名称：" + productname);
-		sbLog.append("行业分类：" + dustry);
-		sbLog.append("企业法人：" + legalperson);
-		sbLog.append("企业联系方式：" + telenumber);
-		sbLog.append("签约时间：" + signingtime);
-		sbLog.append("协议投资（万元）：" + agreement);
-		sbLog.append("预计年税收：" + annualtax);
-		sbLog.append("协议竣工时间：" + completiontime);
-		sbLog.append("企业跟进人：" + genjinren);
-		sbLog.append("企业跟进进度：" + genjinjindu);
-		sbLog.append("备注：" + beizhu);
+		sbLog.append(";企业名称：" + name);
+		sbLog.append(";行业代码：" + industrycode);
+		sbLog.append(";企业联系人：" + contacts);
+		sbLog.append(";企业网站：" + enterprisewebsite);
+		sbLog.append(";占地面积（亩）：" + area);
+		sbLog.append(";预计年产值：" + estimated);
+		sbLog.append(";协议开工时间：" + begintime);
+		sbLog.append(";项目名称：" + productname);
+		sbLog.append(";行业分类：" + dustry);
+		sbLog.append(";企业法人：" + legalperson);
+		sbLog.append(";企业联系方式：" + telenumber);
+		sbLog.append(";签约时间：" + signingtime);
+		sbLog.append(";协议投资（万元）：" + agreement);
+		sbLog.append(";预计年税收：" + annualtax);
+		sbLog.append(";协议竣工时间：" + completiontime);
+		sbLog.append(";企业跟进人：" + genjinren);
+		sbLog.append(";企业跟进进度：" + genjinjindu);
+		sbLog.append(";备注：" + beizhu);
 		return sbLog.toString();
 	}
 

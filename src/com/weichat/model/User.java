@@ -3,13 +3,13 @@ package com.weichat.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.weichat.interceptor.IHistory;
 
 /**
  * 用户实体类
@@ -24,28 +24,75 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "user", catalog = "new")
-public class User implements java.io.Serializable {
+public class User implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 1802126823255466815L;
 
 	private Double id;
+
 	private Infomation infomation;
+
+	/**
+	 * 用户名
+	 */
 	private String username;
+
+	/**
+	 * 密码
+	 */
 	private String password;
+
+	/**
+	 * 邮箱
+	 */
 	private String email;
+
+	/**
+	 * 地区
+	 */
 	private String place;
+
+	/**
+	 * 描述
+	 */
 	private String des;
+
+	/**
+	 * 爱好
+	 */
 	private String hobbit;
+
+	/**
+	 * 用户类型
+	 */
 	private Double usertype;
+
+	/**
+	 * 注册类型
+	 */
 	private Double zhucetype;
+
+	/**
+	 * 用户姓名
+	 */
 	private String name;
+
+	/**
+	 * 远端客户编号
+	 */
 	private String openid;
+
+	/**
+	 * 远端账户信息
+	 */
 	private String account;
+
 	public User() {
 	}
 
 	public User(Infomation infomation, String username, String password,
 			String email, String place, String des, String hobbit,
-			Double usertype, Double zhucetype, String name,String openid,String account) {
+			Double usertype, Double zhucetype, String name, String openid,
+			String account) {
 		this.infomation = infomation;
 		this.username = username;
 		this.password = password;
@@ -56,8 +103,8 @@ public class User implements java.io.Serializable {
 		this.usertype = usertype;
 		this.zhucetype = zhucetype;
 		this.name = name;
-		this.openid=openid;
-		this.account=account;
+		this.openid = openid;
+		this.account = account;
 	}
 
 	@Id
@@ -160,6 +207,7 @@ public class User implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	@Column(name = "openid", length = 50)
 	public String getOpenid() {
 		return openid;
@@ -168,6 +216,7 @@ public class User implements java.io.Serializable {
 	public void setOpenid(String openid) {
 		this.openid = openid;
 	}
+
 	@Column(name = "account", length = 50)
 	public String getAccount() {
 		return account;
@@ -175,5 +224,26 @@ public class User implements java.io.Serializable {
 
 	public void setAccount(String account) {
 		this.account = account;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("用户名：" + username);
+		sbLog.append(";密码：" + password);
+		sbLog.append(";邮箱：" + email);
+		sbLog.append(";地区：" + place);
+		sbLog.append(";描述：" + des);
+		sbLog.append(";爱好：" + hobbit);
+		sbLog.append(";用户类型：" + usertype);
+		sbLog.append(";注册类型：" + zhucetype);
+		sbLog.append(";用户姓名：" + name);
+		sbLog.append(";远端客户编号：" + openid);
+		sbLog.append(";远端账户信息：" + account);
+		return sbLog.toString();
 	}
 }

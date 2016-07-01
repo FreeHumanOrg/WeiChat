@@ -54,7 +54,7 @@ public class BasicSituationController {
 				.addBasicSituationOfEnterpriseService(infomation) != -1.0) {
 			request.getSession().setAttribute("enterpriseId",
 					infomation.getId());
-			sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+			sbResult.append("<script>alert('恭喜！数据已成功录入。'); location.reload();</script>");
 		} else {
 			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");
 		}

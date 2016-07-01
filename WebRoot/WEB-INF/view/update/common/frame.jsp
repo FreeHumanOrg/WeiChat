@@ -26,6 +26,7 @@
 			<a name="qyfz" href="../expend/expendshow.jhtml?id=${company.id }" target="myFrameName"><i class="five"></i>企业发展</a>
 			<a name="qyfw" href="../server/servershow.jhtml?id=${company.id }" target="myFrameName"><i class="six"></i>企业服务</a>
 			<a name="dtjs" href="../party/partyshow.jhtml?id=${company.id }" target="myFrameName"><i class="seven"></i>党团建设</a>
+			<%-- <a name="lsjl" href="../history/historyshow.jhtml?id=${company.id }" target="myFrameName"><i class="eight"></i>历史记录</a> --%>
 		</div>
 		
 		<!--右边内容-->

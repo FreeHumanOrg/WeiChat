@@ -125,4 +125,12 @@
     <bean id="myJob" class="com.weichat.web.MyJob" />
     
     <bean id="hibernateInterceptor" class="com.weichat.interceptor.HistoryRecordInterceptor"></bean>
+    
+	<!--     <bean id="historyService" class="com.weichat.service.impl.HistoryServiceImpl"> -->
+	<!--     </bean> -->
+	<!--     <bean id="task" class="com.weichat.util.RemindTask"> -->
+	<!--     	<property name="historyService" ref="historyService"></property> -->
+	<!--     </bean> -->
+    
+    <bean class="com.weichat.util.SpringContextHolder" lazy-init="false" />
 </beans>

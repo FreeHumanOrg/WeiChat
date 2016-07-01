@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 优惠政策实体类
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "youhuizhengce", catalog = "new")
-public class Youhuizhengce implements java.io.Serializable {
+public class Youhuizhengce implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 9191338495573014804L;
 
 	private Double id;
@@ -103,6 +106,18 @@ public class Youhuizhengce implements java.io.Serializable {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("优惠政策：" + getNum());
+		sbLog.append(";条目名称：" + getKey());
+		sbLog.append(";条目值：" + getValue());
+		return sbLog.toString();
 	}
 
 }

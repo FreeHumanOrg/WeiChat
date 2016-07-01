@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 企业发展实体类
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "qiyefazhan", catalog = "new")
-public class Qiyefazhan implements java.io.Serializable {
+public class Qiyefazhan implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 3756156090935771980L;
 
 	private Double id;
@@ -192,4 +195,22 @@ public class Qiyefazhan implements java.io.Serializable {
 		this.zhuyaoPro = zhuyaoPro;
 	}
 
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("固定资产投资：" + investment);
+		sbLog.append(";产值：" + chanzhi);
+		sbLog.append(";税收：" + shuishou);
+		sbLog.append(";上规时间：" + shangTime);
+		sbLog.append(";下规时间：" + xiaTime);
+		sbLog.append(";投产时间：" + touTime);
+		sbLog.append(";高新技术企业：" + jiushuQiye);
+		sbLog.append(";从业人员总数：" + renYuan);
+		sbLog.append(";主要产品：" + zhuyaoPro);
+		return sbLog.toString();
+	}
 }

@@ -85,7 +85,7 @@ public class History implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "infomationId", nullable = false)
+	@JoinColumn(name = "infomationId", nullable = true)
 	public Infomation getInfomation() {
 		return this.infomation;
 	}

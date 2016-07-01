@@ -1,5 +1,7 @@
 package com.weichat.service;
 
+import java.util.List;
+
 import com.weichat.interceptor.IHistory;
 import com.weichat.model.History;
 
@@ -23,4 +25,20 @@ public interface HistoryService extends BaseService<History, Double> {
 	 * @return
 	 */
 	Boolean addNewHistoryInfoService(String operateType, IHistory logInfomations);
+
+	/**
+	 * 持久化历史记录.
+	 * 
+	 * @param history
+	 * @return
+	 */
+	Boolean persistHistoryInfoService(History history);
+
+	/**
+	 * 查询全部历史记录.
+	 * 
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	List<History> findAllHistoryInfoService();
 }

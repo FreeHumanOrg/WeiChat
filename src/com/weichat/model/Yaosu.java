@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 要素实体类
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "yaosu", catalog = "new")
-public class Yaosu implements java.io.Serializable {
+public class Yaosu implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 5788633981245311085L;
 
 	private Double id;
@@ -155,6 +158,22 @@ public class Yaosu implements java.io.Serializable {
 
 	public void setHearing(String hearing) {
 		this.hearing = hearing;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("路：" + loaded);
+		sbLog.append(";电：" + electric);
+		sbLog.append(";视：" + regard);
+		sbLog.append(";水：" + water);
+		sbLog.append(";气：" + gas);
+		sbLog.append(";讯：" + hearing);
+		return sbLog.toString();
 	}
 
 }

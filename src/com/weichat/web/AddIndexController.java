@@ -118,4 +118,15 @@ public class AddIndexController {
 	public String partyIndex(ModelMap modelMap) {
 		return "/add/enterprise_basic_situation/party";
 	}
+
+	/**
+	 * 历史记录主页跳转.
+	 * 
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/history", method = RequestMethod.GET)
+	public String historyIndex(ModelMap modelMap) {
+		return "/add/enterprise_basic_situation/history";
+	}
 }

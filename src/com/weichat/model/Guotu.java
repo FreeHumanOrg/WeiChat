@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 国土实体类
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "guotu", catalog = "new")
-public class Guotu implements java.io.Serializable {
+public class Guotu implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 1613875893519075523L;
 
 	private Double id;
@@ -195,6 +198,25 @@ public class Guotu implements java.io.Serializable {
 
 	public void setInfomation(Infomation infomation) {
 		this.infomation = infomation;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("下达指标时间：" + indexTime);
+		sbLog.append(";土地报征时间：" + landSignTime);
+		sbLog.append(";下达指标面积：" + indexCon);
+		sbLog.append(";土地抱征面积：" + landSigncon);
+		sbLog.append(";土地挂牌时间：" + landListingTime);
+		sbLog.append(";土地挂牌面积：" + landListingcon);
+		sbLog.append(";土地挂牌价格：" + landListingPri);
+		sbLog.append(";土地办证时间：" + landCertificateT);
+		sbLog.append(";土地办证面积：" + landCertificateC);
+		return sbLog.toString();
 	}
 
 }

@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "anquanshengchan", catalog = "new")
-public class Anquanshengchan implements java.io.Serializable {
+public class Anquanshengchan implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 1787637852628757821L;
 
 	private Double id;
@@ -456,6 +459,42 @@ public class Anquanshengchan implements java.io.Serializable {
 
 	public void setQitazuoye(String qitazuoye) {
 		this.qitazuoye = qitazuoye;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("安全生产管理机构及人员配备情况：" + peoYuanQingk);
+		sbLog.append(";安全生产负责人姓名：" + fuzeName);
+		sbLog.append(";安全生产负责人联系方式：" + phone);
+		sbLog.append(";安全生产管理规章制度建立健全情况：" + jianquanqingk);
+		sbLog.append(";是否安装监控设备：" + yesOrNoJianko);
+		sbLog.append(";是否加入园区安全生产管理QQ群：" + yesOrNoJoinQq);
+		sbLog.append(";安全设施“三同时”情况：" + anquansheshi);
+		sbLog.append(";职业病防护设施“三同时”情况：" + zhiyebing);
+		sbLog.append(";安全生产标准化建设情况：" + anquanshengchan);
+		sbLog.append(";安全生产教育培训情况：" + jiaoyuqingk);
+		sbLog.append(";事故隐患排查治理情况：" + shiguyinhuan);
+		sbLog.append(";生产、储存、使用危化品情况：" + shengchanchucun);
+		sbLog.append(";是否涉及可燃性粉尘：" + yesornofenchen);
+		sbLog.append(";涉及可燃性粉尘的名称：" + yesName);
+		sbLog.append(";是否存在有限空间作业：" + yesoryouxiankj);
+		sbLog.append(";存在有限空间作业的名称：" + yesyouname);
+		sbLog.append(";是否存在重大危险源：" + yesorzhongda);
+		sbLog.append(";是否消防重点单位：" + yesorxiaofang);
+		sbLog.append(";职业病危害及职业健康管理情况：" + zhiybjiankang);
+		sbLog.append(";安全管理人员、职业健康管理人员持证情况：" + anquanguanli);
+		sbLog.append(";电工作业：" + diangongzuoye);
+		sbLog.append(";焊接与热切割作业：" + hanjiezuoye);
+		sbLog.append(";高处作业：" + gaochuzuoye);
+		sbLog.append(";制冷与空调作业：" + zhilengzuoye);
+		sbLog.append(";危险化学品安全作业：" + weixianhuaxue);
+		sbLog.append(";安全监管总局认定的其他作业：" + qitazuoye);
+		return sbLog.toString();
 	}
 
 }

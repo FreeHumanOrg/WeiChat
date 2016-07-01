@@ -25,7 +25,7 @@ public class RandomUtils {
 	public static Double createIdentitySerialByUUID() {
 		StringBuffer tempSb = new StringBuffer();
 		String s = UUID.randomUUID().toString();
-		s = s.substring(0, 3);
+		s = s.substring(0, 2);
 		char[] charArr = s.toCharArray();
 		for (char c : charArr) {
 			tempSb.append((int) c);

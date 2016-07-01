@@ -56,8 +56,9 @@ public class ServerController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/serverupdate", method = RequestMethod.POST)
-	public void updateQiyefuwu(HttpServletResponse response,HttpServletRequest request,
-			@ModelAttribute Qiyefuwu qiyefuwu) throws IOException {
+	public void updateQiyefuwu(HttpServletResponse response,
+			HttpServletRequest request, @ModelAttribute Qiyefuwu qiyefuwu)
+			throws IOException {
 		LOGGER.info("企业服务修改!"
 				+ DateTimeUtils
 						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
@@ -71,7 +72,8 @@ public class ServerController {
 			}
 		} else {// 不存在
 				// 调用新增方法
-			if (serverService.addServerByEnterpriseService(qiyefuwu,qiyefuwu.getInfomation().getId())){
+			if (serverService.addServerByEnterpriseService(qiyefuwu, qiyefuwu
+					.getInfomation().getId())) {
 				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
 				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
@@ -100,7 +102,7 @@ public class ServerController {
 				qiyefuwu,
 				Double.valueOf(request.getSession()
 						.getAttribute("enterpriseId").toString()))) {
-			sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+			sbResult.append("<script>alert('恭喜！数据已成功录入。'); location.reload();</script>");
 		} else {
 			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");
 		}

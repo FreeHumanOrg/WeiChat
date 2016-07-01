@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 建设进度实体类
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "jiansejindu", catalog = "new")
-public class Jiansejindu implements java.io.Serializable {
+public class Jiansejindu implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 4633604878072854018L;
 
 	private Double id;
@@ -272,6 +275,30 @@ public class Jiansejindu implements java.io.Serializable {
 
 	public void setPostnedJunSol(String postnedJunSol) {
 		this.postnedJunSol = postnedJunSol;
+	}
+
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("计划开工时间：" + plannedStartTime);
+		sbLog.append(";计划开工存在的问题：" + plannedStartC);
+		sbLog.append(";计划竣工时间：" + plannedJunTime);
+		sbLog.append(";计划竣工存在的问题：" + plannedJunC);
+		sbLog.append(";实际开工时间：" + postnedStartTime);
+		sbLog.append(";实际开工存在的问题：" + postnedStartC);
+		sbLog.append(";实际竣工时间：" + postnedJunTime);
+		sbLog.append(";实际竣工存在的问题：" + postnedJunC);
+		sbLog.append(";建筑内容及规模：" + scale);
+		sbLog.append(";项目形象进度：" + progress);
+		sbLog.append(";计划开工的解决方案：" + plannedStartSol);
+		sbLog.append(";计划竣工的解决方案：" + plannedJunSol);
+		sbLog.append(";实际开工的解决方案：" + postnedStartSol);
+		sbLog.append(";实际竣工的解决方案：" + postnedJunSol);
+		return sbLog.toString();
 	}
 
 }

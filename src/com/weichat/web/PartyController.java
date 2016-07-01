@@ -79,8 +79,8 @@ public class PartyController {
 				sbResult.append("<script>alert('非常抱歉，修改数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
 			}
 		} else {// 不存在
-			if (partyService.addDangtuanjiansheService(
-					dangtuanjianshe,dangtuanjianshe.getInfomation().getId())) {
+			if (partyService.addDangtuanjiansheService(dangtuanjianshe,
+					dangtuanjianshe.getInfomation().getId())) {
 				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
 				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
@@ -108,7 +108,7 @@ public class PartyController {
 				dangtuanjianshe,
 				Double.valueOf(request.getSession()
 						.getAttribute("enterpriseId").toString()))) {
-			sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+			sbResult.append("<script>alert('恭喜！数据已成功录入。'); location.reload();</script>");
 		} else {
 			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");
 		}

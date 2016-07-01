@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.weichat.model.Anquanshengchan;
 import com.weichat.model.Youhuizhengce;
 import com.weichat.service.PolicyService;
 import com.weichat.util.DateTimeUtils;
@@ -80,7 +79,6 @@ public class PolicyController {
 		modelMap.addAttribute("id", id);
 		return "/mobile/update/enterprise_update_situation/policy";
 	}
-	
 
 	/**
 	 * 添加优惠政策情况.
@@ -99,7 +97,7 @@ public class PolicyController {
 				youhuizhengce,
 				Double.valueOf(request.getSession()
 						.getAttribute("enterpriseId").toString()))) {
-			sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+			sbResult.append("<script>alert('恭喜！数据已成功录入。'); location.reload();</script>");
 		} else {
 			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");
 		}
@@ -108,6 +106,7 @@ public class PolicyController {
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		response.getWriter().write(sbResult.toString());
 	}
+
 	/**
 	 * 修改优惠政策情况
 	 * 
@@ -124,14 +123,16 @@ public class PolicyController {
 						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		StringBuffer sbResult = new StringBuffer();
 		// 判断企业安全是否存在
-		if (policyService.checkYouhuizhengce(youhuizhengce.getInfomation().getId())) {// 存在
+		if (policyService.checkYouhuizhengce(youhuizhengce.getInfomation()
+				.getId())) {// 存在
 			if (policyService.updateYouhuizhengce(youhuizhengce)) {
 				sbResult.append("<script>alert('恭喜！数据已成功修改。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
 				sbResult.append("<script>alert('非常抱歉，修改数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
 			}
 		} else {// 不存在
-			if (policyService.addNewPolicyService(youhuizhengce, youhuizhengce.getInfomation().getId())){
+			if (policyService.addNewPolicyService(youhuizhengce, youhuizhengce
+					.getInfomation().getId())) {
 				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
 				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
@@ -142,5 +143,4 @@ public class PolicyController {
 		response.getWriter().write(sbResult.toString());
 	}
 
-	
 }

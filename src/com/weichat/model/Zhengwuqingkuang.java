@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 政务情况实体类
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "zhengwuqingkuang", catalog = "new")
-public class Zhengwuqingkuang implements java.io.Serializable {
+public class Zhengwuqingkuang implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 701045092500196431L;
 
 	private Double id;
@@ -428,4 +431,37 @@ public class Zhengwuqingkuang implements java.io.Serializable {
 		this.othercon = othercon;
 	}
 
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("工商税务办理时间：" + commercialtaxtime);
+		sbLog.append(";工商税务存在的问题：" + commercialtaxcon);
+		sbLog.append(";发改立项办理时间：" + projexttime);
+		sbLog.append(";发改立项存在的问题：" + projextcon);
+		sbLog.append(";环评办理时间：" + eiatime);
+		sbLog.append(";环评存在的问题：" + eiacon);
+		sbLog.append(";用地许可办理时间：" + permittime);
+		sbLog.append(";用地许可存在的问题：" + permitcon);
+		sbLog.append(";工程许可办理时间：" + permissiontime);
+		sbLog.append(";工程许可存在的问题：" + permissioncon);
+		sbLog.append(";施工工程办理时间：" + constructionprojectTime);
+		sbLog.append(";施工工程存在的问题：" + constructionprojectCon);
+		sbLog.append(";消防备检办理时间：" + fireinspectionTime);
+		sbLog.append(";消防备检存在的问题：" + fireinspectionCon);
+		sbLog.append(";总平图设计及方案报规办理时间：" + programmeReportTime);
+		sbLog.append(";总平图设计及方案报规存在的问题：" + programmeReportcon);
+		sbLog.append(";施工图设计及图审办理时间：" + chartreviewtime);
+		sbLog.append(";施工图设计及图审存在的问题：" + chartreviewcon);
+		sbLog.append(";施工、监理单位确定办理时间：" + controlUnitTime);
+		sbLog.append(";施工、监理单位确定存在的问题：" + controlUnitcon);
+		sbLog.append(";招标备案办理时间：" + recordTime);
+		sbLog.append(";招标备案存在的问题：" + recordcon);
+		sbLog.append(";其他办理时间：" + otherTime);
+		sbLog.append(";其他存在的问题：" + othercon);
+		return sbLog.toString();
+	}
 }

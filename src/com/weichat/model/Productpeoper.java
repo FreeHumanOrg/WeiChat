@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.weichat.interceptor.IHistory;
 
 /**
  * 项目促进联系人实体类
@@ -21,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "productpeoper", catalog = "new")
-public class Productpeoper implements java.io.Serializable {
+public class Productpeoper implements java.io.Serializable, IHistory {
 	private static final long serialVersionUID = 6544471896657473541L;
 
 	private Double id;
@@ -88,4 +91,15 @@ public class Productpeoper implements java.io.Serializable {
 		this.telphone = telphone;
 	}
 
+	/**
+	 * 实现了IHistory接口，重写getLogDetail()方法
+	 */
+	@Transient
+	@Override
+	public String getLogDetail() {
+		StringBuffer sbLog = new StringBuffer();
+		sbLog.append("姓名：" + name);
+		sbLog.append(";联系方式：" + telphone);
+		return sbLog.toString();
+	}
 }

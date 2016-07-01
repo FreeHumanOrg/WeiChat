@@ -140,10 +140,10 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 						if (searchTypeIn.hashCode() == SearchType.ILIKE
 								.hashCode()) {
 							System.out.println(pageIn.getSearchValue());
-							if(null!=pageIn.getSearchValue()){
+							if (null != pageIn.getSearchValue()) {
 								criteria.add(Restrictions.ilike(
-										pageIn.getSearchProperty(),
-										"%"+pageIn.getSearchValue()+"%"));
+										pageIn.getSearchProperty(), "%"
+												+ pageIn.getSearchValue() + "%"));
 							}
 							// 精确匹配
 						} else if (searchTypeIn.hashCode() == SearchType.EQUAL
@@ -166,10 +166,10 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 						// 模糊匹配
 						if (searchTypeIn.hashCode() == SearchType.ILIKE
 								.hashCode()) {
-							if(null!=pageIn.getSearchValue()){
+							if (null != pageIn.getSearchValue()) {
 								criteria.add(Restrictions.ilike(
-										pageIn.getSearchProperty(),
-										"%"+pageIn.getSearchValue()+"%"));
+										pageIn.getSearchProperty(), "%"
+												+ pageIn.getSearchValue() + "%"));
 							}
 							// 精确匹配
 						} else if (searchTypeIn.hashCode() == SearchType.EQUAL
@@ -239,7 +239,8 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 	@Override
 	public Boolean update(T entity) {
 		try {
-			//Illegal attempt to associate a collection with two open sessions报错
+			// Illegal attempt to associate a collection with two open
+			// sessions报错
 			hibernateTemplate.update(hibernateTemplate.merge(entity));
 			return true;
 		} catch (DataAccessException dataAccessException) {

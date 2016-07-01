@@ -1,5 +1,7 @@
 package com.weichat.dao;
 
+import java.util.List;
+
 import com.weichat.model.History;
 
 /**
@@ -22,4 +24,20 @@ public interface HistoryDao extends BaseDao<History, Double> {
 	 * @return
 	 */
 	Boolean addNewHistoryInfo(History history);
+
+	/**
+	 * 持久化历史记录.
+	 * 
+	 * @param history
+	 * @return
+	 */
+	Boolean persistHistoryInfo(History history);
+
+	/**
+	 * 查询全部历史记录.
+	 * 
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	List<History> findAllHistoryInfo();
 }

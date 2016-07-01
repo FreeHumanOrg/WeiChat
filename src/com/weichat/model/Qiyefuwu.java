@@ -130,9 +130,9 @@ public class Qiyefuwu implements java.io.Serializable, IHistory {
 	public String getLogDetail() {
 		StringBuffer sbLog = new StringBuffer();
 		sbLog.append("融资：" + longzhi);
-		sbLog.append("用工：" + yongGong);
-		sbLog.append("品牌：" + pinpai);
-		sbLog.append("培训：" + pinxun);
+		sbLog.append(";用工：" + yongGong);
+		sbLog.append(";品牌：" + pinpai);
+		sbLog.append(";培训：" + pinxun);
 		return sbLog.toString();
 	}
 
