@@ -58,6 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
   </head>
 	<body>
+	<p id="newButtonArea"><button class="btn btn-warning" onclick="location.href='/WeiChat/addindex/frame.jhtml'">新建</button><button class="btn btn-info" onclick="location.href='/WeiChat/history/historyshow.jhtml';">历史</button></p>
 	<form id="paginationForm" action="company/companylist.jhtml" method="post">
 		<div class="search clearfloat">
 			<h2>企业列表</h2>
@@ -75,12 +76,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td style="border-color: white;">
 							<button onclick="document.getElementById('paginationForm').submit();" class="btn btn-primary" style="margin-top: -1px;">搜索</button>
 						</td>
-						
-						
 					</tr>
 				</table>
 			</div> 
-			<p id="newButtonArea"><button class="btn btn-warning" onclick="location.href='/WeiChat/addindex/frame.jhtml'">新建</button><button class="btn btn-info" onclick="location.href='/WeiChat/history/historyshow.jhtml';">历史</button></p>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<th>企业名称</th>
