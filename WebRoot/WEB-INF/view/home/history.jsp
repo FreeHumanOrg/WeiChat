@@ -19,7 +19,6 @@
 				<div class="history_con">
 					<p class="clearfloat">
 						<img src="<%=basePath %>window/img/head_pic.png" class="fleft"/>
-						
 						<c:forEach items="${items.infomation.users }" var="userItem">
 							${userItem.username }
 						</c:forEach>

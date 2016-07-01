@@ -51,14 +51,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			text-align:right;
 		}
 		
-		#newButtonArea button{
+		#newButtonArea a{
 			width:125px;
 			margin-right: 10px;
 		}
 	</style>
   </head>
 	<body>
-	<p id="newButtonArea"><button class="btn btn-warning" onclick="location.href='/WeiChat/addindex/frame.jhtml'">新建</button><button class="btn btn-info" onclick="location.href='/WeiChat/history/historyshow.jhtml';">历史</button></p>
 	<form id="paginationForm" action="company/companylist.jhtml" method="post">
 		<div class="search clearfloat">
 			<h2>企业列表</h2>
