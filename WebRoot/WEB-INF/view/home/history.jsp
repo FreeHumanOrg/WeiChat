@@ -19,7 +19,10 @@
 				<div class="history_con">
 					<p class="clearfloat">
 						<img src="<%=basePath %>window/img/head_pic.png" class="fleft"/>
-						${items.operatecode }
+						
+						<c:forEach items="${items.infomation.users }" var="userItem">
+							${userItem.username }
+						</c:forEach>
 						<i class="fright">${items.operateDateTime }</i>
 					</p>
 					<span>

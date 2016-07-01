@@ -73,17 +73,17 @@ public class ExpendController {
 		// 判断企业发展是否存在
 		if (expendService.checkQiyefazhan(qiyefazhan.getInfomation().getId())) {// 存在
 			if (expendService.updateQiyefazhan(qiyefazhan)) {
-				sbResult.append("<script>alert('恭喜！数据已成功修改。'); location.reload();</script>");
+				sbResult.append("<script>alert('恭喜！数据已成功修改。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
-				sbResult.append("<script>alert('非常抱歉，修改数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
+				sbResult.append("<script>alert('非常抱歉，修改数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml';</script>");
 			}
 		} else {// 不存在
 				// 调用新增方法
 			if (expendService.addNewExpendService(qiyefazhan, qiyefazhan
 					.getInfomation().getId())) {
-				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
+				sbResult.append("<script>alert('恭喜！数据已成功录入。'); window.location.href='../../addindex/frame.jhtml';</script>");
 			} else {
-				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml'</script>");
+				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml';</script>");
 			}
 		}
 		response.setCharacterEncoding("UTF-8");
