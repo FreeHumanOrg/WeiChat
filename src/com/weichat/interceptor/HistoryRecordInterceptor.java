@@ -10,7 +10,10 @@ import org.hibernate.EmptyInterceptor;
 import org.hibernate.type.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.weichat.model.Infomation;
 import com.weichat.util.HistoryRecordUtils;
 
 /**
@@ -62,6 +65,9 @@ public class HistoryRecordInterceptor extends EmptyInterceptor {
 	@SuppressWarnings("rawtypes")
 	private Set removeHistories = new HashSet();
 
+	/**
+	 * 执行保存时的监听方法
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean onSave(Object entity, Serializable id, Object[] arg2,
@@ -71,6 +77,39 @@ public class HistoryRecordInterceptor extends EmptyInterceptor {
 			saveHisrories.add(entity);
 		}
 		return false;
+	}
+
+	/**
+	 * 执行修改时的监听方法
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean onFlushDirty(Object entity, Serializable id,
+			Object[] currentState, Object[] previousState,
+			String[] propertyNames, Type[] types) throws CallbackException {
+		LOGGER.debug("执行onFlushDirty()方法");
+		if (entity instanceof IHistory) {
+			upgradeHistories.add(entity);
+		}
+		return false;
+	}
+
+	/**
+	 * 执行删除时的监听方法
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void onDelete(Object entity, Serializable id, Object[] state,
+			String[] propertyNames, Type[] types) throws CallbackException {
+		LOGGER.debug("执行onDelete()方法");
+		if (entity instanceof Infomation) {
+			((ServletRequestAttributes) RequestContextHolder
+					.getRequestAttributes()).getRequest().getSession()
+					.setAttribute("infomationEntity", entity);
+		}
+		if (entity instanceof IHistory) {
+			removeHistories.add(entity);
+		}
 	}
 
 	@SuppressWarnings("rawtypes")
