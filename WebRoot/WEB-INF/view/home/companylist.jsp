@@ -22,7 +22,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="window/css/themes/bootstrap/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="window/css/themes/icon.css" />
 	<link href="window/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="window/css/jquery.datetimepicker.css" />
 	<style type="text/css">
 		.pagination{
 			float:right;
@@ -201,19 +200,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="window/js/bootstrap.min.js"></script>
 		<script src="window/js/base.js" type="text/javascript" charset="utf-8"></script>
 		<script src="window/js/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="window/js/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function (){
-				$.datetimepicker.setLocale('ch');//设置中文
-				$('#datetimepicker11').datetimepicker({
-				  lang:"ch",           //语言选择中文
-			      format:"Y-m-d",      //格式化日期
-			      timepicker:true,    //关闭时间选项
-			      yearStart:2000,     //设置最小年份
-			      yearEnd:2050,        //设置最大年份
-			      todayButton:true   //关闭选择今天按钮
-				});
-				
 				//前一页
 				var prevPageIndex = $("#prevPageNum").text();
 				
