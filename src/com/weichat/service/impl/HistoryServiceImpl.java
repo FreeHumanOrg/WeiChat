@@ -50,18 +50,12 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 		if (logInfomations instanceof Infomation) {
 			LOGGER.warn("正在操作企业基本信息（Infomation）类！");
 			// 企业基本信息也要分情况
-
 			// 如果是更新或者删除企业基本信息
 			if (operateType.contains(OperateType.UPDATE.getValue())
 					|| operateType.contains(OperateType.DELETE.getValue())) {
-				// 则
-				// infomation = companyDao.findInfomationById(logInfomations
-				// .getId());
 				entity.setInfomation((Infomation) logInfomations);
-
 				// 给infomation赋值以便在108行删除时继续使用，避免为空抛异常
 				infomation = (Infomation) logInfomations;
-
 				// 否则如果是新增
 			} else {
 				// 则设置Infomation为空
@@ -69,16 +63,13 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 			}
 		} else {
 			// 操作除企业基本信息之外的实体类也要分情况
-
 			// 如果是新增其他实体信息
 			if (operateType.contains(OperateType.SAVE.getValue())) {
 				// 这里还要分两种情况：一种是先添加了企业信息再添加其他信息；另一种是在修改时直接添加一个信息（虽然是修改但是数据从无到有Hibernate
 				// Interceptor会检测为新增而不是修改）
-
 				Object enterpriseSituationIdByObj = ((ServletRequestAttributes) RequestContextHolder
 						.getRequestAttributes()).getRequest().getSession()
 						.getAttribute("enterpriseId");
-
 				// 如果企业编号为空则表示是另一种情况
 				if (null == enterpriseSituationIdByObj) {
 					// 此时要根据这个实体中的Infomation的Id查询得到Infomation的信息
@@ -149,7 +140,6 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 							.valueOf(enterpriseSituationIdByObj.toString()));
 					entity.setInfomation(infomation);
 				}
-
 			}
 
 			// 如果是修改或者删除其他实体信息
@@ -295,7 +285,6 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 			entity.setInfomationId(null);
 		} else {
 			entity.setOperatecode(infomation.getId());
-			// entity.setInfomationId(infomation.getId());
 		}
 		entity.setOperateDateTime(DateTimeUtils
 				.getNowDateOfStringFormatUsingDateTimeTemplateOne());
@@ -338,27 +327,6 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 				Zhengwuqingkuang zhengwuqingkuang = (Zhengwuqingkuang) logInfomations;
 				entity.setOperateValue(zhengwuqingkuang.getLogDetail());
 			}
-			// Class classes = null;
-			// try {
-			// String className = logInfomations.getClass().getName();
-			// classes = Class.forName(className);
-			// try {
-			// Class infoClass = classes
-			// .forName("com.weichat.model.Infomation");
-			//
-			// Class<?>[] info = logInfomations.getClass().getClasses();
-			//
-			// for (Class<?> class1 : info) {
-			// System.out.println(class1.getName());
-			// }
-			//
-			// } catch (SecurityException e) {
-			// e.printStackTrace();
-			// }
-			// } catch (ClassNotFoundException e) {
-			// e.printStackTrace();
-			// }
-			// entity.setOperateValue();
 		}
 
 		return historyDao.addNewHistoryInfo(entity);

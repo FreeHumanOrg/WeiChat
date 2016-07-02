@@ -15,20 +15,28 @@
 	</head>
 	<body>
 		<div class="history">
-			<c:forEach items="${histories }" var="items">
-				<div class="history_con">
-					<p class="clearfloat">
-						<img src="<%=basePath %>window/img/head_pic.png" class="fleft"/>
-						<c:forEach items="${items.infomation.users }" var="userItem">
-							${userItem.username }
-						</c:forEach>
-						<i class="fright">${items.operateDateTime }</i>
-					</p>
-					<span>
-						${items.operateValue }
-					</span>
-				</div>
-			</c:forEach>
+			<c:choose>
+				<c:when test="${histories.size() > 0 }">
+					<c:forEach items="${histories }" var="items">
+						<div class="history_con">
+							<p class="clearfloat">
+								<img src="<%=basePath %>window/img/head_pic.png" class="fleft"/>
+								<c:forEach items="${items.infomation.users }" var="userItem">
+									${userItem.username }
+								</c:forEach>
+								<i class="fright">${items.operateDateTime }</i>
+							</p>
+							<span>
+								${items.operateValue }
+							</span>
+						</div>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					暂无历史记录！
+				</c:otherwise>
+			</c:choose>
+			
 			<%-- <div class="history_con">
 				<p class="clearfloat">
 					<img src="<%=basePath %>window/img/head_pic.png" class="fleft"/>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weichat.model.Infomation;
 import com.weichat.service.BasicSituationService;
+import com.weichat.util.DateTimeUtils;
 
 /**
  * 企业基本情况Controller
@@ -54,8 +55,16 @@ public class BasicSituationController {
 				.addBasicSituationOfEnterpriseService(infomation) != -1.0) {
 			request.getSession().setAttribute("enterpriseId",
 					infomation.getId());
-			sbResult.append("<script>alert('恭喜！数据已成功录入。'); window.location.href='../../addindex/frame.jhtml';</script>");
+			LOGGER.info("添加数据成功。"
+					+ DateTimeUtils
+							.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+			// 添加企业基本信息添加成功的标识以将后面的功能启用
+			request.getSession().setAttribute("addedBasicInfo", "successed");
+			sbResult.append("<script>alert('恭喜！数据已成功录入。请继续添加相关的信息。'); parent.location.reload(true);</script>");
 		} else {
+			LOGGER.info("添加数据失败。"
+					+ DateTimeUtils
+							.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");
 		}
 

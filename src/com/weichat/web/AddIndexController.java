@@ -1,6 +1,7 @@
 package com.weichat.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,21 @@ public class AddIndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/frame", method = RequestMethod.GET)
-	public String addIndex(ModelMap modelMap) {
+	public String addIndex(ModelMap modelMap, HttpServletRequest request) {
+		Boolean flag = false;
+		if (request.getSession().getAttribute("addedBasicInfo") != null) {
+			if (request.getSession().getAttribute("addedBasicInfo").toString()
+					.contains("successed")) {
+				flag = true;
+			}
+		}
+
+		if (flag) {
+			modelMap.addAttribute("displayAfterModel", true);
+		} else {
+			modelMap.addAttribute("displayAfterModel", false);
+		}
+
 		return "/add/common/frame";
 	}
 

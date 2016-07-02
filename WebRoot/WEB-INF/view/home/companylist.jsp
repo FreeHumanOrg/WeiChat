@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 						
 						<td style="border-color: white;">
-							<button onclick="document.getElementById('paginationForm').submit();" class="btn btn-primary" style="margin-top: -1px;">搜索</button>
+							<a onclick="document.getElementById('paginationForm').submit();" class="btn btn-primary" style="margin-top: -1px; color:white;">搜索</a>
 						</td>
 					</tr>
 				</table>
