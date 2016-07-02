@@ -12,15 +12,7 @@
 		<meta charset="UTF-8">
 		<title>建设情况</title>
 		<link rel="stylesheet" type="text/css" href="../window/css/base.css" />
-		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../window/js/base.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			window.onload = function() {
-				for (var i = 1; i < $(".jsqk .jsqk-con").length; i++) {
-					$(".jsqk .jsqk-con").eq(i).hide();
-				}
-			};
-		</script>
+		<link rel="stylesheet" type="text/css" href="../window/css/jquery.datetimepicker.css" />
 	</head>
 
 	<body>
@@ -58,7 +50,7 @@
 				<p class="title">工商税务</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="commercialtaxtime" />
+					<input type="text" class="write" name="commercialtaxtime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -67,7 +59,7 @@
 				<p class="title">发改立项</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="projexttime" />
+					<input type="text" class="write" name="projexttime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -76,7 +68,7 @@
 				<p class="title">环评</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="eiatime" />
+					<input type="text" class="write" name="eiatime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -85,7 +77,7 @@
 				<p class="title">用地许可</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="permittime" />
+					<input type="text" class="write" name="permittime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -94,7 +86,7 @@
 				<p class="title">工程许可</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="permissiontime" />
+					<input type="text" class="write" name="permissiontime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -103,7 +95,7 @@
 				<p class="title">施工工程</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="constructionprojectTime" />
+					<input type="text" class="write" name="constructionprojectTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -112,7 +104,7 @@
 				<p class="title">消防备验</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="fireinspectionTime" />
+					<input type="text" class="write" name="fireinspectionTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -121,7 +113,7 @@
 				<p class="title">总平图设计及方案报规</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="programmeReportTime" />
+					<input type="text" class="write" name="programmeReportTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -130,7 +122,7 @@
 				<p class="title">施工图设计及图审</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="chartreviewtime" />
+					<input type="text" class="write" name="chartreviewtime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -139,7 +131,7 @@
 				<p class="title">施工、监理单位确定</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="controlUnitTime" />
+					<input type="text" class="write" name="controlUnitTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -148,7 +140,7 @@
 				<p class="title">招标备案</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="recordTime" />
+					<input type="text" class="write" name="recordTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -157,7 +149,7 @@
 				<p class="title">其他</p>
 				<div class="intbox">
 					<span class="name">办理时间</span>
-					<input type="text" class="write" name="otherTime" />
+					<input type="text" class="write" name="otherTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -175,7 +167,7 @@
 				<p class="title">下达指标</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" name="indexTime" />
+					<input type="text" class="write" name="indexTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">面积</span>
@@ -184,7 +176,7 @@
 				<p class="title">土地报征</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" name="landSignTime" />
+					<input type="text" class="write" name="landSignTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">面积</span>
@@ -193,7 +185,7 @@
 				<p class="title">土地挂牌</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" name="landListingTime" />
+					<input type="text" class="write" name="landListingTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">面积</span>
@@ -206,7 +198,7 @@
 				<p class="title">土地办证</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" name="landCertificateT" />
+					<input type="text" class="write" name="landCertificateT" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">面积</span>
@@ -257,7 +249,7 @@
 		    	<p class="title">计划开工时间</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" name="plannedStartTime" />
+					<input type="text" class="write" name="plannedStartTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -270,7 +262,7 @@
 				<p class="title">计划竣工时间</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" name="plannedJunTime" />
+					<input type="text" class="write" name="plannedJunTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -283,7 +275,7 @@
 				<p class="title">实际开工时间</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" name="postnedStartTime" />
+					<input type="text" class="write" name="postnedStartTime" types="datetimepicker" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -296,7 +288,6 @@
 				<p class="title">实际竣工时间</p>
 				<div class="intbox">
 					<span class="name">时间</span>
-					<input type="text" class="write" name="postnedJunTime" />
 				</div>
 				<div class="intbox">
 					<span class="name">存在问题</span>
@@ -320,7 +311,26 @@
 				</div>
 		    </div>
 		 </form>
-		 
 		</div>
+		
+		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../window/js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../window/js/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function (){
+				for (var i = 1; i < $(".jsqk .jsqk-con").length; i++) {
+						$(".jsqk .jsqk-con").eq(i).hide();
+				}
+				$.datetimepicker.setLocale('ch');//设置中文
+					$("input[types*='datetimepicker']").datetimepicker({
+					  lang:"ch",           //语言选择中文
+				      format:"Y-m-d H:m:s",      //格式化日期
+				      timepicker:true,    //关闭时间选项
+				      yearStart:2000,     //设置最小年份
+				      yearEnd:2050,        //设置最大年份
+				      todayButton:true   //关闭选择今天按钮
+				});
+			});
+		</script>
 	</body>
 </html>

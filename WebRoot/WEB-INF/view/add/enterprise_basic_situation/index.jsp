@@ -13,6 +13,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<title>企业基本情况</title>
 		<link rel="stylesheet" type="text/css" href="../window/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../window/css/jquery.datetimepicker.css" />
 	</head>
 	<body>
 		<div class="qyjbqk subcontent clearfloat">
@@ -45,7 +46,7 @@
 					<span class="name">企业网站：</span><input type="text" class="write" name="enterprisewebsite"/>
 				</div>
 				<div class="intbox clearfloat">
-					<span class="name">签约时间：</span><input type="text" class="write" name="signingtime"/>
+					<span class="name">签约时间：</span><input type="text" class="write" name="signingtime" types="datetimepicker" />
 				</div>
 				<div class="intbox clearfloat">
 					<span class="name">占地（亩）：</span><input type="text" class="write" name="area"/>
@@ -60,10 +61,10 @@
 					<span class="name">预计年税收：</span><input type="text" class="write" name="annualtax"/>
 				</div>
 				<div class="intbox clearfloat">
-					<span class="name">协议开工时间：</span><input type="text" class="write" name="begintime"/>
+					<span class="name">协议开工时间：</span><input type="text" class="write" name="begintime" types="datetimepicker" />
 				</div>
 				<div class="intbox clearfloat">
-					<span class="name">协议竣工时间：</span><input type="text" class="write" name="completiontime"/>
+					<span class="name">协议竣工时间：</span><input type="text" class="write" name="completiontime" types="datetimepicker" />
 				</div>
 				<div class="intbox clearfloat">
 					<span class="name">备注：</span><input type="text" class="write" name="beizhu"/>
@@ -75,7 +76,20 @@
 		</div>
 		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../window/js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../window/js/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			$(function (){
+				$.datetimepicker.setLocale('ch');//设置中文
+					$("input[types*='datetimepicker']").datetimepicker({
+					  lang:"ch",           //语言选择中文
+				      format:"Y-m-d H:m:s",      //格式化日期
+				      timepicker:true,    //关闭时间选项
+				      yearStart:2000,     //设置最小年份
+				      yearEnd:2050,        //设置最大年份
+				      todayButton:true   //关闭选择今天按钮
+					});
+			});
+			
 			function submitForm(){
 				$("#postForm").submit();
 			}

@@ -13,9 +13,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<title>企业发展</title>
 		<link rel="stylesheet" type="text/css" href="../window/css/base.css" />
-		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-		</script>
+		<link rel="stylesheet" type="text/css" href="../window/css/jquery.datetimepicker.css" />
 	</head>
 	<body>
 	<form id="expendform" action="<%=basePath%>expend/expendadd.jhtml" method="post">
@@ -35,15 +33,15 @@
 			<p class="title">规模企业培育</p>
 			<div class="intbox">
 				<span class="name">上规时间</span>
-				<input type="text" class="write" name="shangTime" />
+				<input type="text" class="write" name="shangTime" types="datetimepicker" />
 			</div>
 			<div class="intbox">
 				<span class="name">下规时间</span>
-				<input type="text" class="write" name="xiaTime" />
+				<input type="text" class="write" name="xiaTime" types="datetimepicker" />
 			</div>
 			<div class="intbox">
 				<span class="name">投产时间</span>
-				<input type="text" class="write" name="touTime" />
+				<input type="text" class="write" name="touTime" types="datetimepicker" />
 			</div>
 			<div class="intbox">
 				<span class="name">高新技术企业</span>
@@ -62,5 +60,21 @@
 			</div>
 		</div>
 	</form>
+	
+	<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../window/js/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function (){
+			$.datetimepicker.setLocale('ch');//设置中文
+				$("input[types*='datetimepicker']").datetimepicker({
+				  lang:"ch",           //语言选择中文
+			      format:"Y-m-d H:m:s",      //格式化日期
+			      timepicker:true,    //关闭时间选项
+			      yearStart:2000,     //设置最小年份
+			      yearEnd:2050,        //设置最大年份
+			      todayButton:true   //关闭选择今天按钮
+				});
+		});
+	</script>
 	</body>
 </html>
