@@ -12,8 +12,8 @@
 	<body>
 		<div class="yhzcqk subcontent clearfloat">
 			<c:if test="${!empty policy}">
+			<span class="yh-name">优惠政策1</span>
 				<div class="yh-cont">
-				<span class="yh-name">优惠政策1</span>
 				<c:forEach items="${policy }" var="item">
 					<c:if test="${item.num eq '1' }">
 						<form action="../policy/policyupdate.jhtml" id="itemform${item.id }" method="post">
@@ -92,7 +92,6 @@
 			</form>
 			</c:if>
 		</div>
-		</div>
 	</body>
 </html>
 <script type="text/javascript">
@@ -108,7 +107,7 @@ function deleteItem(itemId){
 					alert("恭喜！您已成功删除此条目！");
 					window.location.reload(true);
 				} else {
-					alert("非常抱歉，删除此企业的信息失败！请重试操作。");
+					alert("非常抱歉，删除此条目失败！请重试操作。");
 				}
 		    }
 		});

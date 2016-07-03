@@ -76,9 +76,14 @@ public class MyJob{
 		form.setPageSize(1);
 		String sRet = wqClient.findEmployeeList(form);
 		System.out.println(sRet);
-		List<User>userlist=userService.findAllService();//查询本地用户数据
 		//处理同步的用户json数据
 		JSONObject jsonObject=JSONObject.fromObject(sRet);
+		if(jsonObject.get("success").equals(false)){
+			System.out.println("false");
+		}
+		List<User>userlist=userService.findAllService();//查询本地用户数据
+		
+		
 		JSONArray jsonArray=jsonObject.getJSONArray("list");
 				
 		List<String>strs=new ArrayList<>();
@@ -118,5 +123,8 @@ public class MyJob{
 				userService.addUser(inituser);
 			}
 		}
+	}
+	public static void main(String[] args) {
+		new MyJob().findEmployeeList();
 	}
 }

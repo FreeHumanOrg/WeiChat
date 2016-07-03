@@ -70,7 +70,7 @@
 			</div>
 			<div class="intbox">
 				<span class="name name-long">安全设施“三同时”情况</span>
-				<input type="text" class="write" value="${safety.anquansheshi }"/>
+				<input name="anquansheshi" type="text" class="write" value="${safety.anquansheshi }"/>
 			</div>
 			<div class="intbox">
 				<span class="name name-long">职业病防护设施“三同时”情况</span>

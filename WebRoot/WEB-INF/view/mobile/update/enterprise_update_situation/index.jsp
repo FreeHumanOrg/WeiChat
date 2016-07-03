@@ -18,8 +18,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
 		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript"></script>
 		<script src="../mobile/js/base.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="../window/css/themes/bootstrap/easyui.css" />
+		<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 		<script type="text/javascript">
 		function removeAnEnterpriseSituationInfo(identity){
+			//提示用户
+			if(confirm("确定要删除此企业信息吗？")){
 			$.ajax({
 				    url: '<%=basePath%>companymobile/delEnterpriseInfo.jhtml',         
 				    data: {"enterpriseSituationId" : identity},
@@ -35,6 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 				    }
 			});
+			}
 		}
 		</script>
 	</head>

@@ -75,7 +75,7 @@ public class MyJob{
 		WeqiaClient wqClient = initWeqiaClient();
 		OpenEmployeeListForm form = new OpenEmployeeListForm();
 		form.setStartRow(0);//分页开始
-		form.setEndRow(10);//分页结束
+		form.setEndRow(50);//分页结束
 		form.setPageSize(1);
 		String sRet = wqClient.findEmployeeList(form);
 		System.out.println(sRet);
@@ -83,6 +83,10 @@ public class MyJob{
 		//处理同步的用户json数据
 		JSONObject jsonObject=JSONObject.fromObject(sRet);
 		//此处需要处理
+		//{"error":"参数校验错误","data":null,"errorCode":"-16","success":false}
+		if(jsonObject.get("success").equals(false)){
+			return;
+		}
 		JSONArray jsonArray=jsonObject.getJSONArray("list");
 				
 		List<String>strs=new ArrayList<>();
