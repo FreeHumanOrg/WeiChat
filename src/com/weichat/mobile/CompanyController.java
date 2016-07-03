@@ -220,20 +220,20 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/updateProgress", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateProgress(ModelMap modelMap,
+	public Map<String, String> updateProgress(ModelMap modelMap,
 			String enterpriseSituationId, String progressValue,
 			HttpServletResponse response) throws IOException {
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, String> resultMap = new HashMap<String, String>();
 		Infomation infomation = companyService.findInfomationById(Double
 				.valueOf(enterpriseSituationId));
 		infomation.setGenjinjindu(progressValue.contains("-1") ? null
 				: progressValue);
 		if (companyService.updateInfomation(infomation)) {
-			map.put("result", "success");
+			resultMap.put("result", "successed");
 		} else {
-			map.put("result", "failed");
+			resultMap.put("result", "failed");
 		}
-		return map;
+		return resultMap;
 	}
 
 	/**

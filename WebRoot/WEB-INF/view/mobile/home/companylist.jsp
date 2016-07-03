@@ -275,14 +275,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("button[operate*='applyButtonSingle']").click(function (){
 					var eId = $(this).attr("enterpriseSituationId");
 					var pValue = $(this).siblings("select[operate*='progresses']").val();
-					//alert(pValue);
 					$.ajax({
 					    url: '<%=basePath%>companymobile/updateProgress.jhtml',         
-					    data: {"enterpriseSituationId" : eId , "progressValue" : pValue},
-					    dataType : "json",
-					    type: "POST",          
+					    data: {enterpriseSituationId : eId , progressValue : pValue},
+					    dataType : 'json',
+					    type: 'post',
+					    async:false,
 					    success: function (data) {
-					        if (data.result == "success") {
+					        if (data.result == "successed") {
 								alert("恭喜！更改跟进进度信息操作成功！");
 								window.location.reload(true);
 							} else {
