@@ -21,11 +21,7 @@ public class RemindTask extends TimerTask {
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(HistoryDaoImpl.class);
 
-	// @Resource(name = "jdbcTemplate")
-	// private JdbcTemplate jdbcTemplate;
-
 	public void run() {
-		// jdbcTemplate = SpringContextHolder.getBean("jdbcTemplate");
 		executeJDBC(HistoryTempDTO.getHistoryEntity());
 		new HistoryTimerUtils().getInstance().cancel();
 	}
@@ -48,12 +44,18 @@ public class RemindTask extends TimerTask {
 			pstmt.setString(4, history.getOperateType());
 			pstmt.setString(5, history.getOperateProperty());
 			pstmt.setString(6, history.getOperateValue());
-			if (null == history.getInfomationId()
-					|| history.getOperateType().contains(
-							OperateType.DELETE.getValue())) {
-				pstmt.setNull(7, Types.DOUBLE);
+
+			if (null != history.getInfomation()) {
+				pstmt.setDouble(7, history.getInfomation().getId());
 			} else {
-				pstmt.setDouble(7, history.getInfomationId());
+				if (null == history.getInfomationId()
+						|| history.getOperateType().contains(
+								OperateType.DELETE.getValue())) {
+					pstmt.setNull(7, Types.DOUBLE);
+				} else {
+
+					pstmt.setDouble(7, history.getInfomationId());
+				}
 			}
 			resultFlag = pstmt.execute();
 			LOGGER.info("使用JDBC新增历史记录成功！"

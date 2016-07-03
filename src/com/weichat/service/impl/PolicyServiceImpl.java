@@ -36,16 +36,18 @@ public class PolicyServiceImpl extends BaseServiceImpl<Youhuizhengce, Double>
 	public List<Youhuizhengce> findYouhuisById(Double id) {
 		return policyDao.findYouhuisById(id);
 	}
+
 	@Override
 	public Youhuizhengce findYouhuizhengceById(Double id) {
 		return policyDao.findYouhuizhengceById(id);
 	}
+
 	@Override
 	public Boolean addNewPolicyService(Youhuizhengce youhuizhengce,
 			Double enterpriseSituationId) {
 		youhuizhengce.setId(RandomUtils.createIdentitySerialByUUID());
-//		youhuizhengce.setInfomation(basicSituationDao
-//				.findById(enterpriseSituationId));
+		// youhuizhengce.setInfomation(basicSituationDao
+		// .findById(enterpriseSituationId));
 		return policyDao.addNewPolicy(youhuizhengce);
 	}
 
@@ -58,9 +60,19 @@ public class PolicyServiceImpl extends BaseServiceImpl<Youhuizhengce, Double>
 	public Boolean updateYouhuizhengce(Youhuizhengce youhuizhengce) {
 		return policyDao.updateYouhuizhengce(youhuizhengce);
 	}
+
 	@Override
 	public Boolean delPolicy(Double itemId) {
-		Youhuizhengce youhuizhengce=policyDao.findById(itemId);
+		Youhuizhengce youhuizhengce = policyDao.findById(itemId);
 		return policyDao.delPolicy(youhuizhengce);
+	}
+
+	@Override
+	public Boolean addNewPolicyService2(Youhuizhengce youhuizhengce,
+			Double enterpriseSituationId) {
+		youhuizhengce.setId(RandomUtils.createIdentitySerialByUUID());
+		youhuizhengce.setInfomation(basicSituationDao
+				.findById(enterpriseSituationId));
+		return policyDao.addNewPolicy(youhuizhengce);
 	}
 }

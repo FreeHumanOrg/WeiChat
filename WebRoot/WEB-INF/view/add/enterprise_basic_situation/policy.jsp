@@ -13,85 +13,123 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<title>优惠政策情况</title>
 		<link rel="stylesheet" type="text/css" href="../window/css/base.css" />
-		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<link href="../window/css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			#add1,#add2{
+				width:150px;
+			}
+			
+			#applyButton1,#applyButton2{
+				width:60px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="yhzcqk subcontent clearfloat">
-			<form id="postForm" action="<%=basePath%>policy/addPolicy.jhtml" method="post">
-				<div class="yh-cont">
-					<span class="yh-name">优惠政策1</span>
-					<div class="intbox">
-						<span class="name">协议优惠政策内容</span>
-						<input type="text" class="write" name="content" />
-						<a href="##" class="delete">删除</a>
-					</div>
-					<div class="intbox">
-						<span class="name">应兑现金额</span>
-						<input type="text" class="write" name="money" />
-						<a href="##" class="delete">删除</a>
-					</div>
-					<div class="intbox">
-						<span class="name">兑现情况</span>
-						<input type="text" class="write" name="cashsituation" />
-						<a href="##" class="delete">删除</a>
-					</div>
-					<div class="intbox lmmcbox">
-						<span class="name">输入类目名称</span>
-						<input type="text" class="lmmc write" name="typename" />
-						<a href="##" class="add">增加</a>
-					</div>
-				</div>
-			</form>
-		    <!-- <div class="yh-cont">
-				<span class="yh-name">优惠政策2</span>
-				<div class="intbox">
-					<span class="name">协议优惠政策内容</span>
-					<input type="text" class="write" />
-					<a href="##" class="delete">删除</a>
-				</div>
-				<div class="intbox">
-					<span class="name">应兑现金额</span>
-					<input type="text" class="write" />
-					<a href="##" class="delete">删除</a>
-				</div>
-				<div class="intbox">
-					<span class="name">兑现情况</span>
-					<input type="text" class="write" />
-					<a href="##" class="delete">删除</a>
-				</div>
-				<div class="intbox lmmcbox">
-					<span class="name">输入类目名称</span>
-					<input type="text"  class="lmmc write" />
-					<a href="##" class="add">增加</a>
-				</div>
-			</div> -->
-			<div class="btn">
-					<a href="javascript:document.getElementById('postForm').submit();" class="add">提交</a>
-				</div>
+			<button id="add1" class="btn btn-info" data-toggle="modal" data-target="#myModal1">添加优惠政策1</button>
+			<button id="add2" class="btn btn-info" data-toggle="modal" data-target="#myModal2">添加优惠政策2</button>
 		</div>
-		<script type="text/javascript">
-		$(".btn a.add").click(function() {
-			$('.tc', window.parent.document).show();
-		});
-		$(".intbox a.delete").live("click", function() {
-			if (confirm('确定要删除此类目吗？')) {
-				$(this).parent().remove();
-			}
-		});
 		
-		$(".intbox a.add").click(
-			function() {
-				var oLmmc = $(".intbox input.lmmc").val();
-				if (oLmmc == "") {
-					alert('请输入类目名称');
-				} else {
-					var oLm = '<div class="intbox"><span class="name">'
-							+ oLmmc
-							+ '</span><input type="text" class="write" /><a href="##" class="delete">'
-							+ '删除' + '</a></div>'
-					$("div.lmmcbox").before(oLm);
-				}
+		<!-- 模态对话框 -->
+		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+		      <div class="modal-content">
+		         <div class="modal-header">
+		            <button type="button" class="close" 
+		               data-dismiss="modal" aria-hidden="true">
+		                  &times;
+		            </button>
+		            <h4 class="modal-title" id="myModalLabel">添加优惠政策1</h4>
+		         </div>
+		         <div class="modal-body">
+					
+					<form id="postForm" action="<%=basePath%>policy/addPolicy.jhtml" method="post">
+						<span class="name">类目名称</span>
+						<input type="text" name="keystr1" class="form-control" />
+						
+						<span class="name">类目值</span>
+						<input type="text" name="valuestr1" class="form-control" />
+					</form>
+					
+		         </div>
+		         <input type="hidden" id="enterpriseId" />
+		         <div class="modal-footer">
+		            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:65px;">关闭</button>
+		            <button id="applyButton1" type="button" class="btn btn-primary">提交</button>
+		        </div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 模态对话框 -->
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+		      <div class="modal-content">
+		         <div class="modal-header">
+		            <button type="button" class="close" 
+		               data-dismiss="modal" aria-hidden="true">
+		                  &times;
+		            </button>
+		            <h4 class="modal-title" id="myModalLabel">添加优惠政策2</h4>
+		         </div>
+		         <div class="modal-body">
+					
+					<form id="postForm" action="<%=basePath%>policy/addPolicy.jhtml" method="post">
+						<span class="name">类目名称</span>
+						<input type="text" name="keystr2" class="form-control" />
+						
+						<span class="name">类目值</span>
+						<input type="text" name="valuestr2" class="form-control" />
+					</form>
+					
+		         </div>
+		         <input type="hidden" id="enterpriseId" />
+		         <div class="modal-footer">
+		            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:65px;">关闭</button>
+		            <button id="applyButton2" type="button" class="btn btn-primary">提交</button>
+		        </div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../window/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../window/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(function (){
+				$("#applyButton1").click(function (){
+					$.ajax({
+						url:'<%=basePath%>policy/addPolicy2.jhtml',
+						dataType:'json',
+						type:'post',
+						data:{key:$('input[name*=keystr1]').val(),value:$('input[name*=valuestr1]').val(),flag:1},
+						success:function (data){
+							if (data.result == 'successed') {
+								alert('恭喜！您已成功添加！');
+								window.location.reload(true);
+							} else {
+								alert('添加失败，请重试！');
+							}
+						}
+					});
+				});
+				
+				$("#applyButton2").click(function (){
+					$.ajax({
+						url:'<%=basePath%>policy/addPolicy2.jhtml',
+						dataType:'json',
+						type:'post',
+						data:{key:$('input[name*=keystr2]').val(),value:$('input[name*=valuestr2]').val(),flag:2},
+						success:function (data){
+							if (data.result == 'successed') {
+								alert('恭喜！您已成功添加！');
+								window.location.reload(true);
+							} else {
+								alert('添加失败，请重试！');
+							}
+						}
+					});
+				});
 			});
-	</script>
+		</script>
 	</body>
 </html>

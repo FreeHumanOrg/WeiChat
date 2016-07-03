@@ -35,37 +35,9 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Boolean addNewHistoryInfo(History history) {
-		// pstmt.setDouble(1, RandomUtils.createIdentitySerialByUUID());
-		// pstmt.setString(2, history.getOperatecode().toString());
-		// pstmt.setString(3, history.getOperateDateTime());
-		// pstmt.setString(4, history.getOperateType());
-		// pstmt.setString(5, history.getOperateProperty());
-		// pstmt.setString(6, history.getOperateValue());
-		// if (null == history.getInfomationId()) {
-		// pstmt.setNull(7, Types.DOUBLE);
-		// } else {
-		// pstmt.setDouble(7, history.getInfomationId());
-		// }
-
-		// Session session =
-		// hibernateTemplate.getSessionFactory().openSession();
-		// Transaction transaction = session.getTransaction();
-		// transaction.begin();
-
 		history.setId(RandomUtils.createIdentitySerialByUUID());
-		// history.setInfomation(null);
-		// history.setInfomationId(0D);
-		// history.setOperatecode(history.getOperatecode());
 		history.setOperateDateTime(DateTimeUtils
 				.getNowDateOfStringFormatUsingDateTimeTemplateOne());
-		// history.setOperateProperty("");
-		// history.setOperateType("移除你");
-		// history.setOperateValue("移除的值！");
-
-		// if (session.isOpen() == false) {
-		// session.getSessionFactory().openSession(JDBCUtils.getConnection());
-		// }
-
 		Infomation tempEntity = (Infomation) ((ServletRequestAttributes) RequestContextHolder
 				.getRequestAttributes()).getRequest().getSession()
 				.getAttribute("infomationEntity");
@@ -74,62 +46,9 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 			history.setInfomation(null);
 			history.setInfomationId(tempEntity.getId());
 		}
-
-		// Serializable result = session.save(history);
-		// session.save(history);
 		HistoryTempDTO.setHistoryEntity(history);
-
 		// 5秒后执行插入操作而不是立即插入，和上一个删除的事务隔离
 		new HistoryTimerUtils(5);
-		// transaction.commit();
-		// session.close();
-		// LOGGER.info("即将休眠历史记录插入线程。休眠时间："
-		// + DateTimeUtils
-		// .getNowDateOfStringFormatUsingDateTimeTemplateOne());
-		// try {
-		// Thread.sleep(20);
-		// } catch (InterruptedException e1) {
-		// e1.printStackTrace();
-		// }
-		// LOGGER.info("已经唤醒历史记录插入线程。唤醒时间："
-		// + DateTimeUtils
-		// .getNowDateOfStringFormatUsingDateTimeTemplateOne());
-		// Connection conn = JDBCUtils.getConnection();
-		// Boolean resultFlag = false;
-		// StringBuffer sbJDBCSql = new StringBuffer(
-		// " insert into history(id,operatecode,operateDateTime,operateType,operateProperty,operateValue,infomationId) ");
-		// sbJDBCSql.append(" values ( ");
-		// sbJDBCSql.append(" ?,?,?,?,?,?,? ");
-		// sbJDBCSql.append(" ) ");
-		//
-		// PreparedStatement pstmt = null;
-		// try {
-		// pstmt = conn.prepareStatement(sbJDBCSql.toString());
-		// pstmt.setDouble(1, RandomUtils.createIdentitySerialByUUID());
-		// pstmt.setString(2, history.getOperatecode().toString());
-		// pstmt.setString(3, history.getOperateDateTime());
-		// pstmt.setString(4, history.getOperateType());
-		// pstmt.setString(5, history.getOperateProperty());
-		// pstmt.setString(6, history.getOperateValue());
-		// if (null == history.getInfomationId()) {
-		// pstmt.setNull(7, Types.DOUBLE);
-		// } else {
-		// pstmt.setDouble(7, history.getInfomationId());
-		// }
-		// resultFlag = pstmt.execute();
-		// LOGGER.info("使用JDBC新增历史记录成功！"
-		// + DateTimeUtils
-		// .getNowDateOfStringFormatUsingDateTimeTemplateOne());
-		//
-		// } catch (SQLException e) {
-		// e.printStackTrace();
-		// LOGGER.error("使用JDBC新增历史记录失败！"
-		// + DateTimeUtils
-		// .getNowDateOfStringFormatUsingDateTimeTemplateOne());
-		// }
-		// JDBCUtils.close(null, pstmt, conn);
-		//
-		// return resultFlag;
 		return true;
 	}
 

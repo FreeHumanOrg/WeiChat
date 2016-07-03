@@ -84,6 +84,35 @@ public class PolicyController {
 	}
 
 	/**
+	 * 添加优惠政策情况2.
+	 * 
+	 * @param modelMap
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/addPolicy2", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> addPolicy2(HttpServletRequest request,
+			ModelMap modelMap, String key, String value, String flag)
+			throws IOException {
+		Map<String, String> resultMap = new HashMap<String, String>();
+
+		Youhuizhengce youhuizhengce = new Youhuizhengce();
+		youhuizhengce.setKeystr(key);
+		youhuizhengce.setValuestr(value);
+		youhuizhengce.setNum(flag);
+		if (policyService.addNewPolicyService2(
+				youhuizhengce,
+				Double.valueOf(request.getSession()
+						.getAttribute("enterpriseId").toString()))) {
+			resultMap.put("result", "successed");
+		} else {
+			resultMap.put("result", "failed");
+		}
+		return resultMap;
+	}
+
+	/**
 	 * 添加优惠政策情况.
 	 * 
 	 * @param modelMap
@@ -96,7 +125,8 @@ public class PolicyController {
 			@ModelAttribute Youhuizhengce youhuizhengce) throws IOException {
 		StringBuffer sbResult = new StringBuffer();
 
-		if (policyService.addNewPolicyService(youhuizhengce, youhuizhengce.getInfomation().getId())) {
+		if (policyService.addNewPolicyService(youhuizhengce, youhuizhengce
+				.getInfomation().getId())) {
 			sbResult.append("<script>alert('恭喜！数据已成功录入。请继续添加相关的信息。'); parent.location.reload(true);</script>");
 		} else {
 			sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); history.go(-1);</script>");

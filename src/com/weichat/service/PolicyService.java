@@ -19,14 +19,18 @@ public interface PolicyService extends BaseService<Youhuizhengce, Double> {
 	List<Youhuizhengce> findYouhuisById(Double id);
 
 	Youhuizhengce findYouhuizhengceById(Double id);
+
 	/**
 	 * 查询优惠政策情况是否存在
+	 * 
 	 * @param id
 	 * @return
 	 */
 	Boolean checkYouhuizhengce(Double id);
+
 	/**
 	 * 修改优惠政策情况
+	 * 
 	 * @param youhuizhengce
 	 * @return
 	 */
@@ -41,6 +45,16 @@ public interface PolicyService extends BaseService<Youhuizhengce, Double> {
 	 */
 	Boolean addNewPolicyService(Youhuizhengce youhuizhengce,
 			Double enterpriseSituationId);
-	
+
+	/**
+	 * 添加一个优惠政策情况2.
+	 * 
+	 * @param youhuizhengce
+	 * @param enterpriseSituationId
+	 * @return
+	 */
+	Boolean addNewPolicyService2(Youhuizhengce youhuizhengce,
+			Double enterpriseSituationId);
+
 	Boolean delPolicy(Double itemId);
 }
