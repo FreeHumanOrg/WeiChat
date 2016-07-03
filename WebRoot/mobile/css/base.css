@@ -124,6 +124,15 @@ p.title{font-size: 2em;width: 100%;clear: both;display: block;margin-bottom: 10p
 .search table tr td{text-align: center;height: 26px;}
 .search table tr td a{color: #56abe4;}
 
+/*历史记录*/
+body.body-h{background: #efeff5;}
+.history{margin:0px 10px;overflow: hidden;clear: both;}
+.history_con{background: #fff;margin-top: 20px;font-size: 1.4em;}
+.history_con p{height: 30px;line-height: 30px;border-bottom: 1px solid #efefef;padding: 10px 10px 10px 10px;}
+.history_con p img{width: 30px;height: 30px;border-radius: 30px;margin-right: 10px;}
+.history_con p i{color: #a6a6a7;}
+.history_con span{padding:0 10px;height: 30px;line-height: 30px;color: #070707;display: block;border-bottom: 1px solid #efefef;}
+
 
 
 

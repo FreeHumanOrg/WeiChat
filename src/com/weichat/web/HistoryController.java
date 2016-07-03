@@ -42,4 +42,19 @@ public class HistoryController {
 		modelMap.addAttribute("histories", histories);
 		return "/home/history";
 	}
+	
+	/**
+	 * 手机端显示历史记录.
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/historymobileshow", method = RequestMethod.GET)
+	public String historyMobileShow(ModelMap modelMap) {
+		List<History> histories = historyService.findAllHistoryInfoService();
+		modelMap.addAttribute("histories", histories);
+		return "/mobile/home/history";
+	}
+	
 }

@@ -9,9 +9,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>历史记录</title>
-		<link rel="stylesheet" type="text/css" href="<%=basePath %>window/css/base.css" />
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name=" apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>企业历史记录</title>
+    <meta http-equiv="keywords" content="企业">
+    <meta http-equiv="description" content="企业">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<%=basePath %>mobile/css/base.css" />
 	</head>
 	<body>
 		<div class="history">
@@ -20,12 +26,11 @@
 					<c:forEach items="${histories }" var="items">
 						<div class="history_con">
 							<p class="clearfloat">
-								<img src="<%=basePath %>window/img/head_pic.png" class="fleft"/>
+								<img src="<%=basePath %>mobile/img/head_pic.png" class="fleft"/>
 								<c:forEach items="${items.infomation.users }" var="userItem">
 									${userItem.username }
 								</c:forEach>
 								<i class="fright">${items.operateDateTime }</i>
-								<i class="fright">${items.operateType }</i>
 							</p>
 							<span>
 								${items.operateValue }
@@ -37,30 +42,6 @@
 					暂无历史记录！
 				</c:otherwise>
 			</c:choose>
-			
-			<%-- <div class="history_con">
-				<p class="clearfloat">
-					<img src="<%=basePath %>window/img/head_pic.png" class="fleft"/>
-					肖玉芳
-					<i class="fright">2016.11.11  16:00</i>
-				</p>
-				<span>
-					修改客户分级：一级
-				</span>
-			</div> --%>
-			<%-- <div class="history_con">
-				<p class="clearfloat">
-					<img src="<%=basePath %>window/img/head_pic.png" class="fleft"/>
-					肖玉芳
-					<i class="fright">2016.11.11  16:00</i>
-				</p>
-				<span>
-					删除联系人：联系人信息为空
-				</span>
-				<span>
-					新增联系人电话：15757176695
-				</span>
-			</div> --%>
 		</div>
 	</body>
 </html>
