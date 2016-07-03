@@ -53,6 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<input name="">
 				<a href="##" class="sousuo" onclick="document.getElementById('paginationForm').submit();">搜索</a> 
 				<a href="/WeiChat/addindexmobile/frame.jhtml" class="new">新建</a>
+				<a href="/WeiChat/history/historyshow.jhtml" class="new">历史</a>
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
