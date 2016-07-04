@@ -84,9 +84,10 @@ public class MyJob{
 		JSONObject jsonObject=JSONObject.fromObject(sRet);
 		//此处需要处理
 		//{"error":"参数校验错误","data":null,"errorCode":"-16","success":false}
-		if(jsonObject.get("success").equals(false)){
-			return;
-		}
+		//{"total":8,"ret":8,"list":[{"openId":"8a25e3ed540dd92901540dd96b950001","name":"zhengxy001","account":"zhengxy001","email":null,"mobile":null,"sex":1,"jobnumber":null,"department":null,"gmtModify":1460521233000,"position":null,"status":1},{"openId":"8a25e3ed540dd92901540e25529d0004","name":"admin8","account":"admin8","email":null,"mobile":null,"sex":1,"jobnumber":null,"department":null,"gmtModify":1460526213000,"position":null,"status":4},{"openId":"4028803e4ca378ab014ca3792d1f0001","name":"admin","account":"admin","email":null,"mobile":"13588022831","sex":null,"jobnumber":null,"department":null,"gmtModify":1460545517000,"position":null,"status":1},{"openId":"8a25e3ed5413f6840155801d8a800043","name":"test001","account":"test001","email":null,"mobile":null,"sex":1,"jobnumber":null,"department":null,"gmtModify":1466733275000,"position":null,"status":1},{"openId":"8a25e3ed540dd92901540dd929580000","name":"单建华","account":"sjh001","email":null,"mobile":null,"sex":1,"jobnumber":null,"department":null,"gmtModify":1466733309000,"position":null,"status":1},{"openId":"8a25e3ed540dd92901540dd99f3e0002","name":"立洋","account":"qily001","email":null,"mobile":null,"sex":1,"jobnumber":null,"department":null,"gmtModify":1466733336000,"position":null,"status":1},{"openId":"8a25e3ed55906b400155906b40f50000","name":"寇洋","account":"kouyang001","email":null,"mobile":null,"sex":1,"jobnumber":null,"department":null,"gmtModify":1467006796000,"position":null,"status":1},{"openId":"8a25e3ed540dd92901540e24c48f0003","name":"sam001","account":"sam001","email":null,"mobile":null,"sex":1,"jobnumber":null,"department":null,"gmtModify":1467198128000,"position":null,"status":1}]}
+//		if(jsonObject.get("success").equals(false)){
+//			return;
+//		}
 		JSONArray jsonArray=jsonObject.getJSONArray("list");
 				
 		List<String>strs=new ArrayList<>();
