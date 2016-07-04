@@ -305,6 +305,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    data: {"enterpriseSituationId" : eId , "progressValue" : pValue},
 					    dataType : "json",
 					    type: "POST",          
+					    async:false,
 					    success: function (data) {
 					        if (data.result == "success") {
 								alert("恭喜！更改跟进进度信息操作成功！");
