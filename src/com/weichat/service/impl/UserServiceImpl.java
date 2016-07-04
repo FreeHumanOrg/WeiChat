@@ -46,4 +46,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Double> implements
 	public User findUserByOpenId(String openId) {
 		return userDao.findUserByOpenId(openId);
 	}
+
+	@Override
+	public User findUserByOperateCodeService(Double operateCode) {
+		return userDao.findUserByOperateCode(operateCode);
+	}
 }

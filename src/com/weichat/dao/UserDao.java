@@ -17,10 +17,11 @@ import com.weichat.model.User;
  */
 public interface UserDao extends BaseDao<User, Double> {
 	List<User> findAll();
-	
+
 	Boolean addUser(User user);
-	
+
 	User findUserByOpenId(String openId);
+
 	/**
 	 * 根据多个跟进人编号查询多个跟进人信息.
 	 * 
@@ -28,4 +29,12 @@ public interface UserDao extends BaseDao<User, Double> {
 	 * @return
 	 */
 	List<User> findUsersByIds(String[] genJinRenIds);
+
+	/**
+	 * 根据操作人编号查找用户信息.
+	 * 
+	 * @param operateCode
+	 * @return
+	 */
+	User findUserByOperateCode(Double operateCode);
 }

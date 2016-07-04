@@ -67,11 +67,26 @@ public class UserDaoImpl extends BaseDaoImpl<User, Double> implements UserDao {
 
 	@Override
 	public User findUserByOpenId(String openId) {
-		List<User>users=this.hibernateTemplate.find("from User t where t.openid=?",new Object[]{openId});
-		if(users!=null&&users.size()>0){
+		List<User> users = this.hibernateTemplate.find(
+				"from User t where t.openid=?", new Object[] { openId });
+		if (users != null && users.size() > 0) {
 			return users.get(0);
-		}else{
+		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public User findUserByOperateCode(final Double operateCode) {
+		return hibernateTemplate.execute(new HibernateCallback<User>() {
+			@Override
+			public User doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				return (User) session
+						.createQuery("from User u where u.id = :operateCode")
+						.setParameter("operateCode", operateCode)
+						.uniqueResult();
+			}
+		});
 	}
 }

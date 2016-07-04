@@ -17,10 +17,11 @@ import com.weichat.model.User;
  */
 public interface UserService extends BaseService<User, Double> {
 	List<User> findAllService();
-	
+
 	Boolean addUser(User user);
-	
+
 	User findUserByOpenId(String openId);
+
 	/**
 	 * 根据多个跟进人编号查询多个跟进人信息.
 	 * 
@@ -28,4 +29,12 @@ public interface UserService extends BaseService<User, Double> {
 	 * @return
 	 */
 	List<User> findUsersByIdsService(String[] genJinRenIds);
+
+	/**
+	 * 根据操作人编号查找用户信息.
+	 * 
+	 * @param operateCode
+	 * @return
+	 */
+	User findUserByOperateCodeService(Double operateCode);
 }

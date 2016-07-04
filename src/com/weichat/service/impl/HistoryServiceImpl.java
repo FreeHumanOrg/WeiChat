@@ -59,7 +59,10 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 				// 否则如果是新增
 			} else {
 				// 则设置Infomation为空
-				entity.setInfomation(null);
+				User u = (User) ((ServletRequestAttributes) RequestContextHolder
+						.getRequestAttributes()).getRequest().getSession()
+						.getAttribute("userInfo");
+				entity.setInfomation(u.getInfomation());
 			}
 		} else {
 			// 操作除企业基本信息之外的实体类也要分情况
