@@ -39,7 +39,7 @@ public interface BaseService<T, ID extends Serializable> {
 	 * @param pageable
 	 * @return
 	 */
-	Page<T> findPageService(Page<T> pageable, SearchType searchType);
+	Page<T> findPageService(Page<T> pageable, SearchType searchType,String mcoid);
 
 	/**
 	 * 持久化实体对象.

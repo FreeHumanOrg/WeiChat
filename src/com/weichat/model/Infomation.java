@@ -34,6 +34,11 @@ public class Infomation implements java.io.Serializable, IHistory {
 	 * 企业ID
 	 */
 	private Double id;
+	
+	/**
+	 * mcoid用来区分企业信息属于哪个企业
+	 */
+	private String mcoid;
 
 	/**
 	 * 产品描述
@@ -155,7 +160,7 @@ public class Infomation implements java.io.Serializable, IHistory {
 	public Infomation() {
 	}
 
-	public Infomation(Double id, String productdes, String name,
+	public Infomation(Double id, String mcoid,String productdes, String name,
 			String industrycode, String contacts, String enterprisewebsite,
 			String area, String estimated, String begintime,
 			String productname, String dustry, String legalperson,
@@ -174,6 +179,7 @@ public class Infomation implements java.io.Serializable, IHistory {
 			Set<Project> projects, Set<Guotu> guotus) {
 		this.id = id;
 		this.productdes = productdes;
+		this.mcoid=mcoid;
 		this.name = name;
 		this.industrycode = industrycode;
 		this.contacts = contacts;
@@ -219,6 +225,15 @@ public class Infomation implements java.io.Serializable, IHistory {
 
 	public void setId(Double id) {
 		this.id = id;
+	}
+	
+	@Column(name = "mcoid", length = 10)
+	public String getMcoid() {
+		return mcoid;
+	}
+
+	public void setMcoid(String mcoid) {
+		this.mcoid = mcoid;
 	}
 
 	@Column(name = "productdes", length = 600)

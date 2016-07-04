@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,12 +87,14 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/ebu", method = RequestMethod.POST)
-	public void enterpriseBasicSituationUpdate(HttpServletResponse response,
+	public void enterpriseBasicSituationUpdate(HttpSession session,HttpServletResponse response,
 			@ModelAttribute Infomation infomation) throws IOException {
 		LOGGER.info("手机端企业基本情况修改!"
 				+ DateTimeUtils
 						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		StringBuffer sbResult = new StringBuffer();
+		String mcoid=(String)session.getAttribute("mcoid");
+		infomation.setMcoid(mcoid);//mcoid
 		if (companyService.updateInfomation(infomation)) {
 			sbResult.append("<script>alert('恭喜！数据已成功修改。'); parent.location.href='../company/mobilelist.jhtml';</script>");
 		} else {
@@ -111,8 +114,9 @@ public class CompanyController {
 	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String companylist(ModelMap modelMap,
-			@ModelAttribute Page<Infomation> page) {
-		Page<Infomation> list = companyService.findAllService(page);
+			@ModelAttribute Page<Infomation> page,HttpSession session) {
+		String mcoid=(String)session.getAttribute("mcoid");
+		Page<Infomation> list = companyService.findAllService(page,mcoid);
 		modelMap.addAttribute("page", list);
 		return "/mobile/home/companylist";
 	}

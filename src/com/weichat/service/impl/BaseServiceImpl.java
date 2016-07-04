@@ -3,6 +3,7 @@ package com.weichat.service.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.INEG;
 import com.weichat.dao.BaseDao;
 import com.weichat.dao.impl.BaseDaoImpl.SearchType;
 import com.weichat.service.BaseService;
@@ -42,8 +43,8 @@ public class BaseServiceImpl<T, ID extends Serializable> implements
 	}
 
 	@Override
-	public Page<T> findPageService(Page<T> pageable, SearchType searchType) {
-		return baseDao.findPage(pageable, searchType);
+	public Page<T> findPageService(Page<T> pageable, SearchType searchType,String mcoid) {
+		return baseDao.findPage(pageable, searchType,mcoid);
 	}
 
 	@Override

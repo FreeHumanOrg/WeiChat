@@ -15,7 +15,7 @@ import com.weichat.util.Page;
  * @version 1.0 Beta
  */
 public interface CompanyDao extends BaseDao<Infomation, Double> {
-	Page<Infomation> findAll(Page<Infomation> pageable);
+	Page<Infomation> findAll(Page<Infomation> pageable,String mcoid);
 
 	Infomation findInfomationById(Double id);
 

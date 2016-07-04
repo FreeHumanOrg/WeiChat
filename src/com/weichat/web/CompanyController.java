@@ -114,16 +114,18 @@ public class CompanyController {
 							session.setAttribute("openId", openId);// 将用户openId放到session
 							session.setAttribute("account", user.getAccount());
 							session.setAttribute("userInfo", user);
+							session.setAttribute("mcoid", mCoId);
 							Page<Infomation> list = companyService
-									.findAllService(page);
+									.findAllService(page,mCoId);
 							modelMap.addAttribute("page", list);
 							return "/home/companylist";
 						} else {// app端登录
 							session.setAttribute("openId", openId);// 将用户openId放到session
 							session.setAttribute("account", user.getAccount());
 							session.setAttribute("userInfo", user);
+							session.setAttribute("mcoid", mCoId);
 							Page<Infomation> list = companyService
-									.findAllService(page);
+									.findAllService(page,mCoId);
 							modelMap.addAttribute("page", list);
 							return "/mobile/home/companylist";
 						}
@@ -148,8 +150,9 @@ public class CompanyController {
 	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String companylist(ModelMap modelMap,
-			@ModelAttribute Page<Infomation> page) {
-		Page<Infomation> list = companyService.findAllService(page);
+			@ModelAttribute Page<Infomation> page,HttpSession session) {
+		String mcoid=(String)session.getAttribute("mcoid");
+		Page<Infomation> list = companyService.findAllService(page,mcoid);
 		modelMap.addAttribute("page", list);
 		return "/home/companylist";
 	}
@@ -196,19 +199,22 @@ public class CompanyController {
 	@RequestMapping(value = "/mobilelist", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String mobilelist(ModelMap modelMap,
-			@ModelAttribute Page<Infomation> page) {
-		Page<Infomation> list = companyService.findAllService(page);
+			@ModelAttribute Page<Infomation> page,HttpSession session) {
+		String mcoid=(String)session.getAttribute("mcoid");
+		Page<Infomation> list = companyService.findAllService(page,mcoid);
 		modelMap.addAttribute("page", list);
 		return "/mobile/home/companylist";
 	}
 
 	@RequestMapping(value = "/ebu", method = RequestMethod.POST)
-	public void enterpriseBasicSituationUpdate(HttpServletResponse response,
+	public void enterpriseBasicSituationUpdate(HttpSession session,HttpServletResponse response,
 			@ModelAttribute Infomation infomation) throws IOException {
 		LOGGER.info("企业基本情况修改!"
 				+ DateTimeUtils
 						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		StringBuffer sbResult = new StringBuffer();
+		String mcoid=(String)session.getAttribute("mcoid");
+		infomation.setMcoid(mcoid);//mcoid
 		if (companyService.updateInfomation(infomation)) {
 			sbResult.append("<script>alert('恭喜！数据已成功修改。'); parent.location.href='../company/companylist.jhtml';</script>");
 		} else {

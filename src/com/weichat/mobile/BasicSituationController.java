@@ -50,6 +50,8 @@ public class BasicSituationController {
 			ModelMap modelMap, @ModelAttribute Infomation infomation)
 			throws IOException {
 		StringBuffer sbResult = new StringBuffer();
+		String mcoid=(String)request.getSession().getAttribute("mcoid");
+		infomation.setMcoid(mcoid);//…Ë÷√mcoid
 		if (basicSituationService
 				.addBasicSituationOfEnterpriseService(infomation) != -1.0) {
 			request.getSession().setAttribute("enterpriseId",

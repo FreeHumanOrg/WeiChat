@@ -27,10 +27,10 @@ public class CompanyDaoImpl extends BaseDaoImpl<Infomation, Double> implements
 			.getLogger(CompanyDaoImpl.class);
 
 	@Override
-	public Page<Infomation> findAll(Page<Infomation> pageable) {
+	public Page<Infomation> findAll(Page<Infomation> pageable,String mcoid) {
 		// return this.hibernateTemplate.find("from Infomation");
 		// return super.findAll();
-		return super.findPage(pageable, SearchType.ILIKE);//修改搜索类型为模糊匹配
+		return super.findPage(pageable, SearchType.ILIKE,mcoid);//修改搜索类型为模糊匹配
 	}
 
 	@Override

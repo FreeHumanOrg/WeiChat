@@ -28,8 +28,8 @@ public class CompanyServiceImpl extends BaseServiceImpl<Infomation, Double>
 	private CompanyDao companyDao;
 
 	@Override
-	public Page<Infomation> findAllService(Page<Infomation> pageable) {
-		return companyDao.findAll(pageable);
+	public Page<Infomation> findAllService(Page<Infomation> pageable,String mcoid) {
+		return companyDao.findAll(pageable,mcoid);
 	}
 
 	@Override

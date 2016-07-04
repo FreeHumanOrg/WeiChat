@@ -15,7 +15,7 @@ import com.weichat.util.Page;
  * @version 1.0 Beta
  */
 public interface CompanyService extends BaseService<Infomation, Double> {
-	Page<Infomation> findAllService(Page<Infomation> pageable);
+	Page<Infomation> findAllService(Page<Infomation> pageable,String mcoid);
 
 	Infomation findInfomationById(Double id);
 
