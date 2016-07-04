@@ -7,9 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import com.weichat.interceptor.IHistory;
 
 /**
  * 用户实体类
@@ -24,7 +21,7 @@ import com.weichat.interceptor.IHistory;
  */
 @Entity
 @Table(name = "user", catalog = "new")
-public class User implements java.io.Serializable, IHistory {
+public class User implements java.io.Serializable {
 	private static final long serialVersionUID = 1802126823255466815L;
 
 	private Double id;
@@ -226,24 +223,24 @@ public class User implements java.io.Serializable, IHistory {
 		this.account = account;
 	}
 
-	/**
-	 * 实现了IHistory接口，重写getLogDetail()方法
-	 */
-	@Transient
-	@Override
-	public String getLogDetail() {
-		StringBuffer sbLog = new StringBuffer();
-		sbLog.append("用户名：" + username);
-		sbLog.append(";密码：" + password);
-		sbLog.append(";邮箱：" + email);
-		sbLog.append(";地区：" + place);
-		sbLog.append(";描述：" + des);
-		sbLog.append(";爱好：" + hobbit);
-		sbLog.append(";用户类型：" + usertype);
-		sbLog.append(";注册类型：" + zhucetype);
-		sbLog.append(";用户姓名：" + name);
-		sbLog.append(";远端客户编号：" + openid);
-		sbLog.append(";远端账户信息：" + account);
-		return sbLog.toString();
-	}
+	// /**
+	// * 实现了IHistory接口，重写getLogDetail()方法
+	// */
+	// @Transient
+	// @Override
+	// public String getLogDetail() {
+	// StringBuffer sbLog = new StringBuffer();
+	// sbLog.append("用户名：" + username);
+	// sbLog.append(";密码：" + password);
+	// sbLog.append(";邮箱：" + email);
+	// sbLog.append(";地区：" + place);
+	// sbLog.append(";描述：" + des);
+	// sbLog.append(";爱好：" + hobbit);
+	// sbLog.append(";用户类型：" + usertype);
+	// sbLog.append(";注册类型：" + zhucetype);
+	// sbLog.append(";用户姓名：" + name);
+	// sbLog.append(";远端客户编号：" + openid);
+	// sbLog.append(";远端账户信息：" + account);
+	// return sbLog.toString();
+	// }
 }

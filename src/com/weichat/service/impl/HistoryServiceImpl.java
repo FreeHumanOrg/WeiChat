@@ -317,10 +317,10 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 			} else if (logInfomations instanceof Qiyefazhan) {
 				Qiyefazhan qiyefazhan = (Qiyefazhan) logInfomations;
 				entity.setOperateValue(qiyefazhan.getLogDetail());
-			} else if (logInfomations instanceof User) {
-				User user = (User) logInfomations;
-				entity.setOperateValue(user.getLogDetail());
-			} else if (logInfomations instanceof Yaosu) {
+			} /*
+			 * else if (logInfomations instanceof User) { User user = (User)
+			 * logInfomations; entity.setOperateValue(user.getLogDetail()); }
+			 */else if (logInfomations instanceof Yaosu) {
 				Yaosu yaosu = (Yaosu) logInfomations;
 				entity.setOperateValue(yaosu.getLogDetail());
 			} else if (logInfomations instanceof Youhuizhengce) {
