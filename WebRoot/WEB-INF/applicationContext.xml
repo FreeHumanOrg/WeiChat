@@ -104,9 +104,9 @@
         </property>  
         <property name="cronExpression">  
             <!-- 每隔一秒钟执行一次 -->  
-			<!--<value>0/60 * * * * ?</value>    -->
+			<value>0/60 * * * * ?</value>    
 			<!--每隔两小时同步一次用户信息  -->
- 			<value>0 0 */2 * * ? </value>
+<!--  			<value>0 0 */2 * * ? </value> -->
         </property>  
     </bean>  
     
