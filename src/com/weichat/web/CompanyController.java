@@ -1,9 +1,6 @@
 package com.weichat.web;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,9 +40,7 @@ import com.weichat.util.Page;
  * 
  * 
  * 项目名称：WeiChat 类名称：CompanyController.java 类描述：TODO 创建人：李帅康 创建时间：下午10:23:37
- * 修改人：李帅康 
- * 修改时间：2016-06-29 下午15:33:00 
- * 修改备注：添加用户信息验证方法
+ * 修改人：李帅康 修改时间：2016-06-29 下午15:33:00 修改备注：添加用户信息验证方法
  * 
  * FreeHuman Soft Team
  * 
@@ -62,8 +57,10 @@ public class CompanyController {
 
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
+
 	/**
 	 * 用户信息验证
+	 * 
 	 * @param session
 	 * @param request
 	 * @param response
@@ -71,68 +68,76 @@ public class CompanyController {
 	 * @param page
 	 * @return
 	 */
-	@RequestMapping(value="/useraccess",method={RequestMethod.POST,RequestMethod.GET})
-	public String useraccess(HttpSession session,HttpServletRequest request,HttpServletResponse response,ModelMap modelMap,@ModelAttribute Page<Infomation> page){
-		String openId="",time="",mCoId="",s="";
-		//da72dd333788ad10fedf2db1ac514748   private_key
-		String c=request.getParameter("c");
-		String decryptstr=EncryptUtils.aesDecrypt("da72dd333788ad10fedf2db1ac514748", c);//解密
+	@RequestMapping(value = "/useraccess", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String useraccess(HttpSession session, HttpServletRequest request,
+			HttpServletResponse response, ModelMap modelMap,
+			@ModelAttribute Page<Infomation> page) {
+		String openId = "", time = "", mCoId = "", s = "";
+		// da72dd333788ad10fedf2db1ac514748 private_key
+		String c = request.getParameter("c");
+		String decryptstr = EncryptUtils.aesDecrypt(
+				"da72dd333788ad10fedf2db1ac514748", c);// 解密
 		System.out.println(decryptstr);
-		String[] strs=decryptstr.split("&");
+		String[] strs = decryptstr.split("&");
 		for (String str : strs) {
-			String[] r=str.split("=");
-			if(r[0].equals("openId")){
-				openId=r[1];
-			}else if(r[0].equals("time")){
-				time=r[1];
-			}else if(r[0].equals("mCoId")){
-				mCoId=r[1];
-			}else if(r[0].equals("s")){
-				s=r[1];
+			String[] r = str.split("=");
+			if (r[0].equals("openId")) {
+				openId = r[1];
+			} else if (r[0].equals("time")) {
+				time = r[1];
+			} else if (r[0].equals("mCoId")) {
+				mCoId = r[1];
+			} else if (r[0].equals("s")) {
+				s = r[1];
 			}
 		}
-		//获取当前时间，与time比较，超时处理
-		Date datenow=new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date=null;
+		// 获取当前时间，与time比较，超时处理
+		Date datenow = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = null;
 		try {
 			date = sdf.parse(time);
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		System.out.println((datenow.getTime()-date.getTime())/60000);
-		if(((datenow.getTime()-date.getTime())/60000)>60){//时差>10min
+		System.out.println((datenow.getTime() - date.getTime()) / 60000);
+		if (((datenow.getTime() - date.getTime()) / 60000) > 60) {// 时差>10min
 			return "/404";
-		}else{
-		//判断用户是否存在
-		if(openId!=""){
-			try {
-				User user=userService.findUserByOpenId(openId);
-				if(user!=null){//用户存在
-					if(s.equals("web")){//pc端登录
-						session.setAttribute("openId", openId);//将用户openId放到session
-						session.setAttribute("account", user.getAccount());
-						Page<Infomation> list = companyService.findAllService(page);
-						modelMap.addAttribute("page", list);
-						return "/home/companylist";
-					}else{//app端登录
-						session.setAttribute("openId", openId);//将用户openId放到session
-						session.setAttribute("account", user.getAccount());
-						Page<Infomation> list = companyService.findAllService(page);
-						modelMap.addAttribute("page", list);
-						return "/mobile/home/companylist";
+		} else {
+			// 判断用户是否存在
+			if (openId != "") {
+				try {
+					User user = userService.findUserByOpenId(openId);
+					if (user != null) {// 用户存在
+						if (s.equals("web")) {// pc端登录
+							session.setAttribute("openId", openId);// 将用户openId放到session
+							session.setAttribute("account", user.getAccount());
+							session.setAttribute("userInfo", user);
+							Page<Infomation> list = companyService
+									.findAllService(page);
+							modelMap.addAttribute("page", list);
+							return "/home/companylist";
+						} else {// app端登录
+							session.setAttribute("openId", openId);// 将用户openId放到session
+							session.setAttribute("account", user.getAccount());
+							session.setAttribute("userInfo", user);
+							Page<Infomation> list = companyService
+									.findAllService(page);
+							modelMap.addAttribute("page", list);
+							return "/mobile/home/companylist";
+						}
+					} else {// 用户不存在
+						return "/404";
 					}
-				}else{//用户不存在
+				} catch (Exception e) {// 服务器查询异常
 					return "/404";
 				}
-			} catch (Exception e) {//服务器查询异常
+			} else {// 参数不完全
 				return "/404";
 			}
-		}else{//参数不完全
-			return "/404";
 		}
 	}
-}
 
 	/**
 	 * 企业列表（主页）
@@ -140,7 +145,8 @@ public class CompanyController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,RequestMethod.GET })
+	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,
+			RequestMethod.GET })
 	public String companylist(ModelMap modelMap,
 			@ModelAttribute Page<Infomation> page) {
 		Page<Infomation> list = companyService.findAllService(page);
@@ -156,7 +162,8 @@ public class CompanyController {
 	 */
 	@RequestMapping(value = "/companyshow", method = RequestMethod.GET)
 	public String companyshow(HttpServletRequest request, ModelMap modelMap) {
-		System.out.println("----------------------进入查询企业详情方法----------------------");
+		System.out
+				.println("----------------------进入查询企业详情方法----------------------");
 		Double id = Double.parseDouble(request.getParameter("id"));
 		modelMap.addAttribute("company", companyService.findInfomationById(id));
 		return "/update/common/frame";

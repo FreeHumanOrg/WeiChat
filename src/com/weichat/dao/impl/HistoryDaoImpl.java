@@ -13,6 +13,7 @@ import com.weichat.dto.HistoryTempDTO;
 import com.weichat.interceptor.HistoryRecordInterceptor.OperateType;
 import com.weichat.model.History;
 import com.weichat.model.Infomation;
+import com.weichat.model.User;
 import com.weichat.util.DateTimeUtils;
 import com.weichat.util.HistoryTimerUtils;
 import com.weichat.util.RandomUtils;
@@ -41,7 +42,10 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 		Infomation tempEntity = (Infomation) ((ServletRequestAttributes) RequestContextHolder
 				.getRequestAttributes()).getRequest().getSession()
 				.getAttribute("infomationEntity");
-
+		User u = (User) ((ServletRequestAttributes) RequestContextHolder
+				.getRequestAttributes()).getRequest().getSession()
+				.getAttribute("userInfo");
+		history.setOperatecode(u.getId());
 		if (history.getOperateType().contains(OperateType.DELETE.getValue())) {
 			history.setInfomation(null);
 			history.setInfomationId(tempEntity.getId());
