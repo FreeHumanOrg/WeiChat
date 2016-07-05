@@ -43,7 +43,7 @@ public class MyJob{
 	private static WeqiaClient initWeqiaClient(){
 		//192.168.0.27
 		//return new WeqiaClient("2205794","30bbcdb301cfc56390e4e25849ff0f25");
-		return new WeqiaClient("jingtang_test", "da72dd333788ad10fedf2db1ac514748");
+		return new WeqiaClient("jingtang_test", "da72dd333788ad10fedf2db1ac514748","");
 		//192.168.0.81≤‚ ‘ª∑æ≥
 //		return new WeqiaClient("jingtang_test","da72dd333788ad10fedf2db1ac514748");
 		
