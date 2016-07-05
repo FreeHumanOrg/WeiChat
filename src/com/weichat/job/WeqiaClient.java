@@ -38,12 +38,12 @@ public class WeqiaClient {
 	// private String private_key = "30bbcdb301cfc56390e4e25849ff0f25";
 	// * private String private_key = "da72dd333788ad10fedf2db1ac514748";
 
-	private String serviceUrl, cono, private_key;
+	private String serviceurl, cono, private_key;
 
 	public WeqiaClient() {
 		Properties prop = PropertiesUtils
 				.getPropertiesFileAsObject("global.properties");
-		serviceUrl = prop.getProperty("weiqia.serviceurl");
+		serviceurl = prop.getProperty("weiqia.serviceurl");
 		cono = prop.getProperty("weiqia.cono");
 		private_key = prop.getProperty("weiqia.privatekey");
 	}
@@ -51,9 +51,10 @@ public class WeqiaClient {
 	/*
 	 * 构造函数
 	 */
-	public WeqiaClient(String cono, String private_key) {
+	public WeqiaClient(String cono, String private_key,String serviceurl) {
 		this.cono = cono;
 		this.private_key = private_key;
+		this.serviceurl=serviceurl;
 	}
 
 	/**
@@ -133,7 +134,7 @@ public class WeqiaClient {
 		HttpClient httpClient = new HttpClient();
 		httpClient.getParams().setContentCharset("UTF-8");
 
-		PostMethod postMethod = new PostMethod(serviceUrl);
+		PostMethod postMethod = new PostMethod(serviceurl);
 
 		// 将表单的值放入postMethod中
 		postMethod.setRequestBody(data);
