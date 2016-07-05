@@ -12,7 +12,9 @@
 	<context:component-scan base-package="com.weichat.*" />
 	<!-- 支持aop注解 -->
 	<aop:aspectj-autoproxy />
-	<context:property-placeholder location="classpath:/hibernate.properties" />
+	
+	<!-- 通配符加载属性文件 -->
+	<context:property-placeholder location="classpath:/*.properties" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -103,10 +105,12 @@
             <ref bean="myJobDetail" />  
         </property>  
         <property name="cronExpression">  
-            <!-- 每隔一秒钟执行一次 -->  
-			<value>0/60 * * * * ?</value>    
+            <!-- 每隔一秒钟执行一次 -->
+            <value>${autojob.cron}</value>  
+			<!-- <value>0/60 * * * * ?</value> -->
+
 			<!--每隔两小时同步一次用户信息  -->
-<!--  			<value>0 0 */2 * * ? </value> -->
+			<!-- <value>0 0 */2 * * ? </value> -->
         </property>  
     </bean>  
     

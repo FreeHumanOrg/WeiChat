@@ -32,7 +32,7 @@ public class PropertiesUtils {
 		InputStream in;
 		try {
 			String path = Thread.currentThread().getContextClassLoader()
-					.getResource("").getPath()
+					.getResource("").getPath().replace("%20", " ")
 					+ propertiesFileName;
 			in = new BufferedInputStream(new FileInputStream(
 					path.substring(path.indexOf("/"))));
