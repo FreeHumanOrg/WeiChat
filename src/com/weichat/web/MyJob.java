@@ -35,7 +35,7 @@ public class MyJob {
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
 
-	private static String cono, privateKey, openId;
+	private static String cono, privateKey, openId,serviceurl;
 
 	public MyJob() {
 		Properties prop = PropertiesUtils
@@ -43,6 +43,7 @@ public class MyJob {
 		openId = prop.getProperty("weiqia.openid");
 		cono = prop.getProperty("weiqia.cono");
 		privateKey = prop.getProperty("weiqia.privatekey");
+		serviceurl=prop.getProperty("weiqia.serviceurl");
 	}
 
 	/**
@@ -55,7 +56,7 @@ public class MyJob {
 		// return new WeqiaClient("2205794","30bbcdb301cfc56390e4e25849ff0f25");
 		// return new WeqiaClient("jingtang_test",
 		// "da72dd333788ad10fedf2db1ac514748");
-		return new WeqiaClient(cono, privateKey);
+		return new WeqiaClient(cono, privateKey,serviceurl);
 		// 192.168.0.81≤‚ ‘ª∑æ≥
 		// return new
 		// WeqiaClient("jingtang_test","da72dd333788ad10fedf2db1ac514748");
