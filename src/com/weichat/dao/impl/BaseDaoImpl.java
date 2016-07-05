@@ -111,6 +111,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 	@Override
 	public T findTById(final ID id) {
 		return hibernateTemplate.execute(new HibernateCallback<T>() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public T doInHibernate(Session session) throws HibernateException,
 					SQLException {
@@ -123,10 +124,10 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Page<T> findPage(Page<T> page, SearchType searchType,String mcoid) {
+	public Page<T> findPage(Page<T> page, SearchType searchType, String mcoid) {
 		final Page<T> pageIn = page;
 		final SearchType searchTypeIn = searchType;
-		final String mcoidIn=mcoid;
+		final String mcoidIn = mcoid;
 		List<T> contentList = hibernateTemplate
 				.executeFind(new HibernateCallback<List<T>>() {
 					@Override
@@ -146,8 +147,8 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 										pageIn.getSearchProperty(), "%"
 												+ pageIn.getSearchValue() + "%"));
 							}
-							//mcoid用来区分企业信息属于哪个企业
-							if(null!=mcoidIn){
+							// mcoid用来区分企业信息属于哪个企业
+							if (null != mcoidIn) {
 								criteria.add(Restrictions.eq("mcoid", mcoidIn));
 							}
 							// 精确匹配
@@ -176,7 +177,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 										pageIn.getSearchProperty(), "%"
 												+ pageIn.getSearchValue() + "%"));
 							}
-							if(null!=mcoidIn){
+							if (null != mcoidIn) {
 								criteria.add(Restrictions.eq("mcoid", mcoidIn));
 							}
 							// 精确匹配

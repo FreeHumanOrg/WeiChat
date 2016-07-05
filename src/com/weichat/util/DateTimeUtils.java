@@ -173,4 +173,23 @@ public final class DateTimeUtils {
 				DateTimeTemplate.DATE_TIME_TEMPLATE_ONE.getValue())
 				.format(timestampDate);
 	}
+
+	/**
+	 * 当前日期时间：SysNowDate -> java.util.Date
+	 * 
+	 * @return
+	 */
+	public static Date getNowDateOfDateFormat() {
+		return new Date(System.currentTimeMillis());
+	}
+
+	/**
+	 * 时间：java.util.Date -> java.sql.Date
+	 * 
+	 * @return
+	 */
+	public static java.sql.Date getJavaSqlDateOfJavaUtilDateFormat(
+			java.util.Date date) {
+		return new java.sql.Date(date.getTime());
+	}
 }

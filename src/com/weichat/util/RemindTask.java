@@ -40,7 +40,9 @@ public class RemindTask extends TimerTask {
 			pstmt = conn.prepareStatement(sbJDBCSql.toString());
 			pstmt.setDouble(1, RandomUtils.createIdentitySerialByUUID());
 			pstmt.setString(2, history.getOperatecode().toString());
-			pstmt.setString(3, history.getOperateDateTime());
+			pstmt.setDate(3, DateTimeUtils
+					.getJavaSqlDateOfJavaUtilDateFormat(history
+							.getOperateDateTime()));
 			pstmt.setString(4, history.getOperateType());
 			pstmt.setString(5, history.getOperateProperty());
 			pstmt.setString(6, history.getOperateValue());

@@ -1,7 +1,12 @@
 package com.weichat.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,8 +42,7 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Boolean addNewHistoryInfo(History history) {
 		history.setId(RandomUtils.createIdentitySerialByUUID());
-		history.setOperateDateTime(DateTimeUtils
-				.getNowDateOfStringFormatUsingDateTimeTemplateOne());
+		history.setOperateDateTime(DateTimeUtils.getNowDateOfDateFormat());
 		Infomation tempEntity = (Infomation) ((ServletRequestAttributes) RequestContextHolder
 				.getRequestAttributes()).getRequest().getSession()
 				.getAttribute("infomationEntity");
@@ -67,8 +71,17 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<History> findAllHistoryInfo() {
-		return super.findAll();
+		return hibernateTemplate
+				.executeFind(new HibernateCallback<List<History>>() {
+					@Override
+					public List<History> doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						return session.createCriteria(History.class)
+								.addOrder(Order.desc("operateDateTime")).list();
+					}
+				});
 	}
 }
