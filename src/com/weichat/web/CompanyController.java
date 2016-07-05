@@ -33,6 +33,7 @@ import com.weichat.service.UserService;
 import com.weichat.util.DateTimeUtils;
 import com.weichat.util.EncryptUtils;
 import com.weichat.util.Page;
+import com.weichat.util.PropertiesUtils;
 
 /**
  * 
@@ -58,6 +59,13 @@ public class CompanyController {
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
 
+	private String privateKey;
+
+	public CompanyController() {
+		privateKey = PropertiesUtils.getPropertiesFileAsObject(
+				"global.properties").getProperty("weiqia.privatekey");
+	}
+
 	/**
 	 * 用户信息验证
 	 * 
@@ -76,8 +84,9 @@ public class CompanyController {
 		String openId = "", time = "", mCoId = "", s = "";
 		// da72dd333788ad10fedf2db1ac514748 private_key
 		String c = request.getParameter("c");
-		String decryptstr = EncryptUtils.aesDecrypt(
-				"da72dd333788ad10fedf2db1ac514748", c);// 解密
+		String decryptstr = EncryptUtils.aesDecrypt(/*
+													 * "da72dd333788ad10fedf2db1ac514748"
+													 */privateKey, c);// 解密
 		System.out.println(decryptstr);
 		String[] strs = decryptstr.split("&");
 		for (String str : strs) {
@@ -116,7 +125,7 @@ public class CompanyController {
 							session.setAttribute("userInfo", user);
 							session.setAttribute("mcoid", mCoId);
 							Page<Infomation> list = companyService
-									.findAllService(page,mCoId);
+									.findAllService(page, mCoId);
 							modelMap.addAttribute("page", list);
 							return "/home/companylist";
 						} else {// app端登录
@@ -125,7 +134,7 @@ public class CompanyController {
 							session.setAttribute("userInfo", user);
 							session.setAttribute("mcoid", mCoId);
 							Page<Infomation> list = companyService
-									.findAllService(page,mCoId);
+									.findAllService(page, mCoId);
 							modelMap.addAttribute("page", list);
 							return "/mobile/home/companylist";
 						}
@@ -150,9 +159,9 @@ public class CompanyController {
 	@RequestMapping(value = "/companylist", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String companylist(ModelMap modelMap,
-			@ModelAttribute Page<Infomation> page,HttpSession session) {
-		String mcoid=(String)session.getAttribute("mcoid");
-		Page<Infomation> list = companyService.findAllService(page,mcoid);
+			@ModelAttribute Page<Infomation> page, HttpSession session) {
+		String mcoid = (String) session.getAttribute("mcoid");
+		Page<Infomation> list = companyService.findAllService(page, mcoid);
 		modelMap.addAttribute("page", list);
 		return "/home/companylist";
 	}
@@ -199,22 +208,23 @@ public class CompanyController {
 	@RequestMapping(value = "/mobilelist", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String mobilelist(ModelMap modelMap,
-			@ModelAttribute Page<Infomation> page,HttpSession session) {
-		String mcoid=(String)session.getAttribute("mcoid");
-		Page<Infomation> list = companyService.findAllService(page,mcoid);
+			@ModelAttribute Page<Infomation> page, HttpSession session) {
+		String mcoid = (String) session.getAttribute("mcoid");
+		Page<Infomation> list = companyService.findAllService(page, mcoid);
 		modelMap.addAttribute("page", list);
 		return "/mobile/home/companylist";
 	}
 
 	@RequestMapping(value = "/ebu", method = RequestMethod.POST)
-	public void enterpriseBasicSituationUpdate(HttpSession session,HttpServletResponse response,
-			@ModelAttribute Infomation infomation) throws IOException {
+	public void enterpriseBasicSituationUpdate(HttpSession session,
+			HttpServletResponse response, @ModelAttribute Infomation infomation)
+			throws IOException {
 		LOGGER.info("企业基本情况修改!"
 				+ DateTimeUtils
 						.getNowDateOfStringFormatUsingDateTimeTemplateOne());
 		StringBuffer sbResult = new StringBuffer();
-		String mcoid=(String)session.getAttribute("mcoid");
-		infomation.setMcoid(mcoid);//mcoid
+		String mcoid = (String) session.getAttribute("mcoid");
+		infomation.setMcoid(mcoid);// mcoid
 		if (companyService.updateInfomation(infomation)) {
 			sbResult.append("<script>alert('恭喜！数据已成功修改。'); parent.location.href='../company/companylist.jhtml';</script>");
 		} else {
