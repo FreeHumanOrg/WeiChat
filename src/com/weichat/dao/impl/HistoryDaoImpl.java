@@ -52,7 +52,12 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 		history.setOperatecode(u.getId());
 		if (history.getOperateType().contains(OperateType.DELETE.getValue())) {
 			history.setInfomation(null);
-			history.setInfomationId(tempEntity.getId());
+			if(tempEntity==null){
+				
+			}else{
+				history.setInfomationId(tempEntity.getId());
+			}
+			
 		}
 		HistoryTempDTO.setHistoryEntity(history);
 		// 5秒后执行插入操作而不是立即插入，和上一个删除的事务隔离

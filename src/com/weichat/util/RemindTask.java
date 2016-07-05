@@ -48,13 +48,19 @@ public class RemindTask extends TimerTask {
 			pstmt.setString(6, history.getOperateValue());
 
 			if (null != history.getInfomation()) {
+				//这个地方报错是因为history.getInfomation().getId()的值在infomation表中并不存在,所以找不到主表就会报错
+				if(null!=history.getInfomation()){
 				pstmt.setDouble(7, history.getInfomation().getId());
+				}else{
+					pstmt.setDouble(7, history.getInfomationId());
+				}
 			} else {
 				if (null == history.getInfomationId()
 						|| history.getOperateType().contains(
 								OperateType.DELETE.getValue())) {
 					pstmt.setNull(7, Types.DOUBLE);
 				} else {
+					System.out.println(history.getInfomationId());
 					pstmt.setDouble(7, history.getInfomationId());
 				}
 			}

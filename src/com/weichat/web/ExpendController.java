@@ -82,7 +82,7 @@ public class ExpendController {
 			if (expendService.addNewExpendService(qiyefazhan, qiyefazhan
 					.getInfomation().getId())) {
 				//路径找不到 window.location.href='../../addindex/frame.jhtml'
-				sbResult.append("<script>alert('恭喜！数据已成功录入。'); window.location.href='../company/companylist.jhtml';</script>");
+				sbResult.append("<script>alert('恭喜！数据已成功录入。'); parent.location.href='../company/companylist.jhtml';</script>");
 			} else {
 				sbResult.append("<script>alert('非常抱歉，录入数据失败！请重试您的操作。'); parent.location.href='../company/companylist.jhtml';</script>");
 			}
