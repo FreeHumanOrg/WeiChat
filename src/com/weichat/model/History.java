@@ -1,6 +1,6 @@
 package com.weichat.model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +39,7 @@ public class History implements java.io.Serializable {
 	/**
 	 * 操作时间
 	 */
-	private Date operateDateTime;
+	private Timestamp operateDateTime;
 
 	/**
 	 * 操作类型
@@ -65,8 +65,8 @@ public class History implements java.io.Serializable {
 	}
 
 	public History(Double id, Infomation infomation, Double operatecode,
-			Date operateDateTime, String operateType, String operateProperty,
-			String operateValue) {
+			Timestamp operateDateTime, String operateType,
+			String operateProperty, String operateValue) {
 		this.id = id;
 		this.infomation = infomation;
 		this.operatecode = operatecode;
@@ -106,11 +106,11 @@ public class History implements java.io.Serializable {
 	}
 
 	@Column(name = "operateDateTime", length = 100)
-	public Date getOperateDateTime() {
+	public Timestamp getOperateDateTime() {
 		return this.operateDateTime;
 	}
 
-	public void setOperateDateTime(Date operateDateTime) {
+	public void setOperateDateTime(Timestamp operateDateTime) {
 		this.operateDateTime = operateDateTime;
 	}
 

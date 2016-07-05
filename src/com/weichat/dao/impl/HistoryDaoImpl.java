@@ -6,6 +6,8 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -37,12 +39,15 @@ import com.weichat.util.RandomUtils;
 @Repository("historyDaoImpl")
 public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 		HistoryDao {
+	private static Logger LOGGER = LoggerFactory
+			.getLogger(HistoryDaoImpl.class);
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Boolean addNewHistoryInfo(History history) {
 		history.setId(RandomUtils.createIdentitySerialByUUID());
-		history.setOperateDateTime(DateTimeUtils.getNowDateOfDateFormat());
+		history.setOperateDateTime(DateTimeUtils.getNowDateOfTimestampFormat());
+		LOGGER.warn(DateTimeUtils.getNowDateOfTimestampFormat().toString());
 		Infomation tempEntity = (Infomation) ((ServletRequestAttributes) RequestContextHolder
 				.getRequestAttributes()).getRequest().getSession()
 				.getAttribute("infomationEntity");

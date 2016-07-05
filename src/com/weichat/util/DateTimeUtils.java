@@ -184,6 +184,24 @@ public final class DateTimeUtils {
 	}
 
 	/**
+	 * 当前日期时间：SysNowDate -> java.sql.Timestamp
+	 * 
+	 * @return
+	 */
+	public static Timestamp getNowDateOfTimestampFormat() {
+		return new Timestamp(System.currentTimeMillis());
+	}
+
+	/**
+	 * 当前日期时间：SysNowDate -> java.sql.Date
+	 * 
+	 * @return
+	 */
+	public static java.sql.Date getNowDateOfJavaSqlDateFormat() {
+		return new java.sql.Date(new Date().getTime());
+	}
+
+	/**
 	 * 时间：java.util.Date -> java.sql.Date
 	 * 
 	 * @return

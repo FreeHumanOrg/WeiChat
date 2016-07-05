@@ -289,7 +289,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 		} else {
 			entity.setOperatecode(infomation.getId());
 		}
-		entity.setOperateDateTime(DateTimeUtils.getNowDateOfDateFormat());
+		entity.setOperateDateTime(DateTimeUtils.getNowDateOfTimestampFormat());
 		entity.setOperateProperty(null);
 		if (logInfomations instanceof Infomation) {
 			LOGGER.warn("正在操作企业基本信息（Infomation）类！");
