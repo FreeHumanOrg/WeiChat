@@ -53,7 +53,6 @@ public class RemindTask extends TimerTask {
 								OperateType.DELETE.getValue())) {
 					pstmt.setNull(7, Types.DOUBLE);
 				} else {
-
 					pstmt.setDouble(7, history.getInfomationId());
 				}
 			}
