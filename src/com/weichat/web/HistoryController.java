@@ -50,6 +50,7 @@ public class HistoryController {
 	public String historyShow(ModelMap modelMap,
 			@ModelAttribute Page<History> page) {
 		Page<History> list = historyService.findPageService(page);
+
 		for (int i = 0; i < list.getContent().size(); i++) {
 			// ЮЊПе
 			if (list.getContent().get(i).getInfomationId() == null) {
