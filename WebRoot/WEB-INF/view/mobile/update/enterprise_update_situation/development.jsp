@@ -16,8 +16,8 @@
 		<script src="../mobile/js/base.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			window.onload = function() {
-				for (var i = 1; i < $(".jsqk .jsqk-con").length; i++) {
-					$(".jsqk .jsqk-con").eq(i).hide();
+				for (var i = 1; i < $(".main .jsqk-con").length; i++) {
+					$(".main .jsqk-con").eq(i).hide();
 				}
 			};
 		</script>
