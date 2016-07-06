@@ -29,6 +29,7 @@ import com.weichat.model.Youhuizhengce;
 import com.weichat.model.Zhengwuqingkuang;
 import com.weichat.service.HistoryService;
 import com.weichat.util.DateTimeUtils;
+import com.weichat.util.Page;
 import com.weichat.util.RandomUtils;
 
 @Service("historyServiceImpl")
@@ -342,5 +343,10 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 	@Override
 	public List<History> findAllHistoryInfoService() {
 		return historyDao.findAllHistoryInfo();
+	}
+
+	@Override
+	public Page<History> findPageService(Page<History> pageable) {
+		return historyDao.findPage(pageable);
 	}
 }

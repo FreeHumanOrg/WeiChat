@@ -3,6 +3,7 @@ package com.weichat.dao;
 import java.util.List;
 
 import com.weichat.model.History;
+import com.weichat.util.Page;
 
 /**
  * 历史记录接口
@@ -40,4 +41,12 @@ public interface HistoryDao extends BaseDao<History, Double> {
 	 * @return
 	 */
 	List<History> findAllHistoryInfo();
+
+	/**
+	 * 分页查询历史记录.
+	 * 
+	 * @param pageable
+	 * @return
+	 */
+	Page<History> findPage(Page<History> pageable);
 }

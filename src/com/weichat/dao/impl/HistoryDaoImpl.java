@@ -23,6 +23,7 @@ import com.weichat.model.Infomation;
 import com.weichat.model.User;
 import com.weichat.util.DateTimeUtils;
 import com.weichat.util.HistoryTimerUtils;
+import com.weichat.util.Page;
 import com.weichat.util.RandomUtils;
 
 /**
@@ -57,12 +58,12 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 		history.setOperatecode(u.getId());
 		if (history.getOperateType().contains(OperateType.DELETE.getValue())) {
 			history.setInfomation(null);
-			if(tempEntity==null){
-				
-			}else{
+			if (tempEntity == null) {
+
+			} else {
 				history.setInfomationId(tempEntity.getId());
 			}
-			
+
 		}
 		HistoryTempDTO.setHistoryEntity(history);
 		// 5秒后执行插入操作而不是立即插入，和上一个删除的事务隔离
@@ -93,5 +94,10 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 								.addOrder(Order.desc("operateDateTime")).list();
 					}
 				});
+	}
+
+	@Override
+	public Page<History> findPage(Page<History> pageable) {
+		return super.findPage(pageable, SearchType.NONE, null);
 	}
 }

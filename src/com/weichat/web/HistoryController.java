@@ -1,21 +1,19 @@
 package com.weichat.web;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weichat.model.History;
-import com.weichat.model.Infomation;
-import com.weichat.model.User;
 import com.weichat.service.HistoryService;
 import com.weichat.service.UserService;
+import com.weichat.util.Page;
 
 /**
  * 历史记录Controller
@@ -44,24 +42,30 @@ public class HistoryController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/historyshow", method = RequestMethod.GET)
-	public String historyShow(ModelMap modelMap) {
-		List<History> histories = historyService.findAllHistoryInfoService();
-		for (int i = 0; i < histories.size(); i++) {
-			// 为空
-			if (histories.get(i).getInfomationId() == null) {
-				User u = userService.findUserByOperateCodeService(histories
-						.get(i).getOperatecode());
-				Infomation info = new Infomation();
-				User user = new User();
-				Set<User> userSets = new HashSet<User>();
-				user.setUsername(u.getUsername());
-				userSets.add(user);
-				info.setUsers(userSets);
-				histories.get(i).setInfomation(info);
-			}
-		}
-		modelMap.addAttribute("histories", histories);
+	@RequestMapping(value = "/historyshow", method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public String historyShow(ModelMap modelMap,
+			@ModelAttribute Page<History> page) {
+		// List<History> histories = historyService.findAllHistoryInfoService();
+		// for (int i = 0; i < histories.size(); i++) {
+		// // 为空
+		// if (histories.get(i).getInfomationId() == null) {
+		// User u = userService.findUserByOperateCodeService(histories
+		// .get(i).getOperatecode());
+		// Infomation info = new Infomation();
+		// User user = new User();
+		// Set<User> userSets = new HashSet<User>();
+		// user.setUsername(u.getUsername());
+		// userSets.add(user);
+		// info.setUsers(userSets);
+		// histories.get(i).setInfomation(info);
+		// }
+		// }
+		// modelMap.addAttribute("histories", histories);
+
+		Page<History> list = historyService.findPageService(page);
+		modelMap.addAttribute("page", list);
+
 		return "/home/history";
 	}
 

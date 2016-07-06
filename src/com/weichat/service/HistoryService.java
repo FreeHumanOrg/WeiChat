@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.weichat.interceptor.IHistory;
 import com.weichat.model.History;
+import com.weichat.util.Page;
 
 /**
  * 历史记录业务接口
@@ -41,4 +42,12 @@ public interface HistoryService extends BaseService<History, Double> {
 	 * @return
 	 */
 	List<History> findAllHistoryInfoService();
+
+	/**
+	 * 分页查询历史记录.
+	 * 
+	 * @param pageable
+	 * @return
+	 */
+	Page<History> findPageService(Page<History> pageable);
 }
