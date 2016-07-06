@@ -24,7 +24,6 @@
 	<body>
 	<form id="paginationForm" action="<%=basePath %>history/historyshow.jhtml" method="post">
 		<div class="history">
-		${page.content.size() }
 			<c:choose>
 				<c:when test="${page.content.size() > 0 }">
 					<c:forEach items="${page.content }" var="items">

@@ -1,6 +1,7 @@
 package com.weichat.web;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.weichat.model.History;
+import com.weichat.model.Infomation;
+import com.weichat.model.User;
 import com.weichat.service.HistoryService;
 import com.weichat.service.UserService;
 import com.weichat.util.Page;
@@ -46,26 +49,22 @@ public class HistoryController {
 			RequestMethod.POST })
 	public String historyShow(ModelMap modelMap,
 			@ModelAttribute Page<History> page) {
-		// List<History> histories = historyService.findAllHistoryInfoService();
-		// for (int i = 0; i < histories.size(); i++) {
-		// // ЮЊПе
-		// if (histories.get(i).getInfomationId() == null) {
-		// User u = userService.findUserByOperateCodeService(histories
-		// .get(i).getOperatecode());
-		// Infomation info = new Infomation();
-		// User user = new User();
-		// Set<User> userSets = new HashSet<User>();
-		// user.setUsername(u.getUsername());
-		// userSets.add(user);
-		// info.setUsers(userSets);
-		// histories.get(i).setInfomation(info);
-		// }
-		// }
-		// modelMap.addAttribute("histories", histories);
-
 		Page<History> list = historyService.findPageService(page);
+		for (int i = 0; i < list.getContent().size(); i++) {
+			// ЮЊПе
+			if (list.getContent().get(i).getInfomationId() == null) {
+				User u = userService.findUserByOperateCodeService(list
+						.getContent().get(i).getOperatecode());
+				Infomation info = new Infomation();
+				User user = new User();
+				Set<User> userSets = new HashSet<User>();
+				user.setUsername(u.getUsername());
+				userSets.add(user);
+				info.setUsers(userSets);
+				list.getContent().get(i).setInfomation(info);
+			}
+		}
 		modelMap.addAttribute("page", list);
-
 		return "/home/history";
 	}
 
@@ -76,10 +75,26 @@ public class HistoryController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/historymobileshow", method = RequestMethod.GET)
-	public String historyMobileShow(ModelMap modelMap) {
-		List<History> histories = historyService.findAllHistoryInfoService();
-		modelMap.addAttribute("histories", histories);
+	@RequestMapping(value = "/historymobileshow", method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public String historyMobileShow(ModelMap modelMap,
+			@ModelAttribute Page<History> page) {
+		Page<History> list = historyService.findPageService(page);
+		for (int i = 0; i < list.getContent().size(); i++) {
+			// ЮЊПе
+			if (list.getContent().get(i).getInfomationId() == null) {
+				User u = userService.findUserByOperateCodeService(list
+						.getContent().get(i).getOperatecode());
+				Infomation info = new Infomation();
+				User user = new User();
+				Set<User> userSets = new HashSet<User>();
+				user.setUsername(u.getUsername());
+				userSets.add(user);
+				info.setUsers(userSets);
+				list.getContent().get(i).setInfomation(info);
+			}
+		}
+		modelMap.addAttribute("page", list);
 		return "/mobile/home/history";
 	}
 
