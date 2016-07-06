@@ -24,7 +24,7 @@
 	</head>
 
 	<body>
-		<div class="jsqk subcontent clearfloat">
+		<div class="main">
 			<div class="nav clearfloat">
 				<ul>
 					<li> <a href="##" class="cur">项目促建联系人</a></li>

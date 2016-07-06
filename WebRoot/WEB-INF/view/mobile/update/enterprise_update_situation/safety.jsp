@@ -21,6 +21,7 @@
 </script>
 	</head>
 	<body>
+	<div class="main">
 		<form id="safetyform" action="../safetymobile/safetyupdate.jhtml" method="post">
 		<input name="id" type="text" hidden="hidden" value="${safety.id }">
 		<input name="infomation.id" hidden="hidden" value="${id }">
@@ -200,5 +201,6 @@
 			</div>
 		</div>
 		</form>
+		</div>
 	</body>
 </html>

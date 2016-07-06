@@ -22,6 +22,7 @@
 	<script src="../mobile/js/base.js" type="text/javascript"></script>
 	</head>
 	<body>
+	<div class="main">
 	<form id="partyform" action="<%=basePath%>partymobile/partyadd.jhtml" method="post">
 		<div class="dtjs subcontent clearfloat">
 			<div class="intbox">
@@ -61,5 +62,6 @@
 				</div>
 		</div>
 		</form>
+		</div>
 	</body>
 </html>

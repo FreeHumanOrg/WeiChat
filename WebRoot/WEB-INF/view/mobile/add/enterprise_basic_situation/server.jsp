@@ -22,6 +22,7 @@
 		<script src="../mobile/js/base.js" type="text/javascript"></script>
 	</head>
 	<body>
+		<div class="main">
 		<form id="postForm" action="<%=basePath%>servermobile/serveradd.jhtml" method="post">
 			<div class="qyfw subcontent clearfloat">
 				<div class="intbox">
@@ -45,5 +46,6 @@
 				</div>
 			</div>
 		</form>
+		</div>
 	</body>
 </html>

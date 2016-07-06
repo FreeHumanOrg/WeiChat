@@ -22,6 +22,7 @@
 	</head>
 	
 	<body>
+	<div class="main">
 	<form id="expendform" action="<%=basePath%>expendmobile/expendadd.jhtml" method="post">
 		<div class="qyfz subcontent clearfloat">
 			<div class="intbox">
@@ -66,5 +67,6 @@
 			</div>
 		</div>
 	</form>
+	</div>
 	</body>
 </html>

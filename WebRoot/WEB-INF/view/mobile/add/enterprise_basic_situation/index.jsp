@@ -11,7 +11,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-		<meta name=" apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<title>企业基本信息</title>
 		<meta http-equiv="keywords" content="企业">
@@ -20,9 +20,12 @@
 		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
 		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript"></script>
 		<script src="../mobile/js/base.js" type="text/javascript"></script>
+		<style type="text/css">
+			
+		</style>
 	</head>
-	<body>
-		<div class="qyjbqk subcontent clearfloat">
+	<body style="height:100%;">
+		<div class="main">
 			<form id="postForm" action="<%=basePath %>basicSituationMobile/add.jhtml" method="post">
 				<div class="intbox clearfloat">
 					<span class="name">企业名称：</span><input type="text" class="write" name="name"/>

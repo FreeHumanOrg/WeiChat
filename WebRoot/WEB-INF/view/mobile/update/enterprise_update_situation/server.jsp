@@ -19,7 +19,7 @@
 	<form action="../servermobile/serverupdate.jhtml" method="post" id="serverform">
 	<input name="infomation.id" type="hidden" value="${id }">
 	<input name="id" type="hidden" value="${server.id }">
-		<div class="qyfw subcontent clearfloat">
+		<div class="main">
 			<div class="intbox">
 				<span class="name">融资</span>
 				<input name="longzhi" type="text" class="write" value="${server.longzhi }"/>

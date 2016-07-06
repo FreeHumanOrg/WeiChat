@@ -27,6 +27,7 @@
 </script>
 	</head>
 	<body>
+	<div class="main">
 		<form id="safetyform" action="<%=basePath %>safetymobile/safetyadd.jhtml" method="post">
 		<div class="aqsc subcontent clearfloat">
 			<div class="intbox">
@@ -140,5 +141,6 @@
 			</div>
 		</div>
 		</form>
+		</div>
 	</body>
 </html>

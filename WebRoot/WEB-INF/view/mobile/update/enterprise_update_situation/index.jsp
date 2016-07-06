@@ -44,6 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 	</head>
 	<body>
+		<div class="main">
 		<form action="../companymobile/ebu.jhtml" id="companyform" method="post">
 			<input id="id" name="id" hidden="hidden" value="${company.id }">
 		<div class="qyjbqk subcontent clearfloat">
@@ -104,5 +105,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		</form>
+		</div>
 	</body>
 </html>

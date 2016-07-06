@@ -15,7 +15,7 @@
 		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<div class="yhzcqk subcontent clearfloat">
+		<div class="main">
 			<div class="yh-cont">
 			<c:if test="${!empty policy}">
 				<span class="yh-name">优惠政策1</span>

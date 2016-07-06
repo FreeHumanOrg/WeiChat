@@ -19,7 +19,7 @@
 	<form action="../partymobile/partyupdate.jhtml" method="POST" id="partyform">
 		<input name="id" type="text" hidden="hidden" value="${party.id }">
 		<input name="infomation.id" hidden="hidden" value="${id }">
-		<div class="dtjs subcontent clearfloat">
+		<div class="main">
 			<div class="intbox">
 				<span class="name">党组织建设情况</span>
 				<input name="jianSeQingK" type="text" class="write" value="${party.jianSeQingK }"/>

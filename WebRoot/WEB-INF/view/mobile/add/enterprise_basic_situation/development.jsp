@@ -17,20 +17,42 @@
 		<meta http-equiv="keywords" content="企业">
 		<meta http-equiv="description" content="企业">
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
-		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../mobile/js/base.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			window.onload = function() {
-				for (var i = 1; i < $(".jsqk .jsqk-con").length; i++) {
-					$(".jsqk .jsqk-con").eq(i).hide();
-				}
-			};
-		</script>
+		<link rel="stylesheet" type="text/css" href="<%=basePath %>mobile/css/base.css" />
+		<style type="text/css">
+		.jsqk .nav {
+			margin-bottom: 20px;
+		}
+		
+		.jsqk .nav ul li {
+			float: left;
+		}
+		
+		.jsqk .nav ul li a {
+			width: 100px;
+			background: #efefef;
+			color: #56abe4;
+			display: inline-block;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+		}
+		
+		.jsqk .nav ul li a.cur {
+			background: #56abe4;
+			color: #fff;
+		}
+		
+		.jsqk .jsqk-con p.title {
+			font-size: 16px;
+			display: block;
+	width: 100%;
+	clear: both;
+}
+</style>
 	</head>
 
 	<body>
-		<div class="jsqk subcontent clearfloat">
+		<div class="main">
 			<div class="nav clearfloat">
 				<ul>
 					<li> <a href="##" class="cur">项目促建联系人</a></li>
@@ -326,7 +348,15 @@
 				</div>
 		    </div>
 		 </form>
-		 
 		</div>
+		<script src="<%=basePath %>mobile/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%=basePath %>mobile/js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function (){
+				for (var i = 1; i < $(".jsqk .jsqk-con").length; i++) {
+						$(".jsqk .jsqk-con").eq(i).hide();
+				}
+			});
+		</script>
 	</body>
 </html>
