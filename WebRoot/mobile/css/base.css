@@ -82,12 +82,12 @@ i{display: inline-block;font-style: normal;}
 .tc .tc-cont .intbox{margin-left: 50px;margin-top: 20px;}
 .tc .tc-cont .btn{text-align: center;margin-bottom: 20px;}
 
-.jsqk .nav{margin-bottom: 20px;}
-.jsqk .nav ul li.first{width: 100%;}
-.jsqk .nav ul li.first a{width: 50%;margin-left: 25%;}
-.jsqk .nav ul li{float: left;width: 50%;}
-.jsqk .nav ul li a{font-size:1.6em;width: 100%;background: #faf9f9;color: #333;display: inline-block;height: 40px;line-height: 40px;text-align: center;}
-.jsqk .nav ul li a.cur{background: #56abe4;color: #fff;}
+.main .nav{margin-bottom: 20px;}
+.main .nav ul li.first{width: 100%;}
+.main .nav ul li.first a{width: 50%;margin-left: 25%;}
+.main .nav ul li{float: left;width: 50%;}
+.main .nav ul li a{font-size:1.6em;width: 100%;background: #faf9f9;color: #333;display: inline-block;height: 40px;line-height: 40px;text-align: center;}
+.main .nav ul li a.cur{background: #56abe4;color: #fff;}
 
 p.title{font-size: 2em;width: 100%;clear: both;display: block;margin-bottom: 10px;height: 30px;line-height: 30px;color: #56ABE4;}
 

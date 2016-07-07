@@ -16,10 +16,10 @@
 	<script src="../mobile/js/base.js" type="text/javascript"></script>
 	</head>
 	<body>
+		<div class="main">
 	<form action="../partymobile/partyupdate.jhtml" method="POST" id="partyform">
 		<input name="id" type="text" hidden="hidden" value="${party.id }">
 		<input name="infomation.id" hidden="hidden" value="${id }">
-		<div class="main">
 			<div class="intbox">
 				<span class="name">党组织建设情况</span>
 				<input name="jianSeQingK" type="text" class="write" value="${party.jianSeQingK }"/>
@@ -54,8 +54,8 @@
 			</div>
 			<div class="btn clearfloat">
 					<a href="##" class="submit" onclick="document.getElementById('partyform').submit();">提交</a>
-				</div>
-		</div>
+			</div>
 		</form>
+		</div>
 	</body>
 </html>

@@ -15,10 +15,10 @@
 	<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
+		<div class="main">
 	<form id="expendform" action="../expendmobile/expendupdate.jhtml" method="POST">
 	<input name="id" value="${expend.id }" type="text" hidden="hidden">
 	<input name="infomation.id" value="${id }" type="text" hidden="hidden">
-		<div class="main">
 			<div class="intbox">
 				<span class="name">固定资产投资</span>
 				<input name="investment" type="text" class="write" value="${expend.investment }"/>
@@ -59,7 +59,7 @@
 			<div class="btn clearfloat">
 				<a href="##" class="submit" onclick="document.getElementById('expendform').submit();">提交</a>
 			</div>
-		</div>
 	</form>
+		</div>
 	</body>
 </html>

@@ -27,7 +27,7 @@
 		<div class="main">
 			<div class="nav clearfloat">
 				<ul>
-					<li> <a href="##" class="cur">项目促建联系人</a></li>
+					<li> <a href="##" class="first">项目促建联系人111</a></li>
 					<li> <a href="##">政务办理情况</a></li>
 					<li> <a href="##">国土办理情况</a></li>
 					<li> <a href="##">要素保障</a></li>
