@@ -17,7 +17,7 @@
     <meta http-equiv="keywords" content="企业">
     <meta http-equiv="description" content="企业">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css?v=1.0" />
 		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(".intbox i.chose").click(function(){

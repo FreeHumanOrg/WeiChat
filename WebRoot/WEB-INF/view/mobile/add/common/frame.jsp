@@ -16,9 +16,9 @@
     <meta http-equiv="keywords" content="企业">
     <meta http-equiv="description" content="企业">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../mobile/css/base.css?v=1.0" />
 	<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript"></script>
-	<script src="../mobile/js/base.js" type="text/javascript"></script>
+	<script src="../mobile/js/base.js?v=1.0" type="text/javascript"></script>
 	<script type="text/javascript">
 			$().ready(function(){							    
 			    $(".leftPanel a").bind("click",function(){
@@ -49,9 +49,6 @@
 			<iframe frameborder="0" scrolling="auto" src="../addindexmobile/ebs.jhtml" name="myFrameName" id="myFrameName"></iframe>
 		</div>
 	</div>
-
-	<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../mobile/js/base.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$().ready(function() {
 			$(".leftPanel a").bind("click", function() {

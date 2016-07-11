@@ -11,27 +11,20 @@
 		<meta http-equiv="keywords" content="企业">
 		<meta http-equiv="description" content="企业">
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css?v=1.0" />
 		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../mobile/js/base.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			window.onload = function() {
-				for (var i = 1; i < $(".main .jsqk-con").length; i++) {
-					$(".main .jsqk-con").eq(i).hide();
-				}
-			};
-		</script>
+		<script src="../mobile/js/base.js?v=1.0" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
 		<div class="main">
 			<div class="nav clearfloat">
 				<ul>
-					<li> <a href="##" class="first">项目促建联系人</a></li>
-					<li> <a href="##">政务办理情况</a></li>
-					<li> <a href="##">国土办理情况</a></li>
-					<li> <a href="##">要素保障</a></li>
-					<li> <a href="##">项目建设进度</a></li>
+					<li> <a class="nav_a" href="#" class="cur">项目促建联系人</a></li>
+					<li> <a class="nav_a" href="#">政务办理情况</a></li>
+					<li> <a class="nav_a" href="#">国土办理情况</a></li>
+					<li> <a class="nav_a" href="#">要素保障</a></li>
+					<li> <a class="nav_a" href="#">项目建设进度</a></li>
 				</ul>
 			</div>
 		<form action="../developmentmobile/ppupdate.jhtml" id="productpeople" method="post">
@@ -326,5 +319,12 @@
 		 </form>
 		 
 		</div>
+		<script type="text/javascript">
+			$(function (){
+				for (var i = 1; i < $(".main .jsqk-con").length; i++) {
+					$(".main .jsqk-con").eq(i).hide();
+				}
+			});
+		</script>
 	</body>
 </html>

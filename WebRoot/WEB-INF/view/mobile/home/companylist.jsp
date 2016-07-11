@@ -17,19 +17,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="description" content="企业">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	
-	<link rel="stylesheet" type="text/css" href="../window/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="../window/css/base.css?v=1.0" />
 	<link rel="stylesheet" type="text/css" href="../window/css/themes/icon.css" />
 	<link rel="stylesheet" type="text/css" href="../window/css/themes/bootstrap/easyui.css" />
-	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../window/css/bootstrap.min.css" rel="stylesheet">
+	<!--<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">-->
 	<style type="text/css">
 		.pagination{
 			float:left;
 			margin-top: -12px;
 			margin-right: 20px;
+            margin-left: 21px;
 		}
 		
 		.btn-primary{
-			width: 65px;
+			/*width: 65px;*/
+            width: 100%;
+            margin-top: 5px;
 		}
 		
 		.choose_table{
@@ -37,9 +41,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		
 		.status_dropdown button,button[data-toggle*='modal']{
-			margin-top: -1px;
-			margin-left: 10px;
+			/*margin-top: -1px;
+			margin-left: 10px;*/
+            margin-top: 4px;
 		}
+        .totalCountButton{
+            border-radius: initial;
+        }
 	</style>
 	</head>
 	<body>
@@ -51,9 +59,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<input name="searchValue" type="text" class="write" placeholder="输入企业名称">
 				<input name="searchProperty" type="text" hidden="hidden" value="name">
 				<input name="">
+				<div class="select_div">
 				<a href="##" class="sousuo" onclick="document.getElementById('paginationForm').submit();">搜索</a> 
 				<a href="/WeiChat/addindexmobile/frame.jhtml" class="new">新建</a>
 				<a href="/WeiChat/history/historyshow.jhtml" class="new">历史</a>
+				</div>
 			</div>
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
@@ -161,8 +171,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		         </div>
 		         <input type="hidden" id="enterpriseId" />
 		         <div class="modal-footer">
-		            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:65px;">关闭</button>
-		            <button id="applyButton" type="button" class="btn btn-primary">应用</button>
+		            <button type="button" class="btn btn-default" data-dismiss="modal" style="width:65px; margin-top:0;">关闭</button>
+		            <button id="applyButton" type="button" class="btn btn-primary" style="width:65px;">应用</button>
 		        </div>
 				</div>
 			</div>

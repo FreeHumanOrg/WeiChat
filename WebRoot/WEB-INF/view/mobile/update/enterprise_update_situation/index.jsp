@@ -15,9 +15,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="keywords" content="企业">
 		<meta http-equiv="description" content="企业">
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../mobile/css/base.css?v=1.0" />
 		<script src="../mobile/js/jquery1.9.0.min.js" type="text/javascript"></script>
-		<script src="../mobile/js/base.js" type="text/javascript"></script>
+		<script src="../mobile/js/base.js?v=1.0" type="text/javascript"></script>
 <!-- 		<link rel="stylesheet" type="text/css" href="../window/css/themes/bootstrap/easyui.css" /> -->
 <!-- 		<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"> -->
 		<script type="text/javascript">
