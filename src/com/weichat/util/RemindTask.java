@@ -30,9 +30,9 @@ public class RemindTask extends TimerTask {
 		Connection conn = JDBCUtils.getConnection();
 		Boolean resultFlag = false;
 		StringBuffer sbJDBCSql = new StringBuffer(
-				" insert into history(id,operatecode,operateDateTime,operateType,operateProperty,operateValue,infomationId) ");
+				" insert into history(id,operatecode,operateDateTime,operateType,operateProperty,operateValue,infomationId,companyName) ");
 		sbJDBCSql.append(" values ( ");
-		sbJDBCSql.append(" ?,?,?,?,?,?,? ");
+		sbJDBCSql.append(" ?,?,?,?,?,?,?,? ");
 		sbJDBCSql.append(" ) ");
 
 		PreparedStatement pstmt = null;
@@ -48,10 +48,10 @@ public class RemindTask extends TimerTask {
 			pstmt.setString(6, history.getOperateValue());
 
 			if (null != history.getInfomation()) {
-				//这个地方报错是因为history.getInfomation().getId()的值在infomation表中并不存在,所以找不到主表就会报错
-				if(null!=history.getInfomation()){
-				pstmt.setDouble(7, history.getInfomation().getId());
-				}else{
+				// 这个地方报错是因为history.getInfomation().getId()的值在infomation表中并不存在,所以找不到主表就会报错
+				if (null != history.getInfomation()) {
+					pstmt.setDouble(7, history.getInfomation().getId());
+				} else {
 					pstmt.setDouble(7, history.getInfomationId());
 				}
 			} else {
@@ -64,6 +64,8 @@ public class RemindTask extends TimerTask {
 					pstmt.setDouble(7, history.getInfomationId());
 				}
 			}
+			pstmt.setString(8, history.getCompanyName());
+
 			resultFlag = pstmt.execute();
 			LOGGER.info("使用JDBC新增历史记录成功！"
 					+ DateTimeUtils

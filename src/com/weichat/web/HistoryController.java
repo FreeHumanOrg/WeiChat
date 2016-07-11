@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.weichat.model.History;
 import com.weichat.model.Infomation;
 import com.weichat.model.User;
+import com.weichat.service.CompanyService;
 import com.weichat.service.HistoryService;
 import com.weichat.service.UserService;
 import com.weichat.util.Page;
@@ -38,6 +39,9 @@ public class HistoryController {
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
 
+	@Resource(name = "companyServiceImpl")
+	private CompanyService companyService;
+
 	/**
 	 * 显示历史记录.
 	 * 
@@ -50,8 +54,16 @@ public class HistoryController {
 	public String historyShow(ModelMap modelMap,
 			@ModelAttribute Page<History> page) {
 		Page<History> list = historyService.findPageService(page);
-
 		for (int i = 0; i < list.getContent().size(); i++) {
+			// if (null != list.getContent().get(i).getInfomationId()) {
+			// list.getContent()
+			// .get(i)
+			// .setCompanyName(
+			// companyService.findInfomationById(
+			// list.getContent().get(i)
+			// .getInfomationId()).getName());
+			// }
+
 			// 为空
 			if (list.getContent().get(i).getInfomationId() == null) {
 				User u = userService.findUserByOperateCodeService(list

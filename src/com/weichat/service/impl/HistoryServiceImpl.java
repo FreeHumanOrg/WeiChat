@@ -55,6 +55,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 			if (operateType.contains(OperateType.UPDATE.getValue())
 					|| operateType.contains(OperateType.DELETE.getValue())) {
 				entity.setInfomation((Infomation) logInfomations);
+				entity.setCompanyName(((Infomation) logInfomations).getName());
 				// 给infomation赋值以便在108行删除时继续使用，避免为空抛异常
 				infomation = (Infomation) logInfomations;
 				// 否则如果是新增
@@ -64,6 +65,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 						.getRequestAttributes()).getRequest().getSession()
 						.getAttribute("userInfo");
 				entity.setInfomation(u.getInfomation());
+				entity.setCompanyName(((Infomation) logInfomations).getName());
 			}
 		} else {
 			// 操作除企业基本信息之外的实体类也要分情况
@@ -82,67 +84,79 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 						infomation = companyDao.findInfomationById(qiyefuwu
 								.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Anquanshengchan) {
 						Anquanshengchan anquanshengchan = (Anquanshengchan) logInfomations;
 						infomation = companyDao
 								.findInfomationById(anquanshengchan
 										.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Dangtuanjianshe) {
 						Dangtuanjianshe dangtuanjianshe = (Dangtuanjianshe) logInfomations;
 						infomation = companyDao
 								.findInfomationById(dangtuanjianshe
 										.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Guotu) {
 						Guotu guotu = (Guotu) logInfomations;
 						infomation = companyDao.findInfomationById(guotu
 								.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Jiansejindu) {
 						Jiansejindu jiansejindu = (Jiansejindu) logInfomations;
 						infomation = companyDao.findInfomationById(jiansejindu
 								.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Productpeoper) {
 						Productpeoper productpeoper = (Productpeoper) logInfomations;
 						infomation = companyDao
 								.findInfomationById(productpeoper
 										.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Qiyefazhan) {
 						Qiyefazhan qiyefazhan = (Qiyefazhan) logInfomations;
 						infomation = companyDao.findInfomationById(qiyefazhan
 								.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof User) {
 						User user = (User) logInfomations;
 						infomation = companyDao.findInfomationById(user
 								.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Yaosu) {
 						Yaosu yaosu = (Yaosu) logInfomations;
 						infomation = companyDao.findInfomationById(yaosu
 								.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Youhuizhengce) {
 						Youhuizhengce youhuizhengce = (Youhuizhengce) logInfomations;
 						infomation = companyDao
 								.findInfomationById(youhuizhengce
 										.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					} else if (logInfomations instanceof Zhengwuqingkuang) {
 						Zhengwuqingkuang zhengwuqingkuang = (Zhengwuqingkuang) logInfomations;
 						infomation = companyDao
 								.findInfomationById(zhengwuqingkuang
 										.getInfomation().getId());
 						entity.setInfomation(infomation);
+						entity.setCompanyName(infomation.getName());
 					}
 				} else {
 					// 那么要从Session域中获取到企业Id再根据企业Id进行查询
 					infomation = companyDao.findInfomationById(Double
 							.valueOf(enterpriseSituationIdByObj.toString()));
 					entity.setInfomation(infomation);
+					entity.setCompanyName(infomation.getName());
 				}
 			}
 
@@ -160,6 +174,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 						infomation = qiyefuwu.getInfomation();
 					}
 					entity.setInfomationId(qiyefuwu.getInfomation().getId());
+					entity.setCompanyName(qiyefuwu.getInfomation().getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Anquanshengchan) {
 					Anquanshengchan anquanshengchan = (Anquanshengchan) logInfomations;
@@ -172,6 +187,8 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 					}
 					entity.setInfomationId(anquanshengchan.getInfomation()
 							.getId());
+					entity.setCompanyName(anquanshengchan.getInfomation()
+							.getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Dangtuanjianshe) {
 					Dangtuanjianshe dangtuanjianshe = (Dangtuanjianshe) logInfomations;
@@ -184,6 +201,8 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 					}
 					entity.setInfomationId(dangtuanjianshe.getInfomation()
 							.getId());
+					entity.setCompanyName(dangtuanjianshe.getInfomation()
+							.getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Guotu) {
 					Guotu guotu = (Guotu) logInfomations;
@@ -195,6 +214,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 						infomation = guotu.getInfomation();
 					}
 					entity.setInfomationId(guotu.getInfomation().getId());
+					entity.setCompanyName(guotu.getInfomation().getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Jiansejindu) {
 					Jiansejindu jiansejindu = (Jiansejindu) logInfomations;
@@ -206,6 +226,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 						infomation = jiansejindu.getInfomation();
 					}
 					entity.setInfomationId(jiansejindu.getInfomation().getId());
+					entity.setCompanyName(jiansejindu.getInfomation().getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Productpeoper) {
 					Productpeoper productpeoper = (Productpeoper) logInfomations;
@@ -218,6 +239,8 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 					}
 					entity.setInfomationId(productpeoper.getInfomation()
 							.getId());
+					entity.setCompanyName(productpeoper.getInfomation()
+							.getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Qiyefazhan) {
 					Qiyefazhan qiyefazhan = (Qiyefazhan) logInfomations;
@@ -229,6 +252,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 						infomation = qiyefazhan.getInfomation();
 					}
 					entity.setInfomationId(qiyefazhan.getInfomation().getId());
+					entity.setCompanyName(qiyefazhan.getInfomation().getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof User) {
 					User user = (User) logInfomations;
@@ -240,6 +264,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 						infomation = user.getInfomation();
 					}
 					entity.setInfomationId(user.getInfomation().getId());
+					entity.setCompanyName(user.getInfomation().getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Yaosu) {
 					Yaosu yaosu = (Yaosu) logInfomations;
@@ -251,6 +276,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 						infomation = yaosu.getInfomation();
 					}
 					entity.setInfomationId(yaosu.getInfomation().getId());
+					entity.setCompanyName(yaosu.getInfomation().getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Youhuizhengce) {
 					Youhuizhengce youhuizhengce = (Youhuizhengce) logInfomations;
@@ -263,6 +289,8 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 					}
 					entity.setInfomationId(youhuizhengce.getInfomation()
 							.getId());
+					entity.setCompanyName(youhuizhengce.getInfomation()
+							.getName());
 					entity.setInfomation(infoEntity);
 				} else if (logInfomations instanceof Zhengwuqingkuang) {
 					Zhengwuqingkuang zhengwuqingkuang = (Zhengwuqingkuang) logInfomations;
@@ -275,6 +303,8 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 					}
 					entity.setInfomationId(zhengwuqingkuang.getInfomation()
 							.getId());
+					entity.setCompanyName(zhengwuqingkuang.getInfomation()
+							.getName());
 					entity.setInfomation(infoEntity);
 				}
 			}
@@ -290,6 +320,7 @@ public class HistoryServiceImpl extends BaseServiceImpl<History, Double>
 		} else {
 			entity.setOperatecode(infomation.getId());
 		}
+		entity.setCompanyName(entity.getCompanyName());
 		entity.setOperateDateTime(DateTimeUtils.getNowDateOfTimestampFormat());
 		entity.setOperateProperty(null);
 		if (logInfomations instanceof Infomation) {

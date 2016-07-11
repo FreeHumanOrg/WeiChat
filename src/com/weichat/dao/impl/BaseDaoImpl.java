@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
@@ -60,6 +61,35 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 		private String value;
 
 		private SearchType(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return value;
+		}
+	}
+
+	/**
+	 * 排序方式枚举
+	 * 
+	 * 
+	 * 项目名称：WeiChat 类名称：BaseDaoImpl.java 类描述：TODO 创建人：王晶 创建时间：2016年6月29日
+	 * 下午8:04:51 修改人：王晶 修改时间：2016年6月29日 下午8:04:51 修改备注：
+	 * 
+	 * FreeHuman Soft Team
+	 * 
+	 * @version 1.0 Beta
+	 */
+	public enum OrderType {
+		// 升序
+		ASC("asc"),
+
+		// 降序
+		DESC("desc");
+
+		private String value;
+
+		private OrderType(String value) {
 			this.value = value;
 		}
 
@@ -263,5 +293,81 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 		}
 		LOGGER.error("Update an entity was filed!");
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Page<T> findPage(Page<T> page, SearchType searchType,
+			OrderType orderType, String columnName) {
+		final Page<T> pageIn = page;
+		final SearchType searchTypeIn = searchType;
+		final OrderType orderTypeIn = orderType;
+		final String columnNameIn = columnName;
+		List<T> contentList = hibernateTemplate
+				.executeFind(new HibernateCallback<List<T>>() {
+					@Override
+					public List<T> doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						Criteria criteria = session.createCriteria(entityClass);
+						criteria.setFirstResult((pageIn.getPageIndex() - 1)
+								* pageIn.getPageSize());
+						criteria.setMaxResults(pageIn.getPageSize());
+
+						// 模糊匹配
+						if (searchTypeIn.hashCode() == SearchType.ILIKE
+								.hashCode()) {
+							System.out.println(pageIn.getSearchValue());
+							if (null != pageIn.getSearchValue()) {
+								criteria.add(Restrictions.ilike(
+										pageIn.getSearchProperty(), "%"
+												+ pageIn.getSearchValue() + "%"));
+							}
+							// 精确匹配
+						} else if (searchTypeIn.hashCode() == SearchType.EQUAL
+								.hashCode()) {
+							criteria.add(Restrictions.eq(
+									pageIn.getSearchProperty(),
+									pageIn.getSearchValue()));
+						}
+
+						if (orderTypeIn.hashCode() == OrderType.ASC.hashCode()) {
+							criteria.addOrder(Order.asc(columnNameIn));
+						} else if (orderTypeIn.hashCode() == OrderType.DESC
+								.hashCode()) {
+							criteria.addOrder(Order.desc(columnNameIn));
+						}
+						return criteria.list();
+					}
+				});
+
+		Long totalCount = hibernateTemplate
+				.execute(new HibernateCallback<Long>() {
+					@Override
+					public Long doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						Criteria criteria = session.createCriteria(entityClass);
+
+						// 模糊匹配
+						if (searchTypeIn.hashCode() == SearchType.ILIKE
+								.hashCode()) {
+							if (null != pageIn.getSearchValue()) {
+								criteria.add(Restrictions.ilike(
+										pageIn.getSearchProperty(), "%"
+												+ pageIn.getSearchValue() + "%"));
+							}
+							// 精确匹配
+						} else if (searchTypeIn.hashCode() == SearchType.EQUAL
+								.hashCode()) {
+							criteria.add(Restrictions.eq(
+									pageIn.getSearchProperty(),
+									pageIn.getSearchValue()));
+						}
+						criteria.setProjection(Projections.rowCount());
+						Object result = criteria.uniqueResult();
+						return Long.valueOf(result.toString());
+					}
+				});
+		return new Page<T>(contentList, totalCount.intValue(),
+				pageIn.getPageIndex());
 	}
 }

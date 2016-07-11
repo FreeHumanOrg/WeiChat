@@ -33,6 +33,7 @@
 								<c:forEach items="${items.infomation.users }" var="userItem">
 									${userItem.username }
 								</c:forEach>
+								【${items.companyName }】
 								<i class="fright">${items.operateDateTime }</i>
 								<i class="fright">${items.operateType }</i>
 							</p>

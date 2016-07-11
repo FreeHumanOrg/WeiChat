@@ -3,6 +3,7 @@ package com.weichat.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import com.weichat.dao.impl.BaseDaoImpl.OrderType;
 import com.weichat.dao.impl.BaseDaoImpl.SearchType;
 import com.weichat.util.Page;
 
@@ -31,9 +32,10 @@ public interface BaseDao<T, ID extends Serializable> {
 	 * @return
 	 */
 	T findById(ID id);
-	
+
 	/**
 	 * 根据企业编号查询子模块实体对象
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -53,7 +55,7 @@ public interface BaseDao<T, ID extends Serializable> {
 	 * @param pageable
 	 * @return
 	 */
-	Page<T> findPage(Page<T> pageable, SearchType searchType,String mcoid);
+	Page<T> findPage(Page<T> pageable, SearchType searchType, String mcoid);
 
 	/**
 	 * 持久化实体对象.
@@ -78,4 +80,16 @@ public interface BaseDao<T, ID extends Serializable> {
 	 * @return
 	 */
 	Boolean remove(T entity);
+
+	/**
+	 * 分页查找实体对象并排序
+	 * 
+	 * @param page
+	 * @param searchType
+	 * @param orderType
+	 * @param columnName
+	 * @return
+	 */
+	Page<T> findPage(Page<T> page, SearchType searchType, OrderType orderType,
+			String columnName);
 }
