@@ -98,7 +98,8 @@ public class HistoryDaoImpl extends BaseDaoImpl<History, Double> implements
 
 	@Override
 	public Page<History> findPage(Page<History> pageable) {
-		return super.findPage(pageable, SearchType.NONE, OrderType.DESC,
+		//SearchType修改为模糊查询
+		return super.findPage(pageable, SearchType.ILIKE, OrderType.DESC,
 				"operateDateTime");
 	}
 }

@@ -24,6 +24,23 @@
 	<body>
 	<form id="paginationForm" action="<%=basePath %>history/historyshow.jhtml" method="post">
 		<div class="history">
+				<table style="border-color: white; width: 260px;">
+					<tr>
+						<td style="border-color: white;">
+						</td>
+						<td style="border-color: white;">
+							<input name="searchValue" type="text" placeholder="输入企业名称" class="form-control" />
+							<input type="text" hidden="hidden" name="searchProperty" value="companyName">
+						</td>
+						
+						<td style="border-color: white;">
+							<a onclick="document.getElementById('paginationForm').submit();" class="btn btn-primary" style="margin-top: -1px; color:white;">搜索</a>
+						</td>
+					</tr>
+				</table>
+			</div> 
+		
+		<div class="history">
 			<c:choose>
 				<c:when test="${page.content.size() > 0 }">
 					<c:forEach items="${page.content }" var="items">
@@ -159,6 +176,7 @@
 				}else if (type === "first") {
 					$("input[name*='pageIndex']").val($("#homePageNum").text()*1);
 				}
+				
 				$("#paginationForm").submit();
 			}
 		</script>

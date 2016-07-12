@@ -303,6 +303,8 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDao<T, ID> {
 		final SearchType searchTypeIn = searchType;
 		final OrderType orderTypeIn = orderType;
 		final String columnNameIn = columnName;
+		System.out.println(searchTypeIn);
+		
 		List<T> contentList = hibernateTemplate
 				.executeFind(new HibernateCallback<List<T>>() {
 					@Override

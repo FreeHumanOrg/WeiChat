@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -51,8 +52,18 @@ public class HistoryController {
 	 */
 	@RequestMapping(value = "/historyshow", method = { RequestMethod.GET,
 			RequestMethod.POST })
-	public String historyShow(ModelMap modelMap,
+	public String historyShow(HttpSession session,ModelMap modelMap,
 			@ModelAttribute Page<History> page) {
+		System.out.println(page.getSearchValue());
+		if(null!=page.getSearchValue()){
+			if(!"".equals(page.getSearchValue())){
+				session.setAttribute("searchvalue", page.getSearchValue());
+			}else{
+				if(null!=session.getAttribute("searchvalue")){
+					page.setSearchValue(session.getAttribute("searchvalue").toString());
+				}
+			}
+		}
 		Page<History> list = historyService.findPageService(page);
 		for (int i = 0; i < list.getContent().size(); i++) {
 			// if (null != list.getContent().get(i).getInfomationId()) {
